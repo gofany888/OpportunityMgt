@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>某省电力数字化转型二期总集项目 - 详情页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+            color: rgba(0, 0, 0, 0.88);
+        }
+
+        .num-font {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .card-shadow {
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+        }
+
+        /* Hide scrollbar for clean matrix table */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-[#f0f2f5]">
+
+    <div class="flex flex-col min-h-screen max-w-[1600px] mx-auto bg-white">
+
+        <!-- 顶部导航栏 (Header) - 横跨全屏 -->
+        <header class="h-16 flex justify-between items-center px-6 border-b border-gray-100 bg-white z-20">
+            <div class="flex items-center gap-4">
+                <div class="text-gray-400 cursor-pointer hover:text-gray-600 transition-colors">
+                    <i class="fa-solid fa-arrow-left text-lg"></i>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span
+                        class="bg-[#262626] text-white text-[11px] px-2.5 py-1 rounded-md font-medium leading-none">父商机预览</span>
+                    <h1 class="text-lg font-bold text-gray-900">某省电力数字化转型二期总集项目</h1>
+                    <div class="text-sm text-gray-400 flex items-center gap-1.5 ml-2">
+                        <span>总负责人：张销售</span>
+                        <i class="fa-solid fa-pencil text-[11px] text-blue-500 cursor-pointer hover:text-blue-600"></i>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button
+                    class="px-5 py-2.5 bg-[#2563eb] text-white rounded-lg hover:bg-blue-700 text-sm flex items-center gap-2 transition-colors shadow-sm font-medium">
+                    <i class="fa-solid fa-floppy-disk"></i> 保存商务变更
+                </button>
+            </div>
+        </header>
+
+        <div class="flex flex-1 overflow-hidden">
+            <!-- 左侧菜单 (Sidebar) -->
+            <aside class="w-[240px] bg-white border-r border-gray-200 flex flex-col flex-shrink-0 overflow-y-auto">
+                <div class="p-4 flex-1">
+                    <div class="space-y-6">
+                        <!-- 维度导航 Section -->
+                        <div>
+                            <div class="px-4 py-2 text-[12px] font-medium text-gray-400 uppercase tracking-wider mb-2">
+                                维度导航</div>
+                            <div class="space-y-1">
+                                <!-- 激活菜单项 -->
+                                <div
+                                    class="px-4 py-3 bg-[#f0f5ff] text-[#2f54eb] font-bold cursor-pointer text-[14px] flex items-center gap-3 relative">
+                                    <div class="absolute right-0 top-0 bottom-0 w-1 bg-[#2f54eb]"></div>
+                                    <i class="fa-solid fa-table-cells-large w-5 text-center"></i> 商务全景
+                                </div>
+                                <div
+                                    class="px-4 py-3 text-gray-500 hover:bg-gray-50 cursor-pointer text-[14px] flex items-center gap-3 transition-colors">
+                                    <i class="fa-solid fa-file-contract w-5 text-center"></i> 合同明细
+                                </div>
+                                <div
+                                    class="px-4 py-3 text-gray-500 hover:bg-gray-50 cursor-pointer text-[14px] flex items-center gap-3 transition-colors">
+                                    <i class="fa-solid fa-flag w-5 text-center"></i> 环节里程碑
+                                </div>
+                                <div
+                                    class="px-4 py-3 text-gray-500 hover:bg-gray-50 cursor-pointer text-[14px] flex items-center gap-3 transition-colors">
+                                    <i class="fa-solid fa-wave-square w-5 text-center"></i> 交付管控
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 已挂载子商机记录 Section -->
+                        <div>
+                            <div class="px-4 py-2 text-[12px] font-medium text-gray-400 uppercase tracking-wider mb-2">
+                                已挂载子商机记录</div>
+                            <div class="space-y-1">
+                                <div
+                                    class="px-4 py-3 text-gray-500 hover:bg-gray-50 cursor-pointer text-[14px] flex items-center gap-3 transition-colors">
+                                    <i class="fa-solid fa-folder w-5 text-center"></i> 软件开发分项
+                                </div>
+                                <div
+                                    class="pl-12 py-2.5 text-gray-500 hover:text-blue-500 cursor-pointer text-[14px] flex items-center gap-3 transition-colors">
+                                    <i class="fa-solid fa-chart-line w-4 text-center text-gray-400"></i> 滚动预测
+                                </div>
+                                <div
+                                    class="pl-12 py-2.5 text-gray-500 hover:text-blue-500 cursor-pointer text-[14px] flex items-center gap-3 transition-colors">
+                                    <i class="fa-solid fa-circle-user w-4 text-center text-gray-400"></i> 经营性质与产品画像
+                                </div>
+                                <div
+                                    class="pl-12 py-2.5 text-gray-500 hover:text-blue-500 cursor-pointer text-[14px] flex items-center gap-3 transition-colors">
+                                    <i class="fa-solid fa-users-gear w-4 text-center text-gray-400"></i> 人力资源与采购
+                                </div>
+                                <div
+                                    class="px-4 py-3 text-gray-500 hover:bg-gray-50 cursor-pointer text-[14px] flex items-center gap-3 transition-colors">
+                                    <i class="fa-solid fa-folder w-5 text-center"></i> 硬件集成分项
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- 右侧主内容 -->
+            <main class="flex-1 p-6 bg-[#f0f2f5] overflow-y-auto">
+
+                <!-- 1. 进度条容器 (Stepper) - 商机全生命周期追踪 -->
+                <div class="bg-white rounded-3xl p-8 mb-5 card-shadow border border-gray-100 relative">
+                    <div class="flex justify-between items-center mb-10">
+                        <h3 class="text-base font-bold text-gray-800 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-line text-[#2f54eb]"></i> 商机全生命周期追踪
+                        </h3>
+                        <div
+                            class="bg-[#f0f5ff] text-[#2f54eb] text-[12px] px-3 py-1 rounded-full border border-[#d6e4ff]">
+                            当前子环节：候选人公示
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-center justify-between px-10">
+                        <!-- 进度连线 -->
+                        <div class="absolute top-[18px] left-[60px] right-[60px] h-[3px] bg-gray-100 z-0"></div>
+                        <div class="absolute top-[18px] left-[60px] w-[50%] h-[3px] bg-[#2f54eb] z-0"></div>
+
+                        <!-- 节点 1: 商机发现 (完成) -->
+                        <div class="relative z-10 flex flex-col items-center gap-3">
+                            <div
+                                class="w-9 h-9 rounded-full bg-[#52c41a] text-white flex items-center justify-center text-sm shadow-sm">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div class="text-[14px] font-medium text-gray-900">商机发现</div>
+                        </div>
+
+                        <!-- 节点 2: 商机确立 (完成) -->
+                        <div class="relative z-10 flex flex-col items-center gap-3">
+                            <div
+                                class="w-9 h-9 rounded-full bg-[#52c41a] text-white flex items-center justify-center text-sm shadow-sm">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div class="text-[14px] font-medium text-gray-900">商机确立</div>
+                        </div>
+
+                        <!-- 节点 3: 立项环节 (完成) -->
+                        <div class="relative z-10 flex flex-col items-center gap-3">
+                            <div
+                                class="w-9 h-9 rounded-full bg-[#52c41a] text-white flex items-center justify-center text-sm shadow-sm">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div class="text-[14px] font-medium text-gray-900">立项环节</div>
+                        </div>
+
+                        <!-- 节点 4: 采购环节 (激活) -->
+                        <div class="relative z-10 flex flex-col items-center gap-3">
+                            <div
+                                class="w-9 h-9 rounded-full bg-[#2f54eb] text-white flex items-center justify-center text-sm font-bold ring-[6px] ring-[#f0f5ff] border-2 border-[#2f54eb]">
+                                04
+                            </div>
+                            <div class="text-[14px] font-bold text-[#2f54eb]">采购环节</div>
+                        </div>
+
+                        <!-- 节点 5: 合同合签 (未开始) -->
+                        <div class="relative z-10 flex flex-col items-center gap-3">
+                            <div
+                                class="w-9 h-9 rounded-full bg-[#f5f5f5] text-gray-400 flex items-center justify-center text-sm border border-gray-200">
+                                05
+                            </div>
+                            <div class="text-[14px] font-medium text-gray-500">合同合签</div>
+                        </div>
+
+                        <!-- 节点 6: 公司立项 (未开始) -->
+                        <div class="relative z-10 flex flex-col items-center gap-3">
+                            <div
+                                class="w-9 h-9 rounded-full bg-[#f5f5f5] text-gray-400 flex items-center justify-center text-sm border border-gray-200">
+                                06
+                            </div>
+                            <div class="text-[14px] font-medium text-gray-500">公司立项</div>
+                        </div>
+
+                        <!-- 节点 7: 商机转化 (未开始) -->
+                        <div class="relative z-10 flex flex-col items-center gap-3">
+                            <div
+                                class="w-9 h-9 rounded-full bg-[#f5f5f5] text-gray-400 flex items-center justify-center text-sm border border-gray-200">
+                                07
+                            </div>
+                            <div class="text-[14px] font-medium text-gray-500">商机转化</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. 分列基础信息卡与预算卡 - 组织归属与客户全景 & 合同财务与经营画像 -->
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-5 mb-5">
+
+                    <!-- 左侧：组织归属与客户全景 -->
+                    <div class="bg-white rounded-3xl p-6 card-shadow border border-gray-100 flex flex-col">
+                        <h3 class="text-base font-bold text-gray-800 flex items-center gap-2 mb-6">
+                            <i class="fa-solid fa-users-viewfinder text-[#2f54eb]"></i> 组织归属与客户全景
+                        </h3>
+
+                        <div class="grid grid-cols-2 gap-y-6 gap-x-12 px-2 mb-8">
+                            <div>
+                                <div class="flex items-center gap-2 mb-1.5">
+                                    <span class="text-gray-400 text-xs text-[12px]">二级部门</span>
+                                    <span
+                                        class="bg-[#f0f5ff] text-[#2f54eb] text-[10px] px-1.5 py-0.5 rounded leading-none">EIS同步</span>
+                                </div>
+                                <span class="text-gray-900 font-bold text-[15px]">云业务运营产品部</span>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2 mb-1.5">
+                                    <span class="text-gray-400 text-xs text-[12px]">销售单元</span>
+                                    <span
+                                        class="bg-[#f0f5ff] text-[#2f54eb] text-[10px] px-1.5 py-0.5 rounded leading-none">EIS同步</span>
+                                </div>
+                                <span class="text-gray-900 font-bold text-[15px]">南部部分公司 / 张销售</span>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2 mb-1.5">
+                                    <span class="text-gray-400 text-xs text-[12px]">客户经理</span>
+                                    <span
+                                        class="bg-[#f0f5ff] text-[#2f54eb] text-[10px] px-1.5 py-0.5 rounded leading-none">EIS同步</span>
+                                </div>
+                                <span class="text-gray-900 font-bold text-[15px]">李经理</span>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2 mb-1.5">
+                                    <span class="text-gray-400 text-xs text-[12px]">地区</span>
+                                    <span
+                                        class="bg-[#f0f5ff] text-[#2f54eb] text-[10px] px-1.5 py-0.5 rounded leading-none">EIS同步</span>
+                                </div>
+                                <span class="text-gray-900 font-bold text-[15px]">华南大区 / 某省</span>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2 mb-1.5">
+                                    <span class="text-gray-400 text-xs text-[12px]">客户归属</span>
+                                    <span
+                                        class="bg-[#f0f5ff] text-[#2f54eb] text-[10px] px-1.5 py-0.5 rounded leading-none">EIS同步</span>
+                                </div>
+                                <span class="text-gray-900 font-bold text-[15px]">某省电力公司</span>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2 mb-1.5">
+                                    <span class="text-gray-400 text-xs text-[12px]">最终客户名称</span>
+                                    <span
+                                        class="bg-[#f0f5ff] text-[#2f54eb] text-[10px] px-1.5 py-0.5 rounded leading-none">EIS同步</span>
+                                </div>
+                                <span class="text-gray-900 font-bold text-[15px]">某省电力集团物资部</span>
+                            </div>
+                        </div>
+
+                        <!-- 商机进度执行轨迹 -->
+                        <div class="border-t border-gray-100 pt-6">
+                            <div class="flex justify-between items-center mb-6">
+                                <div class="text-gray-500 text-[13px] flex items-center gap-2">
+                                    <i class="fa-regular fa-clock"></i> 商机进度执行轨迹 (经营必要)
+                                </div>
+                                <a href="#" class="text-[#2f54eb] text-[13px] hover:underline">查看完整轨迹记录</a>
+                            </div>
+
+                            <div class="relative pl-6 space-y-8">
+                                <!-- 垂直连线 -->
+                                <div class="absolute left-[7px] top-36 bottom-2 w-px bg-gray-200"></div>
+
+                                <!-- 输入框 -->
+                                <div class="relative">
+                                    <textarea placeholder="追加客观商务进展说明..."
+                                        class="w-full h-24 p-4 text-[14px] border border-gray-200 rounded-xl bg-gray-50 focus:bg-white focus:border-[#2f54eb] outline-none transition-all resize-none"></textarea>
+                                    <div class="flex justify-end mt-2">
+                                        <button
+                                            class="bg-[#141414] text-white text-[13px] px-4 py-1.5 rounded hover:bg-black transition-colors flex items-center gap-1.5">
+                                            <i class="fa-solid fa-plus text-[10px]"></i> 追加草稿
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- 轨迹项 1 (草稿态) -->
+                                <div class="relative pl-6">
+                                    <div
+                                        class="absolute left-[-23px] top-1.5 w-3 h-3 rounded-full bg-[#1677ff] border-2 border-white shadow-sm ring-4 ring-blue-50">
+                                    </div>
+                                    <div
+                                        class="bg-white border border-dashed border-[#91caff] rounded-xl p-4 relative bg-[#f0f5ff]/30">
+                                        <div class="flex justify-between items-start mb-2">
+                                            <div class="flex items-center gap-2 text-[13px] text-[#2f54eb] font-medium">
+                                                会话中 · 当前用户 <span
+                                                    class="bg-[#fff7e6] text-[#fa8c16] text-[10px] px-1.5 py-0.5 rounded border border-[#ffd591]">待提交草稿</span>
+                                            </div>
+                                            <div class="flex items-center gap-3 text-gray-400 text-[12px]">
+                                                <i class="fa-solid fa-pencil cursor-pointer hover:text-gray-600"></i>
+                                                <i
+                                                    class="fa-regular fa-trash-can cursor-pointer hover:text-red-500"></i>
+                                            </div>
+                                        </div>
+                                        <div class="text-[14px] text-gray-800">测试</div>
+                                    </div>
+                                </div>
+
+                                <!-- 轨迹项 2 -->
+                                <div class="relative pl-6">
+                                    <div
+                                        class="absolute left-[-23px] top-1.5 w-3 h-3 rounded-full border-2 border-[#1677ff] bg-white">
+                                    </div>
+                                    <div class="text-[12px] text-gray-400 mb-2">2026-03-02 10:15 · 张销售</div>
+                                    <div class="bg-[#f6f8fa] rounded-xl p-3 text-[14px] text-gray-700">
+                                        客户侧预算批复已过会，准备进行单一来源采购公示。
+                                    </div>
+                                </div>
+
+                                <!-- 轨迹项 3 -->
+                                <div class="relative pl-6 pb-2">
+                                    <div
+                                        class="absolute left-[-23px] top-1.5 w-3 h-3 rounded-full bg-[#91caff] border-2 border-white">
+                                    </div>
+                                    <div class="text-[12px] text-gray-400 mb-1.5">2026-02-25 14:30 · 李经理</div>
+                                    <div class="text-[14px] text-gray-700">二期方案对齐会结束，技术参数已录入客户内审系统。</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右侧：合同财务与经营画像 -->
+                    <div class="bg-white rounded-3xl p-6 card-shadow border border-gray-100 flex flex-col">
+                        <h3 class="text-base font-bold text-gray-800 flex items-center gap-2 mb-8">
+                            <i class="fa-solid fa-file-invoice-dollar text-[#2f54eb]"></i> 合同财务与经营画像
+                        </h3>
+
+                        <div class="grid grid-cols-2 gap-y-8 gap-x-12 px-2 mb-2">
+                            <div>
+                                <div class="flex items-center gap-2 mb-1.5">
+                                    <span class="text-gray-400 text-xs text-[12px]">合同编号</span>
+                                    <span
+                                        class="bg-[#f0f5ff] text-[#2f54eb] text-[10px] px-1.5 py-0.5 rounded leading-none">EIS同步</span>
+                                </div>
+                                <span
+                                    class="text-gray-900 font-bold text-[15px] num-font uppercase">CT-2026-X8992</span>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2 mb-1.5">
+                                    <span class="text-gray-400 text-xs text-[12px]">合同状态</span>
+                                    <span
+                                        class="bg-[#f0f5ff] text-[#2f54eb] text-[10px] px-1.5 py-0.5 rounded leading-none">EIS同步</span>
+                                </div>
+                                <span class="text-gray-900 font-bold text-[15px]">执行中</span>
+                            </div>
+                            <div class="col-span-2">
+                                <div class="flex items-center gap-2 mb-1.5">
+                                    <span class="text-gray-400 text-xs text-[12px]">合同名称</span>
+                                    <span
+                                        class="bg-[#f0f5ff] text-[#2f54eb] text-[10px] px-1.5 py-0.5 rounded leading-none">EIS同步</span>
+                                </div>
+                                <span class="text-gray-900 font-bold text-[15px]">某省电力数字化转型二期框架协议</span>
+                            </div>
+                            <div>
+                                <label class="block text-gray-400 text-xs text-[12px] mb-2">投标类型 (本地核定)</label>
+                                <div class="relative">
+                                    <select
+                                        class="w-full appearance-none bg-gray-50 border border-gray-200 text-gray-800 font-medium py-2 pl-3 pr-10 rounded-lg text-sm focus:outline-none focus:border-[#2f54eb] transition-all">
+                                        <option>公开招标</option>
+                                        <option>邀请招标</option>
+                                    </select>
+                                    <div
+                                        class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+                                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2 mb-1.5">
+                                    <span class="text-gray-400 text-xs text-[12px]">关联交易类型</span>
+                                    <span
+                                        class="bg-[#f0f5ff] text-[#2f54eb] text-[10px] px-1.5 py-0.5 rounded leading-none">EIS同步</span>
+                                </div>
+                                <span class="text-gray-900 font-bold text-[15px]">IT服务</span>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2 mb-1.5">
+                                    <span class="text-gray-400 text-xs text-[12px]">财务分类</span>
+                                    <span
+                                        class="bg-[#f0f5ff] text-[#2f54eb] text-[10px] px-1.5 py-0.5 rounded leading-none">EIS同步</span>
+                                </div>
+                                <span class="text-gray-900 font-bold text-[15px]">国内软件技术服务收入</span>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2 mb-1.5">
+                                    <span class="text-gray-400 text-xs text-[12px]">项目属性</span>
+                                    <span
+                                        class="bg-[#f0f5ff] text-[#2f54eb] text-[10px] px-1.5 py-0.5 rounded leading-none">EIS同步</span>
+                                </div>
+                                <span class="text-gray-900 font-bold text-[15px]">非资源池</span>
+                            </div>
+                        </div>
+
+                        <!-- 黑色金额汇总块 -->
+                        <div class="mt-4 bg-[#1a1f2c] rounded-[24px] p-8 relative overflow-hidden shadow-xl">
+                            <!-- 背景图标 -->
+                            <i
+                                class="fa-solid fa-building-columns absolute right-8 top-1/2 -translate-y-1/2 text-[100px] text-white opacity-[0.05] z-0"></i>
+
+                            <div class="relative z-10">
+                                <div class="text-gray-400 text-[15px] mb-1">子项总金额 (含税)</div>
+                                <div class="flex items-baseline gap-1 text-[#adc6ff]">
+                                    <span
+                                        class="text-[64px] font-medium num-font tracking-tight leading-none">¥2,400.00</span>
+                                    <span class="text-[18px] font-medium opacity-80">万</span>
+                                </div>
+
+                                <div class="mt-6">
+                                    <div
+                                        class="bg-[#132322] border border-[#1d3d3b] rounded-lg px-4 py-2 flex items-center gap-2 text-[14px] text-[#52c41a] w-full">
+                                        <i class="fa-solid fa-certificate"></i> 基因已锁定至 2026 年度底稿
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. 商机环节执行里程碑管理 -->
+                    <div class="bg-white rounded-3xl p-8 mb-5 card-shadow border border-gray-100">
+                        <div class="flex justify-between items-center mb-8">
+                            <h3 class="text-base font-bold text-gray-800 flex items-center gap-2">
+                                <i class="fa-solid fa-flag text-[#2f54eb]"></i> 商机环节执行里程碑管理
+                            </h3>
+                            <button
+                                class="bg-[#2f54eb] text-white text-[13px] px-4 py-1.5 rounded-lg flex items-center gap-2 hover:bg-blue-600 transition-all shadow-md">
+                                <i class="fa-solid fa-clock-rotate-left"></i> 开启排期重排工具
+                            </button>
+                        </div>
+
+                        <div class="w-full">
+                            <!-- 表头 -->
+                            <div
+                                class="flex items-center px-4 py-3 text-[13px] font-medium text-gray-400 border-b border-gray-50 mb-2">
+                                <div class="flex-1">环节阶段 / 具体子项</div>
+                                <div class="w-[220px] flex-shrink-0 text-center">经营实际时刻 (PM 填报)</div>
+                                <div class="w-[100px] flex-shrink-0 text-center">证明材料</div>
+                                <div class="w-[240px] flex-shrink-0 text-center">计划周期</div>
+                                <div class="w-[100px] flex-shrink-0 text-right">当前状态</div>
+                            </div>
+
+                            <!-- 列表内容 -->
+                            <div class="space-y-1">
+                                <!-- L1 -->
+                                <div class="flex items-center px-4 py-4 hover:bg-gray-50/50 transition-colors group">
+                                    <div class="flex-1 flex items-center gap-3">
+                                        <div class="w-[3px] h-4 bg-[#52c41a] opacity-30 rounded-full"></div>
+                                        <span class="text-[14px] text-gray-500 italic font-medium">L1. 商机发现</span>
+                                        <i
+                                            class="fa-solid fa-chevron-down text-[10px] text-gray-300 group-hover:text-gray-400"></i>
+                                    </div>
+                                    <div
+                                        class="w-[220px] flex-shrink-0 text-center text-[13px] text-gray-400 italic font-medium whitespace-nowrap">
+                                        2026-01-01 ~ 2026-01-10</div>
+                                    <div class="w-[100px] flex-shrink-0 flex justify-center">
+                                        <i class="fa-solid fa-circle-check text-[#52c41a] text-[16px]"></i>
+                                    </div>
+                                    <div class="w-[240px] flex-shrink-0 px-2">
+                                        <div
+                                            class="bg-gray-50/30 rounded-md px-3 py-1.5 flex items-center justify-center text-[12px] text-gray-300 italic font-medium whitespace-nowrap">
+                                            2026-01-01 ~ 2026-01-15
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="w-[100px] flex-shrink-0 text-right text-[13px] text-[#52c41a] font-medium">
+                                        已完成</div>
+                                </div>
+
+                                <!-- L2 -->
+                                <div class="flex items-center px-4 py-4 hover:bg-gray-50/50 transition-colors group">
+                                    <div class="flex-1 flex items-center gap-3">
+                                        <div class="w-[3px] h-4 bg-[#52c41a] opacity-30 rounded-full"></div>
+                                        <span class="text-[14px] text-gray-500 italic font-medium">L2. 商机确立</span>
+                                        <i
+                                            class="fa-solid fa-chevron-down text-[10px] text-gray-300 group-hover:text-gray-400"></i>
+                                    </div>
+                                    <div
+                                        class="w-[220px] flex-shrink-0 text-center text-[13px] text-gray-400 italic font-medium whitespace-nowrap">
+                                        2026-01-12 ~ 2026-01-25</div>
+                                    <div class="w-[100px] flex-shrink-0 flex justify-center">
+                                        <i class="fa-solid fa-circle-check text-[#52c41a] text-[16px]"></i>
+                                    </div>
+                                    <div class="w-[240px] flex-shrink-0 px-2">
+                                        <div
+                                            class="bg-gray-50/30 rounded-md px-3 py-1.5 flex items-center justify-center text-[12px] text-gray-300 italic font-medium whitespace-nowrap">
+                                            2026-01-10 ~ 2026-01-25
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="w-[100px] flex-shrink-0 text-right text-[13px] text-[#52c41a] font-medium">
+                                        已完成</div>
+                                </div>
+
+                                <!-- L3 -->
+                                <div class="flex items-center px-4 py-4 hover:bg-gray-50/50 transition-colors group">
+                                    <div class="flex-1 flex items-center gap-3">
+                                        <div class="w-[3px] h-4 bg-[#52c41a] opacity-30 rounded-full"></div>
+                                        <span class="text-[14px] text-gray-500 italic font-medium">L3. 立项环节</span>
+                                        <i
+                                            class="fa-solid fa-chevron-down text-[10px] text-gray-300 group-hover:text-gray-400"></i>
+                                    </div>
+                                    <div
+                                        class="w-[220px] flex-shrink-0 text-center text-[13px] text-gray-400 italic font-medium whitespace-nowrap">
+                                        2026-02-01 ~ 2026-02-20</div>
+                                    <div class="w-[100px] flex-shrink-0 flex justify-center">
+                                        <i class="fa-solid fa-circle-check text-[#52c41a] text-[16px]"></i>
+                                    </div>
+                                    <div class="w-[240px] flex-shrink-0 px-2">
+                                        <div
+                                            class="bg-gray-50/30 rounded-md px-3 py-1.5 flex items-center justify-center text-[12px] text-gray-300 italic font-medium whitespace-nowrap">
+                                            2026-02-01 ~ 2026-02-15
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="w-[100px] flex-shrink-0 text-right text-[13px] text-[#52c41a] font-medium">
+                                        已完成</div>
+                                </div>
+
+                                <!-- L4 - Active -->
+                                <div class="bg-[#f0f5ff]/40 rounded-xl overflow-hidden mb-2">
+                                    <div class="flex items-center px-4 py-5 font-medium">
+                                        <div class="w-[3px] h-4 bg-[#2f54eb] rounded-full mr-3"></div>
+                                        <div class="flex-1 flex items-center gap-3">
+                                            <span
+                                                class="text-[14px] text-[#2f54eb] font-bold border-b border-[#2f54eb]">L4.
+                                                采购环节</span>
+                                            <i class="fa-solid fa-chevron-up text-[10px] text-[#2f54eb]"></i>
+                                        </div>
+                                        <div class="w-[220px] flex-shrink-0 text-center text-[13px] text-gray-300">--
+                                        </div>
+                                        <div class="w-[100px] flex-shrink-0"></div>
+                                        <div class="w-[240px] flex-shrink-0 px-2">
+                                            <div
+                                                class="bg-white border border-gray-100 rounded-lg px-3 py-2 flex items-center justify-between text-[12px] text-gray-800 shadow-sm hover:border-gray-300 cursor-pointer transition-all whitespace-nowrap">
+                                                <div class="flex items-center gap-2">
+                                                    <i class="fa-regular fa-calendar text-gray-400"></i> 2026-03-15 ~
+                                                    2026-03-30
+                                                </div>
+                                                <i class="fa-solid fa-caret-down text-[10px] text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="w-[100px] flex-shrink-0 text-right text-[13px] text-[#2f54eb] font-medium">
+                                            进行中</div>
+                                    </div>
+
+                                    <!-- 子项列表 -->
+                                    <div class="pb-6 space-y-6">
+                                        <!-- 采购需求 -->
+                                        <div class="flex items-center px-4 pl-12">
+                                            <div class="flex-1 flex items-center gap-2">
+                                                <span class="text-[14px] text-gray-700">采购需求</span>
+                                                <span
+                                                    class="bg-[#f0f5ff] text-[#2f54eb] text-[10px] px-2 py-0.5 rounded italic whitespace-nowrap">当前节点
+                                                    (PM)</span>
+                                            </div>
+                                            <div class="w-[220px] flex-shrink-0 px-4">
+                                                <div
+                                                    class="bg-[#2f54eb] text-white rounded-lg flex items-center overflow-hidden h-9 shadow-sm whitespace-nowrap">
+                                                    <div
+                                                        class="flex-1 flex items-center justify-center gap-2 border-r border-white/20 hover:bg-blue-600 cursor-pointer transition-colors">
+                                                        <i class="fa-regular fa-calendar-check text-[12px]"></i>
+                                                        <span class="text-[12px]">起</span>
+                                                    </div>
+                                                    <div class="w-8 text-center text-[12px] opacity-80">~</div>
+                                                    <div
+                                                        class="flex-1 flex items-center justify-center gap-2 hover:bg-blue-600 cursor-pointer transition-colors">
+                                                        <span class="text-[12px]">止</span>
+                                                        <i class="fa-solid fa-caret-down text-[10px] opacity-80"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="w-[100px] flex-shrink-0 flex justify-center">
+                                                <div
+                                                    class="w-8 h-8 rounded-lg bg-[#e6f4ff] text-[#2f54eb] flex items-center justify-center cursor-pointer hover:bg-blue-100 transition-colors">
+                                                    <i class="fa-solid fa-paperclip text-[14px]"></i>
+                                                </div>
+                                            </div>
+                                            <div class="w-[240px] flex-shrink-0 px-2">
+                                                <div
+                                                    class="bg-[#2f54eb] border border-[#2f54eb] rounded-lg px-3 py-2 flex items-center justify-between text-[12px] text-white shadow-md hover:bg-blue-600 cursor-pointer transition-all whitespace-nowrap">
+                                                    <div class="flex items-center gap-2">
+                                                        <i class="fa-regular fa-calendar"></i> 2026-03-15 ~ 2026-03-20
+                                                    </div>
+                                                    <i class="fa-solid fa-caret-down text-[10px] opacity-80"></i>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="w-[100px] flex-shrink-0 text-right text-[13px] text-[#2f54eb] font-medium">
+                                                进行中
+                                            </div>
+                                        </div>
+
+                                        <!-- 采购方案 -->
+                                        <div class="flex items-center px-4 pl-12">
+                                            <div class="flex-1 text-[14px] text-gray-700">采购方案</div>
+                                            <div class="w-[220px] flex-shrink-0 text-center text-[13px] text-gray-300">
+                                                --
+                                            </div>
+                                            <div class="w-[100px] flex-shrink-0"></div>
+                                            <div class="w-[240px] flex-shrink-0 px-2">
+                                                <div
+                                                    class="bg-white border border-gray-100 rounded-lg px-3 py-2 flex items-center justify-between text-[12px] text-gray-800 shadow-sm hover:border-gray-300 cursor-pointer transition-all whitespace-nowrap">
+                                                    <div class="flex items-center gap-2">
+                                                        <i class="fa-regular fa-calendar text-gray-400"></i> 2026-03-17
+                                                        ~
+                                                        2026-03-22
+                                                    </div>
+                                                    <i class="fa-solid fa-caret-down text-[10px] text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                            <div class="w-[100px] flex-shrink-0 text-right text-[13px] text-gray-400">
+                                                计划中
+                                            </div>
+                                        </div>
+
+                                        <!-- 公告发布 -->
+                                        <div class="flex items-center px-4 pl-12">
+                                            <div class="flex-1 flex items-center gap-2">
+                                                <span
+                                                    class="text-[14px] text-[#2f54eb] font-medium border-b border-[#2f54eb]">公告发布</span>
+                                                <span
+                                                    class="bg-[#2f54eb] text-white text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1">
+                                                    <i class="fa-solid fa-link text-[8px] rotate-45"></i> EIS 认定进度
+                                                </span>
+                                            </div>
+                                            <div class="w-[220px] flex-shrink-0 text-center text-[13px] text-gray-300">
+                                                --
+                                            </div>
+                                            <div class="w-[100px] flex-shrink-0"></div>
+                                            <div class="w-[240px] flex-shrink-0 px-2">
+                                                <div
+                                                    class="bg-white border border-gray-100 rounded-lg px-3 py-2 flex items-center justify-between text-[12px] text-gray-800 shadow-sm hover:border-gray-300 cursor-pointer transition-all whitespace-nowrap">
+                                                    <div class="flex items-center gap-2">
+                                                        <i class="fa-regular fa-calendar text-gray-400"></i> 2026-03-19
+                                                        ~
+                                                        2026-03-24
+                                                    </div>
+                                                    <i class="fa-solid fa-caret-down text-[10px] text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="w-[100px] flex-shrink-0 text-right text-[13px] text-gray-400 italic">
+                                                计划中</div>
+                                        </div>
+
+                                        <!-- 文件传递截止及递交 -->
+                                        <div class="flex items-center px-4 pl-12">
+                                            <div class="flex-1 text-[14px] text-gray-700">文件传递截止及递交</div>
+                                            <div class="w-[220px] flex-shrink-0 text-center text-[13px] text-gray-300">
+                                                --
+                                            </div>
+                                            <div class="w-[100px] flex-shrink-0"></div>
+                                            <div class="w-[240px] flex-shrink-0 px-2">
+                                                <div
+                                                    class="bg-white border border-gray-100 rounded-lg px-3 py-2 flex items-center justify-between text-[12px] text-gray-800 shadow-sm hover:border-gray-300 cursor-pointer transition-all whitespace-nowrap">
+                                                    <div class="flex items-center gap-2">
+                                                        <i class="fa-regular fa-calendar text-gray-400"></i> 2026-03-21
+                                                        ~
+                                                        2026-03-26
+                                                    </div>
+                                                    <i class="fa-solid fa-caret-down text-[10px] text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="w-[100px] flex-shrink-0 text-right text-[13px] text-gray-400 italic">
+                                                计划中</div>
+                                        </div>
+
+                                        <!-- 候选人公示 -->
+                                        <div class="flex items-center px-4 pl-12">
+                                            <div class="flex-1 text-[14px] text-gray-700">候选人公示</div>
+                                            <div class="w-[220px] flex-shrink-0 text-center text-[13px] text-gray-300">
+                                                --
+                                            </div>
+                                            <div class="w-[100px] flex-shrink-0"></div>
+                                            <div class="w-[240px] flex-shrink-0 px-2">
+                                                <div
+                                                    class="bg-white border border-gray-100 rounded-lg px-3 py-2 flex items-center justify-between text-[12px] text-gray-800 shadow-sm whitespace-nowrap">
+                                                    <div class="flex items-center gap-2">
+                                                        <i class="fa-regular fa-calendar text-gray-400"></i> 2026-03-23
+                                                        ~
+                                                        2026-03-28
+                                                    </div>
+                                                    <i class="fa-solid fa-caret-down text-[10px] text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                            <div class="w-[100px] flex-shrink-0 text-right text-[13px] text-gray-400">
+                                                计划中
+                                            </div>
+                                        </div>
+
+                                        <!-- 采购结果 -->
+                                        <div class="flex items-center px-4 pl-12">
+                                            <div class="flex-1 text-[14px] text-gray-700">采购结果</div>
+                                            <div class="w-[220px] flex-shrink-0 text-center text-[13px] text-gray-300">
+                                                --
+                                            </div>
+                                            <div class="w-[100px] flex-shrink-0"></div>
+                                            <div class="w-[240px] flex-shrink-0 px-2">
+                                                <div
+                                                    class="bg-white border border-gray-100 rounded-lg px-3 py-2 flex items-center justify-between text-[12px] text-gray-800 shadow-sm hover:border-gray-300 cursor-pointer transition-all whitespace-nowrap">
+                                                    <div class="flex items-center gap-2">
+                                                        <i class="fa-regular fa-calendar text-gray-400"></i> 2026-03-25
+                                                        ~
+                                                        2026-03-30
+                                                    </div>
+                                                    <i class="fa-solid fa-caret-down text-[10px] text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="w-[100px] flex-shrink-0 text-right text-[13px] text-gray-400 italic">
+                                                计划中</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- L5 -->
+                                <div class="flex items-center px-4 py-3">
+                                    <div class="flex-1 flex items-center gap-3">
+                                        <div class="w-[3px] h-4 bg-gray-200 rounded-full"></div>
+                                        <span class="text-[14px] text-gray-700 font-medium">L5. 客户合同会签</span>
+                                    </div>
+                                    <div class="w-[220px] flex-shrink-0 text-center text-[13px] text-gray-300">--</div>
+                                    <div class="w-[100px] flex-shrink-0"></div>
+                                    <div class="w-[240px] flex-shrink-0 px-2">
+                                        <div
+                                            class="bg-white border border-gray-100 rounded-lg px-3 py-2 flex items-center justify-between text-[12px] text-gray-800 shadow-sm hover:border-gray-300 cursor-pointer transition-all whitespace-nowrap">
+                                            <div class="flex items-center gap-2">
+                                                <i class="fa-regular fa-calendar text-gray-400"></i> 2026-06-01 ~
+                                                2026-06-15
+                                            </div>
+                                            <i class="fa-solid fa-caret-down text-[10px] text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                    <div class="w-[100px] flex-shrink-0 text-right text-[13px] text-gray-400">计划中</div>
+                                </div>
+
+                                <!-- L6 -->
+                                <div class="flex items-center px-4 py-3">
+                                    <div class="flex-1 flex items-center gap-3">
+                                        <div class="w-[3px] h-4 bg-gray-200 rounded-full"></div>
+                                        <span class="text-[14px] text-gray-700 font-medium">L6. 公司侧立项</span>
+                                    </div>
+                                    <div class="w-[220px] flex-shrink-0 text-center text-[13px] text-gray-300">--</div>
+                                    <div class="w-[100px] flex-shrink-0"></div>
+                                    <div class="w-[240px] flex-shrink-0 px-2">
+                                        <div
+                                            class="bg-white border border-gray-100 rounded-lg px-3 py-2 flex items-center justify-between text-[12px] text-gray-800 shadow-sm hover:border-gray-300 cursor-pointer transition-all whitespace-nowrap">
+                                            <div class="flex items-center gap-2">
+                                                <i class="fa-regular fa-calendar text-gray-400"></i> 2026-06-01 ~
+                                                2026-06-15
+                                            </div>
+                                            <i class="fa-solid fa-caret-down text-[10px] text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                    <div class="w-[100px] flex-shrink-0 text-right text-[13px] text-gray-400">计划中</div>
+                                </div>
+
+                                <!-- L7 -->
+                                <div class="flex items-center px-4 py-3">
+                                    <div class="flex-1 flex items-center gap-3">
+                                        <div class="w-[3px] h-4 bg-gray-200 rounded-full"></div>
+                                        <span class="text-[14px] text-gray-700 font-medium">L7. 商机转化</span>
+                                    </div>
+                                    <div class="w-[220px] flex-shrink-0 text-center text-[13px] text-gray-300">--</div>
+                                    <div class="w-[100px] flex-shrink-0"></div>
+                                    <div class="w-[240px] flex-shrink-0 px-2">
+                                        <div
+                                            class="bg-white border border-gray-100 rounded-lg px-3 py-2 flex items-center justify-between text-[12px] text-gray-800 shadow-sm hover:border-gray-300 cursor-pointer transition-all whitespace-nowrap">
+                                            <div class="flex items-center gap-2">
+                                                <i class="fa-regular fa-calendar text-gray-400"></i> 2026-06-01 ~
+                                                2026-06-15
+                                            </div>
+                                            <i class="fa-solid fa-caret-down text-[10px] text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                    <div class="w-[100px] flex-shrink-0 text-right text-[13px] text-gray-400">计划中</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. 项目交付进度与商务对标控点 -->
+                    <div class="bg-white rounded-3xl p-8 mb-6 card-shadow border border-gray-50">
+                        <div class="flex items-center gap-3 mb-8">
+                            <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center">
+                                <i class="fa-solid fa-compass-drafting text-[#2f54eb] text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">项目交付进度与商务对标控点</h3>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-12">
+                            <!-- Left Column: 交付里程碑管理 -->
+                            <div class="space-y-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center gap-2 text-gray-700 font-bold">
+                                        <i class="fa-solid fa-chart-line text-[#2f54eb]"></i>
+                                        <span>交付里程碑管理</span>
+                                    </div>
+                                    <div
+                                        class="bg-[#f0f5ff] text-[#2f54eb] text-[12px] px-3 py-1 rounded-full font-medium">
+                                        交付系数: 0.85</div>
+                                </div>
+
+                                <!-- 首付阶段 -->
+                                <div class="border border-gray-100 rounded-2xl p-6 bg-gray-50/20">
+                                    <span
+                                        class="bg-gray-800 text-white text-[10px] px-2 py-0.5 rounded-md font-bold mb-4 inline-block">首付阶段</span>
+                                    <div class="grid grid-cols-3 gap-4">
+                                        <div>
+                                            <div class="text-[12px] text-gray-400 mb-2">阶段名称</div>
+                                            <div class="text-[15px] text-gray-800 font-bold">首付款申请</div>
+                                        </div>
+                                        <div>
+                                            <div class="text-[12px] text-gray-400 mb-2">预测时间</div>
+                                            <div class="text-[15px] text-gray-800 font-medium">2026-04-20</div>
+                                        </div>
+                                        <div>
+                                            <div class="text-[12px] text-gray-400 mb-2">实际时间</div>
+                                            <div class="text-[15px] text-gray-800 font-medium">2026-04-22</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 履约阶段 1 -->
+                                <div
+                                    class="border border-[#adc6ff] rounded-2xl p-6 bg-white shadow-sm ring-1 ring-[#f0f5ff]">
+                                    <span
+                                        class="bg-[#2f54eb] text-white text-[10px] px-2 py-0.5 rounded-md font-bold mb-4 inline-block">履约阶段
+                                        1</span>
+                                    <div class="grid grid-cols-3 gap-4">
+                                        <div>
+                                            <div class="text-[12px] text-gray-400 mb-2">阶段名称</div>
+                                            <input type="text" value="系统首版交付"
+                                                class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-[#2f54eb] outline-none">
+                                        </div>
+                                        <div>
+                                            <div class="text-[12px] text-gray-400 mb-2">预测时间</div>
+                                            <div class="relative">
+                                                <input type="text" value="2026/06/15"
+                                                    class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-[#2f54eb] outline-none">
+                                                <i
+                                                    class="fa-regular fa-calendar absolute right-3 top-2.5 text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="text-[12px] text-gray-400 mb-2">实际时间</div>
+                                            <div class="relative">
+                                                <input type="text" placeholder="年 / 月 / 日"
+                                                    class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-[#2f54eb] outline-none">
+                                                <i
+                                                    class="fa-regular fa-calendar absolute right-3 top-2.5 text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Add Button -->
+                                <button
+                                    class="w-full py-4 border-2 border-dashed border-gray-200 rounded-2xl text-gray-400 flex items-center justify-center gap-2 hover:bg-gray-50 hover:border-gray-300 transition-all">
+                                    <i class="fa-solid fa-plus text-sm"></i>
+                                    <span class="text-sm">添加履约阶段</span>
+                                </button>
+                            </div>
+
+                            <!-- Right Column: 商务进度控点 -->
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center gap-2 text-gray-700 font-bold">
+                                        <i class="fa-solid fa-clipboard-check text-[#2f54eb]"></i>
+                                        <span>商务进度控点</span>
+                                    </div>
+                                    <div
+                                        class="bg-[#f0f5ff] text-[#2f54eb] text-[12px] px-3 py-1 rounded-full font-medium">
+                                        商务系数: 0.55</div>
+                                </div>
+
+                                <!-- List Items -->
+                                <div class="space-y-2.5">
+                                    <!-- Item 1 -->
+                                    <div
+                                        class="flex items-center justify-between p-4 border border-gray-100 rounded-2xl hover:bg-gray-50/50 transition-all group">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                class="w-5 h-5 rounded-full border-2 border-gray-100 flex items-center justify-center">
+                                            </div>
+                                            <div>
+                                                <div
+                                                    class="text-[14px] text-gray-700 font-bold flex items-center gap-1.5">
+                                                    无列账额度 <i
+                                                        class="fa-solid fa-circle-info text-gray-300 text-[10px]"></i>
+                                                </div>
+                                                <div class="text-[11px] text-gray-400">风险项: 对应系数 0.5</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 2 -->
+                                    <div
+                                        class="flex items-center justify-between p-4 border border-gray-100 rounded-2xl hover:bg-gray-50/50 transition-all">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                class="w-5 h-5 rounded-full border-2 border-gray-100 flex items-center justify-center">
+                                            </div>
+                                            <div>
+                                                <div
+                                                    class="text-[14px] text-gray-700 font-bold flex items-center gap-1.5">
+                                                    前项无回款 <i
+                                                        class="fa-solid fa-circle-info text-gray-300 text-[10px]"></i>
+                                                </div>
+                                                <div class="text-[11px] text-gray-400">风险项: 对应系数 0.5</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 3: Warning -->
+                                    <div
+                                        class="flex items-center justify-between p-4 border border-red-100 bg-[#fff2f0] rounded-2xl">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fa-solid fa-circle-check text-red-500 text-lg"></i>
+                                            <div>
+                                                <div
+                                                    class="text-[14px] text-red-500 font-bold flex items-center gap-1.5">
+                                                    无法回款 <i
+                                                        class="fa-solid fa-circle-info text-red-300 text-[10px]"></i>
+                                                </div>
+                                                <div class="text-[11px] text-red-400/80">风险项: 直接客户 / 直接业外 (0.5)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 4 -->
+                                    <div
+                                        class="flex items-center justify-between p-4 border border-gray-100 rounded-2xl hover:bg-gray-50/50 transition-all">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                class="w-5 h-5 rounded-full border-2 border-gray-100 flex items-center justify-center">
+                                            </div>
+                                            <div>
+                                                <div
+                                                    class="text-[14px] text-gray-700 font-bold flex items-center gap-1.5">
+                                                    进度确认
+                                                </div>
+                                                <div class="text-[11px] text-gray-400">确权项: 客户盖章 (对应系数 0.6)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 5: Active/Blue -->
+                                    <div
+                                        class="flex items-center justify-between p-4 border border-blue-100 bg-[#f0f5ff] rounded-2xl ring-1 ring-[#e6f4ff]">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fa-solid fa-circle-check text-[#2f54eb] text-lg"></i>
+                                            <div>
+                                                <div class="text-[14px] text-[#2f54eb] font-bold">验收即列账</div>
+                                                <div class="text-[11px] text-blue-400">标准商务流程</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 6 -->
+                                    <div
+                                        class="flex items-center justify-between p-4 border border-gray-100 rounded-2xl hover:bg-gray-50/50 transition-all">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                class="w-5 h-5 rounded-full border-2 border-gray-100 flex items-center justify-center">
+                                            </div>
+                                            <div>
+                                                <div class="text-[14px] text-gray-700 font-bold">代收代付</div>
+                                                <div class="text-[11px] text-gray-400">财务结算类型</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5. 子项 - 软件开发分项 (Outer Container) -->
+                        <div class="bg-[#f5f6fa] border border-[#e8ecef] rounded-3xl p-6 mb-8 mt-10">
+
+                            <!-- 5.1 Header Collapse Card -->
+                            <div
+                                class="bg-white rounded-2xl p-5 mb-5 flex items-center justify-between shadow-sm cursor-pointer hover:shadow-md transition-shadow">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">
+                                        <i class="fa-solid fa-code text-sm"></i>
+                                    </div>
+                                    <h3 class="text-[15px] font-bold text-gray-800">子项 - 软件开发分项</h3>
+                                </div>
+                                <i class="fa-solid fa-chevron-up text-gray-400 text-sm"></i>
+                            </div>
+
+                            <!-- 5.2 Header Info Strip -->
+                            <div class="bg-white rounded-2xl p-6 mb-5 shadow-sm grid grid-cols-3 gap-8">
+                                <div>
+                                    <div class="text-[12px] text-gray-400 mb-1">子商机编码</div>
+                                    <div class="text-[14px] text-gray-800 font-bold">S-01</div>
+                                </div>
+                                <div>
+                                    <div class="text-[12px] text-gray-400 mb-1">项目经理 (PM)</div>
+                                    <div class="text-[14px] text-gray-800 font-bold">李经理</div>
+                                </div>
+                                <div>
+                                    <div class="text-[12px] text-gray-400 mb-1">子项规模</div>
+                                    <div class="text-[14px] text-[#2f54eb] font-bold">¥1,200.00 万</div>
+                                </div>
+                            </div>
+
+                            <!-- 5.3 Detailed Finance Matrix Card -->
+                            <div class="bg-white rounded-2xl p-6 mb-5 shadow-sm">
+                                <div class="flex justify-between items-center mb-6">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-1 h-4 bg-[#2f54eb] rounded-full"></div>
+                                        <h4 class="text-[14px] font-bold text-gray-800">详细财务对账核算</h4>
+                                        <span class="text-[12px] text-gray-400 font-normal ml-1">(万元，不含税)</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-[12px] text-gray-500">税率</span>
+                                        <div
+                                            class="border border-gray-200 rounded px-2 py-1 text-[12px] text-gray-700 flex items-center gap-1 cursor-pointer bg-gray-50/50">
+                                            6% <i class="fa-solid fa-chevron-down text-[10px] text-gray-400 ml-1"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-5 gap-4">
+                                    <!-- Block 1: 往年收入实结 -->
+                                    <div class="border border-gray-100 rounded-xl p-5 bg-[#fafafa]">
+                                        <div class="text-[12px] text-gray-400 mb-6">往年收入实结</div>
+
+                                        <div class="mb-5">
+                                            <div class="text-[11px] text-gray-400 mb-1">收入小计</div>
+                                            <div class="text-[18px] text-gray-300 font-medium num-font">450.00</div>
+                                        </div>
+
+                                        <div>
+                                            <div class="text-[11px] text-gray-400 mb-1">毛利小计</div>
+                                            <div class="text-[18px] text-gray-300 font-medium num-font">135.00</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Block 2: 今年收入实结 (Active) -->
+                                    <div
+                                        class="border border-[#adc6ff] rounded-xl p-5 bg-white shadow-[0_2px_10px_rgba(47,84,235,0.06)] ring-1 ring-[#f0f5ff]">
+                                        <div class="text-[12px] text-[#2f54eb] font-bold mb-6">今年收入实结</div>
+
+                                        <div class="mb-5">
+                                            <div class="text-[11px] text-gray-400 mb-1">收入小计</div>
+                                            <div class="text-[18px] text-[#2f54eb] font-bold num-font">80.00</div>
+                                        </div>
+
+                                        <div>
+                                            <div class="text-[11px] text-gray-400 mb-1">毛利小计</div>
+                                            <div class="text-[18px] text-[#2f54eb] font-bold num-font">24.00</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Block 3: 今年尚未收入预计 -->
+                                    <div class="border border-gray-100 rounded-xl p-5 bg-white shadow-sm">
+                                        <div class="text-[12px] text-gray-600 font-bold mb-6">今年尚未收入预计</div>
+
+                                        <div class="mb-5">
+                                            <div class="text-[11px] text-gray-400 mb-1">收入小计</div>
+                                            <div class="text-[18px] text-gray-800 font-bold num-font">670.00</div>
+                                        </div>
+
+                                        <div>
+                                            <div class="text-[11px] text-gray-400 mb-1">毛利小计</div>
+                                            <div class="text-[18px] text-gray-800 font-bold num-font">201.00</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Block 4: 今年累计收入预计 (Dark) -->
+                                    <div
+                                        class="bg-[#1f2937] border border-gray-800 rounded-xl p-5 shadow-md text-white">
+                                        <div class="text-[12px] text-gray-300 mb-6">今年累计收入预计</div>
+
+                                        <div class="mb-5">
+                                            <div class="text-[11px] text-gray-400 mb-1">收入小计</div>
+                                            <div class="text-[18px] font-bold num-font">¥750.00</div>
+                                        </div>
+
+                                        <div>
+                                            <div class="text-[11px] text-gray-400 mb-1">毛利小计</div>
+                                            <div class="text-[18px] font-bold num-font">¥225.00</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Block 5: 子项累计收入预计 (Blue Gradient) -->
+                                    <div
+                                        class="bg-gradient-to-br from-[#1677ff] to-[#0958d9] rounded-xl p-5 shadow-md text-white">
+                                        <div class="text-[12px] text-blue-100 mb-6">子项累计收入预计</div>
+
+                                        <div class="mb-5">
+                                            <div class="text-[11px] text-blue-200 mb-1">收入小计</div>
+                                            <div class="text-[18px] font-bold num-font">¥1,200.00</div>
+                                        </div>
+
+                                        <div>
+                                            <div class="text-[11px] text-blue-200 mb-1">毛利小计</div>
+                                            <div class="text-[18px] font-bold num-font">¥360.00</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 5.4 财务月度滚动预测表 -->
+                                <div
+                                    class="bg-white rounded-2xl p-6 mb-5 shadow-[0_2px_12px_rgba(0,0,0,0.04)] ring-1 ring-gray-100">
+                                    <div class="flex justify-between items-center mb-6">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                class="w-10 h-10 rounded-xl bg-[#2f54eb] text-white flex items-center justify-center shadow-md shadow-blue-200">
+                                                <i class="fa-solid fa-table-cells text-lg"></i>
+                                            </div>
+                                            <div>
+                                                <h4 class="text-[16px] font-bold text-gray-800">财务月度滚动预测表</h4>
+                                                <div class="text-[11px] text-gray-400 mt-0.5">1-12 月经营维度对标数据 (单位：万元)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex bg-gray-100 rounded-lg p-1">
+                                            <button
+                                                class="px-4 py-1.5 text-[12px] font-medium rounded-md bg-[#2f54eb] text-white shadow-sm transition-all">100%
+                                                把握</button>
+                                            <button
+                                                class="px-4 py-1.5 text-[12px] font-medium rounded-md text-gray-500 hover:text-gray-700 transition-all">60%
+                                                把握</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Data Table -->
+                                    <div class="overflow-x-auto no-scrollbar pb-2">
+                                        <table class="w-full text-[12px] text-center whitespace-nowrap">
+                                            <thead>
+                                                <!-- Quarter Headers -->
+                                                <tr class="text-gray-400 text-[11px]">
+                                                    <td class="text-left pb-2 w-48">维度对标 / 月份</td>
+                                                    <td colspan="3" class="pb-2">第一季度</td>
+                                                    <td colspan="3" class="pb-2">第二季度</td>
+                                                    <td colspan="3" class="pb-2">第三季度</td>
+                                                    <td colspan="3" class="pb-2">第四季度</td>
+                                                    <td class="text-right pb-2 font-medium text-gray-600">年度合计</td>
+                                                </tr>
+                                                <!-- Month Headers -->
+                                                <tr class="text-[11px] border-b border-gray-100">
+                                                    <td></td>
+                                                    <td class="pb-3 pt-1 text-gray-400">1月<br><span
+                                                            class="text-[10px] text-gray-300">确权</span></td>
+                                                    <td class="pb-3 pt-1 text-gray-400">2月<br><span
+                                                            class="text-[10px] text-gray-300">预估</span></td>
+                                                    <td class="pb-3 pt-1 text-[#2f54eb] font-medium">3月<br><span
+                                                            class="text-[10px] text-blue-300">预测</span></td>
+                                                    <td class="pb-3 pt-1 text-[#2f54eb] font-medium">4月<br><span
+                                                            class="text-[10px] text-blue-300">预测</span></td>
+                                                    <td class="pb-3 pt-1 text-[#2f54eb] font-medium">5月<br><span
+                                                            class="text-[10px] text-blue-300">预测</span></td>
+                                                    <td class="pb-3 pt-1 text-[#2f54eb] font-medium">6月<br><span
+                                                            class="text-[10px] text-blue-300">预测</span></td>
+                                                    <td class="pb-3 pt-1 text-[#2f54eb] font-medium">7月<br><span
+                                                            class="text-[10px] text-blue-300">预测</span></td>
+                                                    <td class="pb-3 pt-1 text-[#2f54eb] font-medium">8月<br><span
+                                                            class="text-[10px] text-blue-300">预测</span></td>
+                                                    <td class="pb-3 pt-1 text-[#2f54eb] font-medium">9月<br><span
+                                                            class="text-[10px] text-blue-300">预测</span></td>
+                                                    <td class="pb-3 pt-1 text-[#2f54eb] font-medium">10月<br><span
+                                                            class="text-[10px] text-blue-300">预测</span></td>
+                                                    <td class="pb-3 pt-1 text-[#2f54eb] font-medium">11月<br><span
+                                                            class="text-[10px] text-blue-300">预测</span></td>
+                                                    <td class="pb-3 pt-1 text-[#2f54eb] font-medium">12月<br><span
+                                                            class="text-[10px] text-blue-300">预测</span></td>
+                                                    <td></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="num-font font-medium">
+                                                <!-- 销售收入预测 -->
+                                                <tr>
+                                                    <td class="py-4 text-left">
+                                                        <div class="flex items-center gap-2">
+                                                            <div class="w-1.5 h-6 bg-gray-200 rounded-full"></div>
+                                                            <div
+                                                                class="w-6 h-6 rounded-md bg-blue-50 text-blue-500 flex items-center justify-center">
+                                                                <i class="fa-solid fa-chart-line text-[10px]"></i>
+                                                            </div>
+                                                            <div>
+                                                                <div class="text-[12px] text-gray-700 font-bold">销售收入预测
+                                                                </div>
+                                                                <div class="text-[10px] text-gray-400 font-normal">SO 维度
+                                                                    / 财报</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>40</td>
+                                                    <td>105</td>
+                                                    <td>150</td>
+                                                    <td class="text-[#2f54eb]">150</td>
+                                                    <td class="text-[#2f54eb]">150</td>
+                                                    <td class="text-[#2f54eb]">250</td>
+                                                    <td class="text-[#2f54eb]">100</td>
+                                                    <td class="text-[#2f54eb]">100</td>
+                                                    <td class="text-[#2f54eb]">150</td>
+                                                    <td class="text-[#2f54eb]">150</td>
+                                                    <td class="text-[#2f54eb]">150</td>
+                                                    <td class="text-[#2f54eb]">155</td>
+                                                    <td class="text-right font-bold text-gray-800">1,650</td>
+                                                </tr>
+
+                                                <!-- 经营收入预测 -->
+                                                <tr>
+                                                    <td class="py-4 text-left">
+                                                        <div class="flex items-center gap-2">
+                                                            <div class="w-1.5 h-6 bg-gray-200 rounded-full"></div>
+                                                            <div
+                                                                class="w-6 h-6 rounded-md bg-[#2f54eb] text-white flex items-center justify-center">
+                                                                <i
+                                                                    class="fa-solid fa-money-bill-trend-up text-[10px]"></i>
+                                                            </div>
+                                                            <div>
+                                                                <div class="text-[12px] text-gray-700 font-bold">经营收入预测
+                                                                </div>
+                                                                <div class="text-[10px] text-gray-400 font-normal">PM
+                                                                    按进度填报</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>40</td>
+                                                    <td>105</td>
+                                                    <td>120</td>
+                                                    <td class="text-[#2f54eb]">150</td>
+                                                    <td class="text-[#2f54eb]">150</td>
+                                                    <td class="text-[#2f54eb]">200</td>
+                                                    <td class="text-[#2f54eb]">80</td>
+                                                    <td class="text-[#2f54eb]">50</td>
+                                                    <td class="text-[#2f54eb]">100</td>
+                                                    <td class="text-[#2f54eb]">120</td>
+                                                    <td class="text-[#2f54eb]">40</td>
+                                                    <td class="text-[#2f54eb]">45</td>
+                                                    <td class="text-right font-bold text-gray-800">1,200</td>
+                                                </tr>
+
+                                                <!-- 销售采购预测 -->
+                                                <tr>
+                                                    <td class="py-4 text-left">
+                                                        <div class="flex items-center gap-2">
+                                                            <div class="w-1.5 h-6 bg-gray-200 rounded-full"></div>
+                                                            <div
+                                                                class="w-6 h-6 rounded-md bg-blue-50 text-blue-500 flex items-center justify-center">
+                                                                <i class="fa-solid fa-cart-shopping text-[10px]"></i>
+                                                            </div>
+                                                            <div>
+                                                                <div class="text-[12px] text-gray-700 font-bold">销售采购预测
+                                                                </div>
+                                                                <div class="text-[10px] text-gray-400 font-normal">SO 维度
+                                                                    / 财报</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>15</td>
+                                                    <td>30</td>
+                                                    <td>45</td>
+                                                    <td class="text-[#2f54eb]">45</td>
+                                                    <td class="text-[#2f54eb]">45</td>
+                                                    <td class="text-[#2f54eb]">75</td>
+                                                    <td class="text-[#2f54eb]">30</td>
+                                                    <td class="text-[#2f54eb]">30</td>
+                                                    <td class="text-[#2f54eb]">45</td>
+                                                    <td class="text-[#2f54eb]">45</td>
+                                                    <td class="text-[#2f54eb]">45</td>
+                                                    <td class="text-[#2f54eb]">46</td>
+                                                    <td class="text-right font-bold text-gray-800">496</td>
+                                                </tr>
+
+                                                <!-- 经营采购预测 -->
+                                                <tr class="border-b border-gray-100">
+                                                    <td class="py-4 text-left">
+                                                        <div class="flex items-center gap-2">
+                                                            <div class="w-1.5 h-6 bg-gray-200 rounded-full"></div>
+                                                            <div
+                                                                class="w-6 h-6 rounded-md bg-gray-100 text-gray-500 flex items-center justify-center">
+                                                                <i class="fa-solid fa-file-invoice text-[10px]"></i>
+                                                            </div>
+                                                            <div>
+                                                                <div class="text-[12px] text-gray-700 font-bold">经营采购预测
+                                                                </div>
+                                                                <div class="text-[10px] text-gray-400 font-normal">含税总额
+                                                                    / 消耗</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>10</td>
+                                                    <td>25</td>
+                                                    <td>30</td>
+                                                    <td>40</td>
+                                                    <td>40</td>
+                                                    <td>60</td>
+                                                    <td>20</td>
+                                                    <td>15</td>
+                                                    <td>25</td>
+                                                    <td>30</td>
+                                                    <td>10</td>
+                                                    <td>15</td>
+                                                    <td class="text-right font-bold text-gray-800">320</td>
+                                                </tr>
+
+                                                <!-- 销售毛利预测 -->
+                                                <tr>
+                                                    <td class="py-4 text-left pt-6">
+                                                        <div class="flex items-center gap-2">
+                                                            <div class="w-1.5 h-6 bg-[#ffeed8] rounded-full"></div>
+                                                            <div
+                                                                class="w-6 h-6 rounded-md bg-[#fff2e8] text-[#fa541c] flex items-center justify-center">
+                                                                <i class="fa-solid fa-arrow-trend-up text-[10px]"></i>
+                                                            </div>
+                                                            <div>
+                                                                <div class="text-[12px] text-gray-700 font-bold">销售毛利预测
+                                                                </div>
+                                                                <div class="text-[10px] text-gray-400 font-normal">算数差值
+                                                                    (估值)</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>25</td>
+                                                    <td>75</td>
+                                                    <td>105</td>
+                                                    <td class="text-[#f5222d] font-bold">105</td>
+                                                    <td class="text-[#f5222d] font-bold">105</td>
+                                                    <td class="text-[#f5222d] font-bold">175</td>
+                                                    <td class="text-[#f5222d] font-bold">70</td>
+                                                    <td class="text-[#f5222d] font-bold">70</td>
+                                                    <td class="text-[#f5222d] font-bold">105</td>
+                                                    <td class="text-[#f5222d] font-bold">105</td>
+                                                    <td class="text-[#f5222d] font-bold">105</td>
+                                                    <td class="text-[#f5222d] font-bold">109</td>
+                                                    <td class="text-right font-bold text-[#f5222d]">1,154</td>
+                                                </tr>
+
+                                                <!-- 经营毛利预测 -->
+                                                <tr>
+                                                    <td class="py-4 text-left">
+                                                        <div class="flex items-center gap-2">
+                                                            <div class="w-1.5 h-6 bg-[#f6ffed] rounded-full"></div>
+                                                            <div
+                                                                class="w-6 h-6 rounded-md bg-[#f6ffed] text-[#52c41a] flex items-center justify-center">
+                                                                <i class="fa-solid fa-sack-dollar text-[10px]"></i>
+                                                            </div>
+                                                            <div>
+                                                                <div class="text-[12px] text-gray-700 font-bold">经营毛利预测
+                                                                </div>
+                                                                <div class="text-[10px] text-gray-400 font-normal">算数差值
+                                                                    / 利润</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>30</td>
+                                                    <td>80</td>
+                                                    <td>90</td>
+                                                    <td class="text-[#52c41a] font-bold">110</td>
+                                                    <td class="text-[#52c41a] font-bold">110</td>
+                                                    <td class="text-[#52c41a] font-bold">140</td>
+                                                    <td class="text-[#52c41a] font-bold">60</td>
+                                                    <td class="text-[#52c41a] font-bold">35</td>
+                                                    <td class="text-[#52c41a] font-bold">75</td>
+                                                    <td class="text-[#52c41a] font-bold">90</td>
+                                                    <td class="text-[#52c41a] font-bold">30</td>
+                                                    <td class="text-[#52c41a] font-bold">30</td>
+                                                    <td class="text-right font-bold text-[#52c41a]">880</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <!-- Bottom Status Bar -->
+                                    <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+                                        <div class="flex items-center gap-6">
+                                            <div class="flex items-center gap-2">
+                                                <div class="w-2 h-2 rounded-full bg-[#52c41a]"></div>
+                                                <span class="text-[12px] text-gray-600 font-medium">年度预测对标率: <span
+                                                        class="text-gray-800">94.2%</span></span>
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <div class="w-2 h-2 rounded-full bg-[#2f54eb]"></div>
+                                                <span class="text-[12px] text-gray-600 font-medium">子项金额覆盖量: <span
+                                                        class="text-[#2f54eb]">50%</span></span>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="bg-[#fffbe6] border border-[#ffe58f] text-[#faad14] text-[11px] px-3 py-1.5 rounded-md flex items-center gap-1.5 shadow-sm">
+                                            <i class="fa-solid fa-circle-exclamation"></i>
+                                            <span>经营效益警示: 当前经营预算与销售端口径存在 450w 差额需补齐</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 5.5 Dual-Column Config Cards -->
+                                <div class="grid grid-cols-2 gap-5 mb-5">
+                                    <!-- Left: 经营性质与滚动分类 -->
+                                    <div
+                                        class="bg-white rounded-2xl p-6 shadow-sm border border-gray-50 flex flex-col h-full">
+                                        <div class="flex items-center gap-2 mb-6 text-gray-800 font-bold text-[14px]">
+                                            <i class="fa-solid fa-shapes text-[#2f54eb]"></i> 经营性质与滚动分类
+                                        </div>
+
+                                        <div class="grid grid-cols-2 gap-4 mb-4">
+                                            <div>
+                                                <label class="block text-[11px] text-gray-500 mb-1.5">项目分类</label>
+                                                <div class="relative">
+                                                    <select
+                                                        class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-[13px] text-gray-700 appearance-none bg-white focus:outline-none focus:border-[#2f54eb] focus:ring-1 focus:ring-[#f0f5ff]">
+                                                        <option>产品能力</option>
+                                                    </select>
+                                                    <i
+                                                        class="fa-solid fa-angle-down absolute right-3 top-3.5 text-gray-400 text-[10px] pointer-events-none"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="block text-[11px] text-gray-500 mb-1.5">项目类型</label>
+                                                <div class="relative">
+                                                    <select
+                                                        class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-[13px] text-gray-700 appearance-none bg-white focus:outline-none focus:border-[#2f54eb] focus:ring-1 focus:ring-[#f0f5ff]">
+                                                        <option>项目型</option>
+                                                    </select>
+                                                    <i
+                                                        class="fa-solid fa-angle-down absolute right-3 top-3.5 text-gray-400 text-[10px] pointer-events-none"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="block text-[11px] text-gray-500 mb-1.5">项目滚动线索</label>
+                                            <div class="relative">
+                                                <select
+                                                    class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-[13px] text-gray-700 appearance-none bg-white focus:outline-none focus:border-[#2f54eb] focus:ring-1 focus:ring-[#f0f5ff]">
+                                                    <option>延续项目</option>
+                                                </select>
+                                                <i
+                                                    class="fa-solid fa-angle-down absolute right-3 top-3.5 text-gray-400 text-[10px] pointer-events-none"></i>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-[11px] text-gray-400 mt-auto pt-2">
+                                            提示：延期项目在测算时将直接产生收入的延续单元。
+                                        </div>
+                                    </div>
+
+                                    <!-- Right: 细分产品画像 -->
+                                    <div
+                                        class="bg-white rounded-2xl p-6 shadow-sm border border-gray-50 flex flex-col h-full">
+                                        <div class="flex items-center gap-2 mb-6 text-gray-800 font-bold text-[14px]">
+                                            <i class="fa-solid fa-border-all text-[#52c41a]"></i> 细分产品画像
+                                        </div>
+
+                                        <div class="space-y-4">
+                                            <div>
+                                                <label class="block text-[11px] text-gray-500 mb-1.5">业务营销领域</label>
+                                                <div class="relative">
+                                                    <select
+                                                        class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-[13px] text-gray-700 appearance-none bg-white focus:outline-none focus:border-[#2f54eb] focus:ring-1 focus:ring-[#f0f5ff]">
+                                                        <option>系统集成</option>
+                                                    </select>
+                                                    <i
+                                                        class="fa-solid fa-angle-down absolute right-3 top-3.5 text-gray-400 text-[10px] pointer-events-none"></i>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <label class="block text-[11px] text-gray-500 mb-1.5">产品大类</label>
+                                                <div class="relative">
+                                                    <select
+                                                        class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-[13px] text-gray-700 appearance-none bg-white pl-3 w-[60%] focus:outline-none focus:border-[#2f54eb] focus:ring-1 focus:ring-[#f0f5ff]">
+                                                        <option>产研探索</option>
+                                                    </select>
+                                                    <i
+                                                        class="fa-solid fa-angle-down absolute right-[45%] top-3.5 text-gray-400 text-[10px] pointer-events-none"></i>
+                                                </div>
+                                            </div>
+
+                                            <div class="pb-2">
+                                                <label class="block text-[11px] text-gray-500 mb-1.5">产品细类</label>
+                                                <div class="relative">
+                                                    <select
+                                                        class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-[13px] text-gray-700 appearance-none bg-white focus:outline-none focus:border-[#2f54eb] focus:ring-1 focus:ring-[#f0f5ff]">
+                                                        <option>数字化底座</option>
+                                                    </select>
+                                                    <i
+                                                        class="fa-solid fa-angle-down absolute right-3 top-3.5 text-gray-400 text-[10px] pointer-events-none"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 5.6 人力资源与采购全周期管控 -->
+                                <div
+                                    class="bg-white rounded-2xl p-6 shadow-sm border border-gray-50 flex flex-col mb-2">
+                                    <div class="flex items-center gap-2 mb-6 text-gray-800 font-bold text-[14px]">
+                                        <i class="fa-solid fa-users-gear text-[#1677ff]"></i> 人力资源与采购全周期管控
+                                    </div>
+
+                                    <div class="grid grid-cols-2 gap-y-5 gap-x-8">
+                                        <!-- Field 1 -->
+                                        <div>
+                                            <label class="block text-[11px] text-gray-500 mb-1.5">采购总金额 (万元，不含税)</label>
+                                            <input type="text" value="450.00"
+                                                class="w-full border border-gray-200 rounded-lg px-3 py-2 text-[13px] text-gray-800 bg-[#fafafa] focus:bg-white outline-none focus:border-[#2f54eb] focus:ring-1 focus:ring-[#f0f5ff]">
+                                        </div>
+
+                                        <!-- Field 2 -->
+                                        <div>
+                                            <label class="block text-[11px] text-gray-500 mb-1.5">其中人力采购供应商</label>
+                                            <input type="text" value="华为技术有限公司"
+                                                class="w-full border border-gray-200 rounded-lg px-3 py-2 text-[13px] text-gray-800 bg-[#fafafa] focus:bg-white outline-none focus:border-[#2f54eb] focus:ring-1 focus:ring-[#f0f5ff]">
+                                        </div>
+
+                                        <!-- Field 3 -->
+                                        <div>
+                                            <label class="block text-[11px] text-gray-500 mb-1.5">其中人力采购金额
+                                                (万元，不含税)</label>
+                                            <input type="text" value="120.00"
+                                                class="w-full border border-gray-200 rounded-lg px-3 py-2 text-[13px] text-gray-800 bg-[#fafafa] focus:bg-white outline-none focus:border-[#2f54eb] focus:ring-1 focus:ring-[#f0f5ff]">
+                                        </div>
+
+                                        <!-- Field 4 (Dropdown & Date next to each other in design? No, they are separated. Let's trace the layout: 2 cols. Row 1: Amount, Supplier. Row 2: HR Amount, [Dropdown + Date in two cols? No, the screenshot has 4 fields visible, oh wait it has 5. Let's look closely at the screenshot.
+                            Left column: 采购总金额, 其中人力采购金额.
+                            Right column: 其中人力采购供应商, 是否已采购, 计划采购时间.
+                            Let's adjust to match exact layout.]
+                            -->
+                                    </div>
+
+                                    <!-- Actually, the screenshot has:
+                        Row 1: 采购总金额 (Left), 其中人力采购供应商 (Right)
+                        Row 2: 其中人力采购金额 (Left), 然后右边是一排两个: 是否已采购, 计划采购时间
+                        -->
+                                    <div class="grid grid-cols-2 gap-y-5 gap-x-8 mt-5">
+                                        <div class="grid grid-cols-2 gap-x-8 col-start-2">
+                                            <div>
+                                                <label class="block text-[11px] text-gray-500 mb-1.5">是否已采购</label>
+                                                <div class="relative">
+                                                    <select
+                                                        class="w-full border border-gray-200 rounded-lg px-3 py-2 text-[13px] text-gray-800 appearance-none bg-white focus:outline-none focus:border-[#2f54eb] focus:ring-1 focus:ring-[#f0f5ff]">
+                                                        <option>是</option>
+                                                    </select>
+                                                    <i
+                                                        class="fa-solid fa-angle-down absolute right-3 top-3 text-gray-400 text-[10px] pointer-events-none"></i>
+                                                </div>
+                                            </div>
+                                            <div class="relative">
+                                                <label class="block text-[11px] text-gray-500 mb-1.5">计划采购时间</label>
+                                                <div class="relative">
+                                                    <input type="text" value="2026/06/15"
+                                                        class="w-full border border-gray-200 rounded-lg px-3 py-2 text-[13px] text-gray-800 bg-white outline-none focus:border-[#2f54eb] focus:ring-1 focus:ring-[#f0f5ff]">
+                                                    <i
+                                                        class="fa-regular fa-calendar absolute right-3 top-2.5 text-gray-400 text-[12px] pointer-events-none"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+</body>
+
+</html>

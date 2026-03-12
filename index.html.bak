@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商机经营对账汇总报表</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            /* 经典企业级后台背景色 */
+            background-color: #f0f2f5;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+            color: rgba(0, 0, 0, 0.88);
+        }
+
+        /* 提升企业级质感阴影 */
+        .card-shadow {
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.3s;
+        }
+
+        .card-shadow:hover {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.04), 0 6px 20px 0 rgba(0, 0, 0, 0.04);
+        }
+
+        .table-shadow {
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+        }
+
+        /* 表格样式细调 */
+        .ent-table th,
+        .ent-table td {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .ent-table thead th {
+            background-color: #fafafa;
+            color: rgba(0, 0, 0, 0.88);
+            font-weight: 500;
+        }
+
+        .ent-table tbody tr:hover {
+            background-color: #fbfbfb;
+        }
+
+        /* 强调字体基线对齐 */
+        .num-font {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-feature-settings: "tnum";
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+
+<body class="p-6">
+    <div id="app" class="max-w-[1600px] mx-auto">
+        <!-- 面包屑及头部 (Header) -->
+        <div class="mb-6 bg-white p-5 rounded-2xl card-shadow">
+            <div class="flex justify-between items-center">
+                <div class="flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center text-xl mt-1">
+                        <i class="fa-solid fa-chart-bar"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-semibold text-gray-800 mb-2">商机经营对账汇总报表</h1>
+                        <div class="text-xs text-gray-500 flex items-center gap-3">
+                            <span class="bg-blue-50 text-blue-600 px-2 py-0.5 rounded border border-blue-100">2026年度 Q1
+                                经营审计</span>
+                            <span class="text-gray-400">|</span>
+                            <span>数据链路：实时在线</span>
+                            <span class="text-gray-400">|</span>
+                            <span class="flex items-center gap-1"><i class="fa-regular fa-clock"></i> 数据同步时间: 03-07
+                                08:30</span>
+                            <span class="text-gray-400">|</span>
+                            <span class="flex items-center gap-1 text-green-600"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-green-500 inline-block"></span> 状态: 正常运行</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button
+                        class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg bg-white hover:text-blue-500 hover:border-blue-500 text-sm flex items-center gap-1 transition-colors shadow-sm">
+                        <i class="fa-solid fa-filter"></i> 维度过滤
+                    </button>
+                    <button
+                        class="px-4 py-2 bg-[#1677ff] text-white rounded-lg hover:bg-[#4096ff] text-sm flex items-center gap-1 transition-colors shadow-sm">
+                        <i class="fa-solid fa-download"></i> 导出报表
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 核心指标卡 (Cards Area) -->
+        <div class="flex flex-wrap gap-5 mb-6">
+            <!-- Card 1 -->
+            <div class="flex-1 bg-white rounded-2xl p-5 card-shadow flex flex-col relative overflow-hidden group">
+                <div class="flex items-center gap-4 mb-4">
+                    <div
+                        class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-green-500 text-xl">
+                        <i class="fa-solid fa-coins"></i>
+                    </div>
+                    <div>
+                        <div class="text-sm text-gray-500 mb-1">经营侧总规模</div>
+                        <div class="text-3xl font-semibold num-font text-gray-800">
+                            ¥17,580 <span class="text-sm text-gray-500 font-normal">万</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 border-t border-gray-100 text-xs text-gray-500">
+                    核心业务经营核算数据
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="flex-1 bg-white rounded-2xl p-5 card-shadow flex flex-col relative overflow-hidden group">
+                <div class="flex items-center gap-4 mb-4">
+                    <div
+                        class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-500 text-xl">
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <div>
+                        <div class="text-sm text-gray-500 mb-1">财务侧总口径</div>
+                        <div class="text-3xl font-semibold num-font text-gray-800">
+                            ¥17,029 <span class="text-sm text-gray-500 font-normal">万</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 border-t border-gray-100 text-xs text-gray-500">
+                    财务系统录入推盘数据
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="flex-1 bg-white rounded-2xl p-5 card-shadow flex flex-col relative overflow-hidden group">
+                <div class="flex items-center gap-4 mb-4">
+                    <div
+                        class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-orange-500 text-xl">
+                        <i class="fa-solid fa-user-edit"></i>
+                    </div>
+                    <div>
+                        <div class="text-sm text-gray-500 mb-1 flex items-center gap-1"><span
+                                class="w-1.5 h-1.5 rounded-full bg-orange-500 inline-block"></span> PM自建规模</div>
+                        <div class="text-3xl font-semibold num-font text-gray-800">
+                            ¥1,860 <span class="text-sm text-gray-500 font-normal">万</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 border-t border-gray-100 text-xs flex justify-between items-center">
+                    <span class="text-orange-500 bg-orange-50 px-2 py-0.5 rounded border border-orange-100">高关注</span>
+                    <span class="text-gray-500">涉及 24 个项目项</span>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="flex-1 bg-white rounded-2xl p-5 card-shadow flex flex-col relative overflow-hidden group">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center text-red-500 text-xl">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div>
+                        <div class="text-sm text-gray-500 mb-1">对账累计差异</div>
+                        <div class="text-3xl font-semibold num-font text-[#ff4d4f]">
+                            ¥551 <span class="text-sm text-gray-500 font-normal">万</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 border-t border-gray-100 text-xs flex justify-between items-center">
+                    <span class="text-[#ff4d4f] flex items-center gap-1"><i class="fa-solid fa-arrow-trend-up"></i>
+                        差异率</span>
+                    <span
+                        class="bg-[#fff1f0] text-[#ff4d4f] border border-[#ffccc7] px-2 py-0.5 rounded num-font">3.1%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 差异分析表格 (Main Table Area) -->
+        <div class="bg-white rounded-2xl table-shadow overflow-hidden mb-4">
+            <div class="p-4 border-b border-gray-100 flex justify-between items-center">
+                <h3 class="font-medium text-gray-800 border-l-4 border-blue-500 pl-2">各组织单元对账明细</h3>
+            </div>
+            <div class="overflow-x-auto p-4 pt-0">
+                <table class="w-full text-sm text-center ent-table">
+                    <thead>
+                        <!-- Header Row 1 -->
+                        <tr>
+                            <th rowspan="2" class="p-4 text-left w-[200px] bg-[#fafafa]">组织单元 (二级部)</th>
+                            <th colspan="4"
+                                class="p-3 bg-[#f6ffed] border-b border-gray-100 border-x border-[#d9f7be] font-semibold text-[#389e0d]">
+                                商机经营对账 (经营口径)</th>
+                            <th colspan="4"
+                                class="p-3 bg-[#e6f4ff] border-b border-gray-100 border-r border-[#bae0ff] font-semibold text-[#0958d9]">
+                                商机预测对标 (推盘口径)</th>
+                            <th colspan="4"
+                                class="p-3 bg-[#fff1f0] border-b border-gray-100 font-semibold text-[#cf1322]">
+                                对账执行差异分析 <i class="fa-solid fa-arrow-down ml-1 text-xs"></i></th>
+                        </tr>
+                        <!-- Header Row 2 -->
+                        <tr class="text-xs text-gray-600 bg-[#fafafa]">
+                            <th class="p-3 border-l border-[#d9f7be] w-[120px]">有效数(含自建)</th>
+                            <th class="p-3 w-[100px]">收入规模</th>
+                            <th class="p-3 w-[100px]">采购规模</th>
+                            <th class="p-3 border-r border-[#d9f7be] w-[100px]">经营毛利</th>
+
+                            <th class="p-3 w-[80px]">有效数</th>
+                            <th class="p-3 w-[100px]">收入预测</th>
+                            <th class="p-3 w-[100px]">采购预测</th>
+                            <th class="p-3 border-r border-[#bae0ff] w-[100px]">预测毛利</th>
+
+                            <th class="p-3 w-[80px]">数量差</th>
+                            <th class="p-3 w-[100px]">收入差异</th>
+                            <th class="p-3 w-[80px]">采购差</th>
+                            <th class="p-3 w-[80px]">毛利差</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700 num-font">
+                        <tr v-for="(row, idx) in tableData" :key="idx"
+                            class="transition-colors group hover:bg-[#e6f4ff] hover:bg-opacity-20 align-middle">
+                            <td class="p-4 text-left font-sans">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-medium text-gray-800">{{ row.org }}</span>
+                                    <i
+                                        class="fa-solid fa-square-arrow-up-right text-gray-300 opacity-0 group-hover:opacity-100 cursor-pointer hover:text-blue-500 transition-opacity"></i>
+                                </div>
+                            </td>
+                            <td class="p-3 border-l border-gray-100 bg-[#f6ffed] bg-opacity-30">
+                                <div class="font-medium text-gray-800">{{ row.managed.count }}</div>
+                                <div v-if="row.managed.selfBuiltCount"
+                                    class="text-[10px] text-orange-500 font-sans mt-0.5 ml-1">含{{
+                                    row.managed.selfBuiltCount }}项自建</div>
+                            </td>
+                            <td class="p-3 font-medium text-[#389e0d] bg-[#f6ffed] bg-opacity-30">{{ row.managed.income
+                                }}</td>
+                            <td class="p-3 text-gray-600 bg-[#f6ffed] bg-opacity-30">{{ row.managed.procurement }}</td>
+                            <td
+                                class="p-3 font-medium text-gray-800 border-r border-gray-100 bg-[#f6ffed] bg-opacity-30">
+                                {{ row.managed.profit }}</td>
+
+                            <td class="p-3 text-[#1677ff] bg-[#e6f4ff] bg-opacity-30">{{ row.forecast.count }}</td>
+                            <td class="p-3 font-medium text-[#1677ff] bg-[#e6f4ff] bg-opacity-30">{{ row.forecast.income
+                                }}</td>
+                            <td class="p-3 text-gray-500 bg-[#e6f4ff] bg-opacity-30">{{ row.forecast.procurement }}</td>
+                            <td
+                                class="p-3 font-medium text-[#1677ff] border-r border-gray-100 bg-[#e6f4ff] bg-opacity-30">
+                                {{ row.forecast.profit }}</td>
+
+                            <td class="p-3 bg-[#fff1f0] bg-opacity-30 align-middle"
+                                :class="row.diff.count > 0 ? 'text-[#fa8c16] font-medium' : 'text-gray-400'">
+                                {{ row.diff.count > 0 ? '+' + row.diff.count : row.diff.count }}
+                            </td>
+                            <td class="p-3 bg-[#fff1f0] bg-opacity-30 align-middle">
+                                <div
+                                    class="font-medium text-[#f5222d] flex flex-col items-center justify-center gap-0.5 cursor-pointer hover:underline decoration-[#ffccc7] decoration-dashed">
+                                    <span>{{ row.diff.income > 0 ? '+' + row.diff.income : row.diff.income }}</span>
+                                    <i v-if="row.diff.income > 0"
+                                        class="fa-solid fa-angle-right text-[10px] text-[#ffccc7]"></i>
+                                </div>
+                            </td>
+                            <td class="p-3 text-gray-400 bg-[#fff1f0] bg-opacity-30">{{ row.diff.procurement }}</td>
+                            <td class="p-3 font-medium text-[#fa8c16] bg-[#fff1f0] bg-opacity-30">
+                                {{ row.diff.profit > 0 ? '+' + row.diff.profit : row.diff.profit }}</td>
+                        </tr>
+
+                        <!-- Total Row -->
+                        <tr class="bg-[#f0f2f5] border-y-[3px] border-gray-300">
+                            <td class="p-4 text-left font-sans font-bold text-gray-800 text-base">全局对账汇总总计</td>
+                            <td class="p-3 border-l border-gray-300 bg-[#f6ffed] bg-opacity-100">
+                                <div class="font-bold text-[#237804] text-lg">227 <span
+                                        class="text-xs font-sans text-gray-500 font-normal">项</span></div>
+                                <div class="text-[10px] text-[#d46b08] font-sans mt-0.5">含24项PM自建</div>
+                            </td>
+                            <td class="p-3 font-bold text-[#237804] text-lg bg-[#f6ffed] bg-opacity-100">17,580
+                            </td>
+                            <td class="p-3 text-gray-800 font-bold text-lg bg-[#f6ffed] bg-opacity-100">5,233</td>
+                            <td
+                                class="p-3 font-bold text-gray-900 border-r border-gray-300 text-lg bg-[#f6ffed] bg-opacity-100">
+                                13,079</td>
+
+                            <td class="p-3 text-[#0958d9] font-bold text-lg bg-[#e6f4ff] bg-opacity-100">214</td>
+                            <td class="p-3 font-bold text-[#0958d9] text-lg bg-[#e6f4ff] bg-opacity-100">17,029
+                            </td>
+                            <td class="p-3 text-gray-800 font-bold text-lg bg-[#e6f4ff] bg-opacity-100">5,125</td>
+                            <td
+                                class="p-3 font-bold text-[#0958d9] border-r border-gray-300 text-lg bg-[#e6f4ff] bg-opacity-100">
+                                12,559</td>
+
+                            <td class="p-3 font-bold text-[#d46b08] text-lg bg-[#fff1f0] bg-opacity-100">13</td>
+                            <td class="p-3 font-bold text-[#cf1322] text-lg bg-[#fff1f0] bg-opacity-100">551</td>
+                            <td class="p-3 text-gray-800 font-bold text-lg bg-[#fff1f0] bg-opacity-100">109</td>
+                            <td class="p-3 font-bold text-[#d46b08] text-lg bg-[#fff1f0] bg-opacity-100">
+                                520</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 底部图例及提示 (Footer Info) -->
+        <div class="flex justify-between items-center bg-white p-4 rounded-2xl card-shadow">
+            <div class="flex gap-6 text-sm text-gray-600">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-md bg-orange-500 inline-block"></span> PM自建商机标识
+                </div>
+                <div class="flex items-center gap-2 text-[#1677ff]">
+                    <i class="fa-solid fa-link"></i> 销售侧数据已全量联通核对
+                </div>
+            </div>
+
+            <div
+                class="bg-[#fff2f0] text-[#ff4d4f] border border-[#ffccc7] px-4 py-2 rounded-lg text-sm flex items-center gap-2">
+                <i class="fa-solid fa-circle-exclamation"></i> 自建暗坑存在系统外流失风险，建议在次月前完成库位映射
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    tableData: [
+                        {
+                            org: '云业务交付服务部',
+                            managed: { count: '53', selfBuiltCount: '3', income: '3,708', procurement: '1,697', profit: '2,072' },
+                            forecast: { count: '50', income: '3,645', procurement: '1,697', profit: '1,988' },
+                            diff: { count: 3, income: 63, procurement: '0', profit: 84 }
+                        },
+                        {
+                            org: '云业务生态业务部',
+                            managed: { count: '48', selfBuiltCount: '5', income: '6,247', procurement: '1,890', profit: '4,441' },
+                            forecast: { count: '45', income: '6,144', procurement: '1,866', profit: '4,343' },
+                            diff: { count: 3, income: 104, procurement: '24', profit: 99 }
+                        },
+                        {
+                            org: '云业务智算应用产品部',
+                            managed: { count: '19', selfBuiltCount: '1', income: '1,313', procurement: '0', profit: '1,313' },
+                            forecast: { count: '18', income: '1,278', procurement: '0', profit: '1,278' },
+                            diff: { count: 1, income: 35, procurement: '0', profit: 35 }
+                        },
+                        {
+                            org: '云业务集成创新产品部',
+                            managed: { count: '15', selfBuiltCount: '2', income: '1,511', procurement: '243', profit: '1,268' },
+                            forecast: { count: '14', income: '1,388', procurement: '168', profit: '1,220' },
+                            diff: { count: 1, income: 123, procurement: '75', profit: 48 }
+                        },
+                        {
+                            org: '云运营产品部',
+                            managed: { count: '87', selfBuiltCount: '12', income: '4,604', procurement: '1,404', profit: '3,739' },
+                            forecast: { count: '83', income: '4,385', procurement: '1,394', profit: '3,520' },
+                            diff: { count: 4, income: 219, procurement: '10', profit: 219 }
+                        },
+                        {
+                            org: '云MSP能力中心',
+                            managed: { count: '5', selfBuiltCount: '1', income: '196', procurement: '0', profit: '246' },
+                            forecast: { count: '4', income: '189', procurement: '0', profit: '210' },
+                            diff: { count: 1, income: 8, procurement: '0', profit: 36 }
+                        }
+                    ]
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

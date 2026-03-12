@@ -1,0 +1,248 @@
+/* ============================
+   全局布局
+   ============================ */
+.layout-root {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* ============================
+   侧边栏
+   ============================ */
+.layout-sider {
+  border-right: 1px solid #f0f0f0;
+  position: relative;
+}
+
+.layout-sider :deep(.ant-layout-sider-children) {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Logo */
+.sider-logo {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  background: #1677ff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-weight: 600;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.88);
+  white-space: nowrap;
+}
+
+.logo-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-action-icon {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.logo-action-icon:hover {
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.logo-avatar {
+  background: #1677ff;
+  cursor: pointer;
+}
+
+/* 搜索 */
+.sider-search {
+  padding: 4px 12px 12px;
+  flex-shrink: 0;
+}
+
+.search-input {
+  background: #f5f5f5;
+  border-radius: 8px;
+  height: 32px;
+}
+
+.search-input:hover,
+.search-input:focus-within {
+  background: #fff;
+  box-shadow: 0 0 0 1px #1677ff;
+}
+
+.search-icon {
+  color: rgba(0, 0, 0, 0.25);
+  font-size: 13px;
+}
+
+.search-shortcut {
+  font-size: 10px;
+  line-height: 1;
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: rgba(0, 0, 0, 0.25);
+  border-color: #f0f0f0;
+  background: #fafafa;
+}
+
+/* 菜单区域 */
+.sider-menu-area {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0 8px;
+}
+
+.menu-group {
+  margin-bottom: 8px;
+}
+
+.menu-group-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.45);
+  padding: 16px 16px 4px;
+  letter-spacing: 0.5px;
+}
+
+/* antdv Menu 样式覆盖 */
+.sider-menu {
+  border-inline-end: none !important;
+}
+
+.sider-menu :deep(.ant-menu-item) {
+  height: 40px;
+  line-height: 40px;
+  border-radius: 8px;
+  margin: 2px 0;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.sider-menu :deep(.ant-menu-item-selected) {
+  font-weight: 500;
+}
+
+/* 底部 */
+.sider-bottom {
+  flex-shrink: 0;
+  padding: 0 8px 8px;
+}
+
+.sider-divider {
+  margin: 4px 8px;
+}
+
+/* 收起按钮 */
+.collapse-trigger {
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+  z-index: 20;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s;
+}
+
+.collapse-trigger:hover {
+  color: #1677ff;
+  border-color: #1677ff;
+}
+
+/* ============================
+   顶部导航栏
+   ============================ */
+.layout-header {
+  height: 56px;
+  padding: 0 24px;
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  line-height: normal;
+}
+
+.header-title-block {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-indicator {
+  width: 3px;
+  height: 16px;
+  background: #1677ff;
+  border-radius: 2px;
+}
+
+.header-title {
+  margin: 0 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: rgba(0, 0, 0, 0.88) !important;
+  letter-spacing: 0 !important;
+  font-style: normal !important;
+}
+
+.header-portal {
+  display: flex;
+  align-items: center;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.context-label {
+  font-size: 13px;
+}
+
+/* ============================
+   主内容区
+   ============================ */
+.layout-content-area {
+  background: #f0f2f5;
+}
+
+.layout-main-content {
+  padding: 24px;
+  overflow-y: auto;
+  height: calc(100vh - 56px);
+}
