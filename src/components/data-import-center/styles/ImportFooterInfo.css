@@ -1,0 +1,20 @@
+.import-footer-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 6px 0;
+  font-size: 12px;
+}
+
+.import-footer-info__icon {
+  color: #8fd9a8;
+}
+
+.import-footer-info__text {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.import-footer-info__version {
+  color: rgba(0, 0, 0, 0.28);
+  font-variant-numeric: tabular-nums;
+}

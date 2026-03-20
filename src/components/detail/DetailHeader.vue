@@ -1,28 +1,39 @@
 <template>
-<!-- 顶部导航栏 (Header) - 横跨全屏 -->
-<header class="h-16 flex justify-between items-center px-6 border-b border-gray-100 bg-white z-20">
-    <div class="flex items-center gap-4">
-        <div class="text-gray-400 cursor-pointer hover:text-gray-600 transition-colors">
-            <i class="fa-solid fa-arrow-left text-lg"></i>
-        </div>
-        <div class="flex items-center gap-3">
-            <span
-                class="bg-[#262626] text-white text-[11px] px-2.5 py-1 rounded-md font-medium leading-none">父商机预览</span>
-            <h1 class="text-lg font-bold text-gray-900">某省电力数字化转型二期总集项目</h1>
-            <div class="text-sm text-gray-400 flex items-center gap-1.5 ml-2">
-                <span>总负责人：张销售</span>
-                <i class="fa-solid fa-pencil text-[11px] text-blue-500 cursor-pointer hover:text-blue-600"></i>
-            </div>
-        </div>
+  <a-card :bordered="false" class="detail-header-card">
+    <div class="detail-header-row">
+      <div class="detail-header-title-wrap">
+        <a-button
+          type="text"
+          :icon="h(ArrowLeftOutlined)"
+          class="detail-header-back"
+          @click="router.back()"
+        />
+        <a-tag class="detail-header-parent-tag">{{ detailHeaderConfig.parentTag }}</a-tag>
+        <a-typography-title :level="4" class="detail-header-title">
+          {{ detailHeaderConfig.title }}
+        </a-typography-title>
+        <a-space :size="4" class="detail-header-owner">
+          <a-typography-text type="secondary">
+            {{ detailHeaderConfig.ownerLabel }}：{{ detailHeaderConfig.owner }}
+          </a-typography-text>
+          <EditOutlined />
+        </a-space>
+      </div>
+
+      <a-button type="primary" :icon="h(SaveOutlined)">
+        {{ detailHeaderConfig.saveText }}
+      </a-button>
     </div>
-    <div>
-        <button
-            class="px-5 py-2.5 bg-[#2563eb] text-white rounded-lg hover:bg-blue-700 text-sm flex items-center gap-2 transition-colors shadow-sm font-medium">
-            <i class="fa-solid fa-floppy-disk"></i> 保存商务变更
-        </button>
-    </div>
-</header>
+  </a-card>
 </template>
 
 <script setup>
+import { h } from 'vue'
+import { useRouter } from 'vue-router'
+import { ArrowLeftOutlined, EditOutlined, SaveOutlined } from '@ant-design/icons-vue'
+import { detailHeaderConfig } from '@/data/detailPageData'
+
+const router = useRouter()
 </script>
+
+<style scoped src="./styles/DetailHeader.css"></style>

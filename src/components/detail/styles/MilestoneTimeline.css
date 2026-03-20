@@ -1,0 +1,210 @@
+.detail-milestone-card {
+  margin-bottom: 24px;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03),
+              0 1px 6px -1px rgba(0, 0, 0, 0.02),
+              0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.detail-milestone-card :deep(.ant-card-head) {
+  min-height: auto;
+  padding: 16px 24px;
+}
+
+.detail-milestone-card :deep(.ant-card-body) {
+  padding: 8px 24px 24px;
+}
+
+.detail-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.detail-section-title-icon {
+  color: #1677ff;
+}
+
+.detail-milestone-table :deep(.ant-table-container) {
+  border-inline-start: none !important;
+  border-inline-end: none !important;
+}
+
+.detail-milestone-table :deep(.ant-table-cell) {
+  border-inline-end: none !important;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  padding-top: 22px !important;
+  padding-bottom: 22px !important;
+}
+
+.detail-milestone-table :deep(.ant-table-row-expand-icon) {
+  display: none !important;
+}
+
+.detail-milestone-table :deep(.ant-table-row-indent) {
+  display: none !important;
+}
+
+.detail-milestone-table :deep(.ant-table-tbody > tr:hover > td) {
+  background: rgba(22, 119, 255, 0.04) !important;
+}
+
+.detail-milestone-table :deep(.detail-stage-row > td) {
+  background: #fff;
+}
+
+.detail-milestone-table :deep(.detail-item-row > td) {
+  background: #fcfcfc;
+}
+
+.detail-milestone-table :deep(.detail-active-row > td) {
+  background: #f5f8ff !important;
+}
+
+.detail-milestone-stage {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.detail-milestone-table :deep(.detail-item-row .detail-milestone-stage) {
+  padding-inline-start: 20px;
+}
+
+.detail-milestone-status-strip {
+  width: 8px;
+  height: 32px;
+  border-radius: 999px;
+  flex-shrink: 0;
+  background: #d9d9d9;
+}
+
+.detail-milestone-status-strip.is-success {
+  background: #b7ebc6;
+}
+
+.detail-milestone-status-strip.is-processing {
+  background: #2f54eb;
+}
+
+.detail-milestone-status-strip.is-warning {
+  background: #faad14;
+}
+
+.detail-milestone-stage-text.is-active {
+  color: #1677ff;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.detail-inline-tag {
+  margin-inline-end: 0;
+  border-radius: 8px;
+}
+
+.detail-milestone-date-text {
+  font-size: 13px;
+  color: #94a3b8;
+  font-style: normal;
+}
+
+.detail-proof-cell {
+  display: flex;
+  justify-content: center;
+}
+
+.detail-proof-icon.is-success {
+  color: #52c41a;
+  font-size: 24px;
+}
+
+.detail-actual-editors {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-actual-editors :deep(.detail-actual-picker.ant-picker),
+.detail-range-picker :deep(.ant-picker) {
+  background: #fff;
+  border-color: #d9d9d9;
+  box-shadow: none;
+  border-radius: 10px;
+}
+
+.detail-actual-editors :deep(.detail-actual-picker .ant-picker-input > input),
+.detail-range-picker :deep(.ant-picker .ant-picker-input > input) {
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.detail-actual-editors :deep(.detail-actual-picker .ant-picker-input > input::placeholder),
+.detail-range-picker :deep(.ant-picker .ant-picker-input > input::placeholder) {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.detail-actual-editors :deep(.detail-actual-picker .ant-picker-suffix),
+.detail-range-picker :deep(.ant-picker .ant-picker-suffix),
+.detail-range-picker :deep(.ant-picker .ant-picker-separator) {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.detail-actual-editors :deep(.detail-actual-picker.ant-picker:hover),
+.detail-range-picker :deep(.ant-picker:hover) {
+  border-color: #91caff;
+}
+
+.detail-actual-editors :deep(.detail-actual-picker.ant-picker-focused),
+.detail-range-picker :deep(.ant-picker-focused) {
+  border-color: #1677ff;
+  box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.12);
+}
+
+.detail-actual-divider {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.detail-range-picker {
+  width: 100%;
+}
+
+.detail-milestone-status-text {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.detail-milestone-status-text.is-success {
+  color: #52c41a;
+}
+
+.detail-milestone-status-text.is-processing {
+  color: #2f54eb;
+}
+
+.detail-milestone-status-text.is-warning {
+  color: #faad14;
+}
+
+.detail-milestone-status-text.is-default {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.detail-milestone-expand-btn {
+  color: rgba(0, 0, 0, 0.35);
+  margin-inline-start: -6px;
+  padding-inline: 2px;
+}
+
+.detail-milestone-expand-btn:hover {
+  color: #1677ff;
+}
+
+.detail-milestone-expand-btn.is-inline {
+  min-width: auto;
+  height: auto;
+  line-height: 1;
+}

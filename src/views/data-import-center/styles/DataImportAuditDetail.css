@@ -1,0 +1,13 @@
+.data-import-audit-detail-page__content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.data-import-audit-detail-page__export {
+  border-radius: 999px;
+  height: 36px;
+  padding-inline: 16px;
+  font-size: 12px;
+  font-weight: 500;
+}

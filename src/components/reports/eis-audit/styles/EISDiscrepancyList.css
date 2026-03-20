@@ -1,19 +1,36 @@
 /* === 自定义分页器外观 === */
+.custom-pagination {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.custom-pagination :deep(.ant-pagination-total-text) {
+  margin-inline-end: 12px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
 .custom-pagination :deep(.ant-pagination-item) {
-  border: none;
-  background-color: #f5f5f5;
+  min-width: 32px;
+  height: 32px;
+  line-height: 30px;
+  border: 1px solid #e5e7eb;
+  background-color: #fff;
   border-radius: 8px;
   font-weight: 500;
-  color: #666;
-  transition: all 0.3s;
+  color: rgba(0, 0, 0, 0.65);
+  transition: all 0.2s ease;
 }
 
 .custom-pagination :deep(.ant-pagination-item:hover) {
-  background-color: #e6f4ff;
+  border-color: #91caff;
+  background-color: #f7fbff;
   color: #1677ff;
 }
 
 .custom-pagination :deep(.ant-pagination-item-active) {
+  border-color: #1677ff;
   background-color: #1677ff;
   color: #fff;
 }
@@ -33,26 +50,37 @@
 
 .custom-pagination :deep(.ant-pagination-prev .ant-pagination-item-link),
 .custom-pagination :deep(.ant-pagination-next .ant-pagination-item-link) {
-  border: none;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  color: #666;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  border-radius: 999px;
+  color: rgba(0, 0, 0, 0.65);
+  transition: all 0.2s ease;
 }
 
 .custom-pagination :deep(.ant-pagination-prev:hover .ant-pagination-item-link),
 .custom-pagination :deep(.ant-pagination-next:hover .ant-pagination-item-link) {
-  background-color: #e6f4ff;
+  border-color: #91caff;
+  background-color: #f7fbff;
   color: #1677ff;
+  box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.08);
 }
 
 /* 禁用状态的左右箭头 */
 .custom-pagination :deep(.ant-pagination-disabled .ant-pagination-item-link) {
-  background-color: #f0f0f0;
+  border-color: #f0f0f0;
+  background-color: #fafafa;
   color: #bfbfbf;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 .custom-pagination :deep(.ant-pagination-disabled:hover .ant-pagination-item-link) {
-  background-color: #f0f0f0;
+  border-color: #f0f0f0;
+  background-color: #fafafa;
   color: #bfbfbf;
 }

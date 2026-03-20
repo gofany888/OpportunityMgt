@@ -1,23 +1,17 @@
 <template>
-  <div class="flex flex-col min-h-screen max-w-[1600px] mx-auto bg-white">
+  <div class="flex flex-col min-h-screen max-w-[1600px] mx-auto">
     <DetailHeader />
-    
-    <div class="flex flex-1 overflow-hidden">
+
+    <a-layout has-sider class="bg-transparent pt-6">
       <DetailSidebar />
-      <main class="flex-1 p-6 bg-[#f0f2f5] overflow-y-auto">
+      <a-layout-content class="pl-6">
         <ProgressStepper />
         <BasicInfoCards />
-        
-        <!-- 商机环节执行里程碑管理 - 全宽显示 -->
         <MilestoneTimeline />
-
-        <!-- 项目交付进度与商务对标控点 - 全宽显示 -->
         <DeliveryBenchmark />
-
-        <!-- 子项报告 - 全宽显示 -->
         <SubItemContainer />
-      </main>
-    </div>
+      </a-layout-content>
+    </a-layout>
   </div>
 </template>
 

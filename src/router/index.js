@@ -36,6 +36,33 @@ const router = createRouter({
                         customTitle: true,
                         customActions: true
                     }
+                },
+                {
+                    path: 'sync',
+                    name: 'data-import-center',
+                    component: () => import('../views/data-import-center/DataImportCenter.vue'),
+                    meta: {
+                        customTitle: true,
+                        customActions: true
+                    }
+                },
+                {
+                    path: 'sync/log/:logId',
+                    name: 'data-import-audit-detail',
+                    component: () => import('../views/data-import-center/DataImportAuditDetail.vue'),
+                    meta: {
+                        customTitle: true,
+                        customActions: true
+                    }
+                },
+                {
+                    path: 'sync/annual-init',
+                    name: 'data-import-annual-initialization',
+                    component: () => import('../views/data-import-center/AnnualInitialization.vue'),
+                    meta: {
+                        customTitle: true,
+                        customActions: true
+                    }
                 }
             ]
         },
@@ -43,7 +70,7 @@ const router = createRouter({
             path: '/detail',
             name: 'detail',
             component: () => import('../views/DetailPage.vue'),
-        },
+        }
     ],
 })
 

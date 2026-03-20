@@ -166,6 +166,8 @@ const selectedKeys = computed(() => {
   
   // 对于 /report/xxx 子路由（如商机明细等未在侧边栏明确列出的子页），高亮到 /report
   if (route.path.startsWith('/report')) return ['/report']
+
+  if (route.path.startsWith('/sync')) return ['/sync']
   
   return [route.path]
 })

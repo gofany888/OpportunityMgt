@@ -1,0 +1,158 @@
+export const dataImportHeaderConfig = {
+  title: '数据导入与治理中枢',
+  subtitle: '对标引擎 · 实时纠偏模式已启用',
+  statusText: '数据采集引擎就绪',
+}
+
+export const dataImportSummaryCards = [
+  {
+    key: 'loaded',
+    title: '在管商机总数',
+    value: '1,280',
+    unit: '项',
+    icon: 'InboxOutlined',
+    tone: 'blue',
+  },
+  {
+    key: 'matched',
+    title: 'EIS 已匹配',
+    value: '852',
+    unit: '项',
+    icon: 'SafetyCertificateOutlined',
+    tone: 'green',
+  },
+  {
+    key: 'pending',
+    title: '待处理管理决策',
+    value: '8',
+    unit: '项',
+    icon: 'SettingOutlined',
+    tone: 'orange',
+    emphasized: true,
+  },
+  {
+    key: 'coverage',
+    title: '数据联通率',
+    value: '66.5',
+    unit: '%',
+    icon: 'LineChartOutlined',
+    tone: 'purple',
+  },
+]
+
+export const importSourcePanels = [
+  {
+    key: 'eis',
+    groupTitle: '外部对标源',
+    groupSubtitle: 'EIS',
+    title: '销售口径同步',
+    description: '系统识别 EIS 新增项并路由至管理员执行准入决策。',
+    timestampLabel: '上次接口巡检',
+    timestamp: '2026-03-08 10:30:15',
+    statusTag: '准入审计中',
+    statusTone: 'orange',
+    pendingLabel: '待决策新增项',
+    pendingCount: '5',
+    actionText: '同步销售 EIS 数据',
+    actionIcon: 'SyncOutlined',
+    actionTone: 'primary',
+    cardTone: 'soft-blue',
+    icon: 'ClockCircleOutlined',
+    attachmentTitle: '对标口径附件（原始数据）',
+    attachmentName: 'EIS_RAW_AUDIT_20260308.xlsx',
+    attachmentSize: '12.5MB',
+    attachmentIcon: 'FileExcelOutlined',
+    watermarkIcon: 'FileExcelOutlined',
+  },
+  {
+    key: 'bg',
+    groupTitle: '内部商机源',
+    groupSubtitle: 'BG',
+    title: '经营底账商机更新',
+    description: '系统识别漏头缺失项并路由至管理员执行核销确认。',
+    timestampLabel: '上次人工导入',
+    timestamp: '2026-03-07 16:45:22',
+    statusTag: '核销审计中',
+    statusTone: 'red',
+    pendingLabel: '待确认漏场项',
+    pendingCount: '3',
+    actionText: '批量导入经营数据',
+    actionIcon: 'CloudUploadOutlined',
+    actionTone: 'dark',
+    cardTone: 'soft-indigo',
+    icon: 'FileDoneOutlined',
+    attachmentTitle: '导入底稿附件（审计基准）',
+    attachmentName: 'BG_MASTER_LEDGER_V5.4.xlsx',
+    attachmentSize: '3.2MB',
+    attachmentIcon: 'PaperClipOutlined',
+    watermarkIcon: 'PaperClipOutlined',
+  },
+]
+
+export const importLogSection = {
+  title: '导入日志',
+  total: 120,
+  pageSize: 10,
+  current: 1,
+  detailActionText: '详情',
+  totalText: (total, range) => `显示 ${range[0]}-${range[1]} 共 ${total} 条数据`,
+}
+
+export const importLogColumns = [
+  { title: '记录编号', dataIndex: 'recordNo', key: 'recordNo', width: 180 },
+  { title: '操作时间', dataIndex: 'operatedAt', key: 'operatedAt', width: 200 },
+  { title: '数据来源', dataIndex: 'source', key: 'source', width: 120, align: 'center' },
+  { title: '操作账号', dataIndex: 'operator', key: 'operator', width: 220 },
+  { title: '记录条数', dataIndex: 'recordCount', key: 'recordCount', width: 160, align: 'right' },
+  { title: '状态', dataIndex: 'status', key: 'status', width: 140, align: 'center' },
+  { title: 'Excel 附件', dataIndex: 'attachment', key: 'attachment', width: 220, align: 'center' },
+  { title: '动作', dataIndex: 'action', key: 'action', width: 120, align: 'center' },
+]
+
+export const importLogRows = [
+  {
+    key: 'log-8821',
+    recordNo: 'LOG-8821',
+    operatedAt: '2026-03-08 10:30',
+    source: 'EIS',
+    operator: 'System_Agent',
+    recordCount: '45,210',
+    status: '成功',
+    attachment: 'EIS-20260308.xlsx',
+  },
+  {
+    key: 'log-8819',
+    recordNo: 'LOG-8819',
+    operatedAt: '2026-03-07 16:45',
+    source: 'BG',
+    operator: '张管理员',
+    recordCount: '1,280',
+    status: '成功',
+    attachment: 'BG-20260307.xlsx',
+  },
+  {
+    key: 'log-8815',
+    recordNo: 'LOG-8815',
+    operatedAt: '2026-03-06 14:20',
+    source: 'EIS',
+    operator: 'System_Agent',
+    recordCount: '45,100',
+    status: '成功',
+    attachment: 'EIS-20260306.xlsx',
+  },
+  {
+    key: 'log-8810',
+    recordNo: 'LOG-8810',
+    operatedAt: '2026-03-05 09:15',
+    source: 'BG',
+    operator: '李经理',
+    recordCount: '1,250',
+    status: '成功',
+    attachment: 'BG-20260305.xlsx',
+  },
+]
+
+export const dataImportFooterInfo = {
+  text: '数据中枢实时对账模式：运行正常',
+  version: '(V8.4-Refined_Logs)',
+}

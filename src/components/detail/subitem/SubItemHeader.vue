@@ -1,40 +1,43 @@
 <template>
-<!-- 5. 子项 - 软件开发分项 Header Card -->
-<div class="bg-white rounded-2xl p-6 mb-5 shadow-sm">
-    <!-- 标题行 -->
-    <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
-        <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">
-                <i class="fa-solid fa-code text-sm"></i>
-            </div>
-            <h3 class="text-[15px] font-bold text-gray-800">子项 - 软件开发分项</h3>
+  <a-card :bordered="false" class="detail-subheader-card">
+    <div class="detail-subheader-top">
+      <a-space :size="12">
+        <div class="detail-subheader-icon">
+          <CodeOutlined />
         </div>
-        <i 
-            @click="$emit('toggle')"
-            :class="isExpanded ? 'fa-chevron-up' : 'fa-chevron-down'"
-            class="fa-solid text-gray-400 text-sm cursor-pointer hover:text-gray-600 transition-colors"
-        ></i>
+        <a-typography-title :level="5" class="detail-subheader-title">
+          {{ subItemHeaderConfig.title }}
+        </a-typography-title>
+      </a-space>
+      <a-button
+        type="text"
+        :icon="h(isExpanded ? UpOutlined : DownOutlined)"
+        @click="$emit('toggle')"
+      />
     </div>
 
-    <!-- 信息行 -->
-    <div class="grid grid-cols-3 gap-8">
-        <div>
-            <div class="text-[12px] text-gray-400 mb-1">子商机编码</div>
-            <div class="text-[14px] text-gray-800 font-bold">S-01</div>
-        </div>
-        <div>
-            <div class="text-[12px] text-gray-400 mb-1">项目经理 (PM)</div>
-            <div class="text-[14px] text-gray-800 font-bold">李经理</div>
-        </div>
-        <div>
-            <div class="text-[12px] text-gray-400 mb-1">子项规模</div>
-            <div class="text-[14px] text-[#2f54eb] font-bold">¥1,200.00 万</div>
-        </div>
-    </div>
-</div>
+    <a-row :gutter="[24, 16]">
+      <a-col :xs="24" :md="8">
+        <div class="detail-subheader-label">{{ subItemHeaderConfig.codeLabel }}</div>
+        <div class="detail-subheader-value">{{ subItemHeaderConfig.code }}</div>
+      </a-col>
+      <a-col :xs="24" :md="8">
+        <div class="detail-subheader-label">{{ subItemHeaderConfig.pmLabel }}</div>
+        <div class="detail-subheader-value">{{ subItemHeaderConfig.pm }}</div>
+      </a-col>
+      <a-col :xs="24" :md="8">
+        <div class="detail-subheader-label">{{ subItemHeaderConfig.amountLabel }}</div>
+        <div class="detail-subheader-value is-accent num-font">{{ subItemHeaderConfig.amount }}</div>
+      </a-col>
+    </a-row>
+  </a-card>
 </template>
 
 <script setup>
+import { h } from 'vue'
+import { CodeOutlined, DownOutlined, UpOutlined } from '@ant-design/icons-vue'
+import { subItemHeaderConfig } from '@/data/detailPageData'
+
 defineProps({
   isExpanded: {
     type: Boolean,
@@ -44,3 +47,5 @@ defineProps({
 
 defineEmits(['toggle'])
 </script>
+
+<style scoped src="./styles/SubItemHeader.css"></style>

@@ -1,0 +1,362 @@
+.annual-init-finalize-progress {
+  width: 100%;
+}
+
+.annual-init-finalize-progress__completion {
+  display: flex;
+  justify-content: center;
+}
+
+.annual-init-finalize-progress__completion-shell {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0 auto;
+  opacity: 0;
+  transform-origin: center center;
+  transform: scale(0.9) translateX(-16px) translateY(16px);
+  transition:
+    opacity 1000ms ease-out,
+    transform 1000ms ease-out;
+  will-change: opacity, transform;
+}
+
+.annual-init-finalize-progress__completion-shell.is-entered {
+  opacity: 1;
+  transform: scale(1) translateX(0) translateY(0);
+}
+
+.annual-init-finalize-progress__metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 4px;
+  opacity: 0;
+  transition: opacity 520ms ease-out 80ms;
+}
+
+.annual-init-finalize-progress__completion-shell.is-entered .annual-init-finalize-progress__metrics {
+  opacity: 1;
+}
+
+.annual-init-finalize-progress__metric {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 116px;
+  padding: 22px 26px;
+  border-radius: 24px;
+  border: 1px solid #edf2f8;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+}
+
+.annual-init-finalize-progress__metric-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  border-radius: 22px;
+  flex: 0 0 auto;
+}
+
+.annual-init-finalize-progress__metric-icon :deep(.anticon) {
+  font-size: 30px;
+}
+
+.annual-init-finalize-progress__metric-icon.is-info {
+  background: #eef3ff;
+  color: #4f74ef;
+}
+
+.annual-init-finalize-progress__metric-icon.is-warning {
+  background: #fff5e9;
+  color: #ee9c48;
+}
+
+.annual-init-finalize-progress__metric-icon.is-success {
+  background: #e8f8f0;
+  color: #4aad76;
+}
+
+.annual-init-finalize-progress__metric-icon.is-muted {
+  background: #f4f7fb;
+  color: #bac4d3;
+}
+
+.annual-init-finalize-progress__metric-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
+.annual-init-finalize-progress__metric-value {
+  font-size: 31px;
+  line-height: 1;
+  font-weight: 600;
+  color: #223046;
+  font-variant-numeric: tabular-nums;
+}
+
+.annual-init-finalize-progress__metric-value.is-success {
+  color: #4aad76;
+}
+
+.annual-init-finalize-progress__metric-value.is-muted {
+  color: #b7c1d0;
+}
+
+.annual-init-finalize-progress__metric-title {
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #8897ad;
+}
+
+.annual-init-finalize-progress__card {
+  display: flex;
+  min-height: 520px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 44px 36px 52px;
+  border-radius: 32px;
+  border: 1px solid #edf2f8;
+  background: #ffffff;
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.06);
+}
+
+.annual-init-finalize-progress__ring {
+  --progress: 0%;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 144px;
+  height: 144px;
+  border-radius: 999px;
+  background: conic-gradient(#3f6df1 0 var(--progress), #eef3fb var(--progress) 100%);
+  transition: background 0.32s ease;
+}
+
+.annual-init-finalize-progress__ring::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(232, 238, 247, 0.98);
+}
+
+.annual-init-finalize-progress__ring-inner {
+  position: relative;
+  z-index: 1;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 600;
+  color: #243247;
+  font-variant-numeric: tabular-nums;
+}
+
+.annual-init-finalize-progress__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 500;
+  color: #3f6df1;
+  text-align: center;
+}
+
+.annual-init-finalize-progress__status :deep(.anticon) {
+  font-size: 22px;
+}
+
+.annual-init-finalize-progress__helper {
+  font-size: 13px;
+  line-height: 1.7;
+  font-weight: 400;
+  color: #9aa8bc;
+  text-align: center;
+}
+
+.annual-init-finalize-progress__success {
+  display: flex;
+  min-height: 420px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 32px 28px 34px;
+  border-radius: 32px;
+  border: 1px solid #edf2f8;
+  background: #ffffff;
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.06);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 620ms ease-out 160ms;
+}
+
+.annual-init-finalize-progress__completion-shell.is-entered .annual-init-finalize-progress__success {
+  opacity: 1;
+}
+
+.annual-init-finalize-progress__success::after {
+  content: '';
+  position: absolute;
+  right: 48px;
+  top: 32px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(228, 235, 247, 0.34) 0%, rgba(228, 235, 247, 0) 72%);
+  pointer-events: none;
+}
+
+.annual-init-finalize-progress__success-icon-shell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 88px;
+  border-radius: 26px;
+  background: linear-gradient(180deg, #effcf5 0%, #e5f9ee 100%);
+  color: #50b07b;
+  box-shadow: inset 0 0 0 1px rgba(80, 176, 123, 0.12);
+}
+
+.annual-init-finalize-progress__success-icon-shell :deep(.anticon) {
+  font-size: 38px;
+}
+
+.annual-init-finalize-progress__success-title {
+  font-size: 24px;
+  line-height: 1.15;
+  font-weight: 600;
+  color: #243247;
+  text-align: center;
+}
+
+.annual-init-finalize-progress__success-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: 14px;
+  background: #dcf7e6;
+  color: #4ea678;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.annual-init-finalize-progress__success-badge :deep(.anticon) {
+  font-size: 16px;
+}
+
+.annual-init-finalize-progress__success-panel {
+  width: min(100%, 360px);
+  padding: 18px 14px 16px;
+  border-radius: 28px;
+  border: 1px solid #edf2f8;
+  background: linear-gradient(180deg, #fafcff 0%, #f5f8fd 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.annual-init-finalize-progress__success-summary {
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.65;
+  font-weight: 400;
+  color: #5b6980;
+}
+
+.annual-init-finalize-progress__success-count {
+  margin: 0 6px;
+  color: #223046;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: #b9efcc;
+  text-underline-offset: 4px;
+}
+
+.annual-init-finalize-progress__success-split {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 20px;
+}
+
+.annual-init-finalize-progress__success-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.annual-init-finalize-progress__success-metric-value {
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.annual-init-finalize-progress__success-metric-value.is-blue {
+  color: #3f6df1;
+}
+
+.annual-init-finalize-progress__success-metric-value.is-orange {
+  color: #f08a36;
+}
+
+.annual-init-finalize-progress__success-metric-label {
+  font-size: 11px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #8998ae;
+  text-align: center;
+}
+
+.annual-init-finalize-progress__success-divider {
+  width: 1px;
+  height: 64px;
+  background: #dfe7f2;
+}
+
+.annual-init-finalize-progress__success-actions {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.annual-init-finalize-progress__success-primary {
+  min-width: 320px;
+  height: 50px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.annual-init-finalize-progress__success-primary {
+  border: none;
+  background: #3f6df1;
+  color: #ffffff;
+  box-shadow: 0 18px 32px rgba(63, 109, 241, 0.16);
+}
+
+.annual-init-finalize-progress__success-primary:hover,
+.annual-init-finalize-progress__success-primary:focus {
+  background: #2f60ee !important;
+  color: #ffffff !important;
+}

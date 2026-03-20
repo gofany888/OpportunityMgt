@@ -1,0 +1,320 @@
+.audit-decision-table {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.audit-decision-table__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.audit-decision-table__toolbar-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: nowrap;
+  min-width: 0;
+}
+
+.audit-decision-table__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #44536a;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.audit-decision-table__title-icon {
+  color: #2f54eb;
+}
+
+.audit-decision-table__segmented {
+  background: #f5f7fb;
+  border: 1px solid #e6edf7;
+  padding: 4px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.audit-decision-table__segmented :deep(.ant-segmented-group) {
+  gap: 2px;
+}
+
+.audit-decision-table__segmented :deep(.ant-segmented-item) {
+  min-width: 88px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #8a98ad;
+  transition: color 0.2s ease;
+}
+
+.audit-decision-table__segmented :deep(.ant-segmented-item-label) {
+  min-height: 28px;
+  line-height: 28px;
+}
+
+.audit-decision-table__segmented :deep(.ant-segmented-item-selected) {
+  color: #1677ff;
+  background: #fff;
+  border-radius: 999px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.audit-decision-table__card {
+  border-radius: 32px;
+  border: 1px solid #e6edf7;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03),
+              0 1px 6px -1px rgba(0, 0, 0, 0.02),
+              0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.audit-decision-table__card :deep(.ant-card-body) {
+  padding: 0;
+}
+
+.audit-decision-table__table :deep(.ant-table-container) {
+  border-inline: none !important;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.audit-decision-table__table :deep(.ant-table-thead > tr > th) {
+  padding: 22px 28px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #8a98ad;
+  background: #fafcff;
+  border-bottom: 1px solid #eef3fa;
+}
+
+.audit-decision-table__table :deep(.ant-table-tbody > tr > td) {
+  padding: 30px 28px;
+  font-size: 13px;
+  vertical-align: top;
+  border-bottom: 1px solid #f3f6fb;
+}
+
+.audit-decision-table__table :deep(.ant-table-tbody > tr:hover > td) {
+  background: #fcfdff !important;
+}
+
+.audit-decision-table__table :deep(.ant-pagination) {
+  margin: 0 28px;
+  padding: 20px 0 24px;
+  border-top: 1px solid #f3f6fb;
+}
+
+.audit-decision-table__table :deep(.ant-pagination-item),
+.audit-decision-table__table :deep(.ant-pagination-prev .ant-pagination-item-link),
+.audit-decision-table__table :deep(.ant-pagination-next .ant-pagination-item-link) {
+  min-width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  line-height: 34px;
+  border: 1px solid #d9e1ec;
+  background: #fff;
+}
+
+.audit-decision-table__table :deep(.ant-pagination-item a) {
+  color: #5f6f87;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.audit-decision-table__table :deep(.ant-pagination-prev),
+.audit-decision-table__table :deep(.ant-pagination-next) {
+  margin-inline-end: 8px;
+}
+
+.audit-decision-table__table :deep(.ant-pagination-item-active) {
+  border-color: #1677ff;
+  background: #1677ff;
+}
+
+.audit-decision-table__table :deep(.ant-pagination-item-active a) {
+  color: #fff;
+}
+
+.audit-decision-table__table :deep(.ant-pagination-prev .ant-pagination-item-link),
+.audit-decision-table__table :deep(.ant-pagination-next .ant-pagination-item-link) {
+  color: #6d7b90;
+}
+
+.audit-decision-table__table :deep(.ant-pagination-prev:hover .ant-pagination-item-link),
+.audit-decision-table__table :deep(.ant-pagination-next:hover .ant-pagination-item-link) {
+  color: #1677ff;
+  border-color: #91caff;
+}
+
+.audit-decision-table__table :deep(.ant-pagination-total-text) {
+  font-size: 12px;
+  color: #8a98ad;
+  font-weight: 400;
+}
+
+.audit-decision-table__entity-row {
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #93a0b3;
+}
+
+.audit-decision-table__entity-name {
+  margin-bottom: 8px;
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: #2b3547;
+}
+
+.audit-decision-table__entity-code {
+  font-size: 12px;
+  font-weight: 500;
+  color: #b0b8c6;
+  font-variant-numeric: tabular-nums;
+}
+
+.audit-decision-table__decision {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.audit-decision-table__decision-badge {
+  width: fit-content;
+  margin-inline-end: 0;
+  border: none;
+  border-radius: 999px;
+  background: #f5f7fb;
+  color: #6d7b90;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.audit-decision-table__decision-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.audit-decision-table__decision-status.is-green {
+  color: #389e0d;
+}
+
+.audit-decision-table__decision-status.is-slate {
+  color: #6b7280;
+}
+
+.audit-decision-table__decision-status.is-orange {
+  color: #fa541c;
+}
+
+.audit-decision-table__decision-status.is-blue {
+  color: #4f46e5;
+}
+
+.audit-decision-table__decision-status.is-red {
+  color: #ff4d4f;
+}
+
+.audit-decision-table__decision-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.audit-decision-table__comparison {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.audit-decision-table__diff-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.audit-decision-table__diff-row,
+.audit-decision-table__pair-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.audit-decision-table__diff-label,
+.audit-decision-table__pair-label {
+  min-width: 72px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #6d7b90;
+}
+
+.audit-decision-table__diff-from,
+.audit-decision-table__pair-from {
+  color: #b0b8c6;
+  font-size: 13px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+
+.audit-decision-table__diff-to,
+.audit-decision-table__pair-to {
+  color: #2f54eb;
+  font-size: 13px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.audit-decision-table__diff-arrow {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.audit-decision-table__note {
+  border-radius: 14px;
+}
+
+.audit-decision-table__note :deep(.ant-alert-message) {
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.audit-decision-table__note.is-orange :deep(.ant-alert-message) {
+  color: #d46b08;
+}
+
+.audit-decision-table__note.is-blue {
+  background: #eef2ff;
+  border: 1px solid #d6e4ff;
+}
+
+.audit-decision-table__note.is-blue :deep(.ant-alert-message) {
+  color: #2f54eb;
+}
+
+.audit-decision-table__note.is-slate {
+  background: #f5f7fb;
+  border: 1px solid #e6edf7;
+}
+
+@media (max-width: 960px) {
+  .audit-decision-table__toolbar {
+    align-items: flex-start;
+  }
+
+  .audit-decision-table__toolbar-main {
+    width: 100%;
+    align-items: center;
+  }
+}

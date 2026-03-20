@@ -1,0 +1,39 @@
+.detail-business-card {
+  height: 100%;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03),
+              0 1px 6px -1px rgba(0, 0, 0, 0.02),
+              0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.detail-business-card :deep(.ant-card-head) {
+  min-height: auto;
+  padding: 16px 24px;
+}
+
+.detail-business-card :deep(.ant-card-body) {
+  padding: 24px;
+}
+
+.detail-business-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.detail-business-title-icon {
+  color: #1677ff;
+}
+
+.detail-business-title-icon.is-green {
+  color: #52c41a;
+}
+
+.detail-business-hint {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.4);
+}

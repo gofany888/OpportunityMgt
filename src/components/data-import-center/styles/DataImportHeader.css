@@ -1,0 +1,117 @@
+.data-import-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-width: 0;
+}
+
+.data-import-header__main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.data-import-header__indicator {
+  width: 4px;
+  height: 14px;
+  border-radius: 999px;
+  background: #1677ff;
+  flex-shrink: 0;
+}
+
+.data-import-header__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: #09152f;
+  color: #fff;
+  box-shadow: 0 6px 12px rgba(9, 21, 47, 0.08);
+  flex-shrink: 0;
+}
+
+.data-import-header__icon :deep(svg) {
+  font-size: 16px;
+}
+
+.data-import-header__copy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.data-import-header__title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.data-import-header__title {
+  margin: 0 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: rgba(0, 0, 0, 0.88) !important;
+  line-height: 1.4 !important;
+}
+
+.data-import-header__subtitle {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.45);
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.data-import-header__badge {
+  padding: 0 12px;
+  min-height: 28px;
+  border-radius: 999px;
+  border: 1px solid #d9f7be;
+  background: #f6ffed;
+}
+
+.data-import-header__badge :deep(.ant-badge-status-dot) {
+  width: 8px;
+  height: 8px;
+  background: #52c41a;
+}
+
+.data-import-header__badge :deep(.ant-badge-status-text) {
+  margin-inline-start: 8px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #237804;
+  font-weight: 500;
+}
+
+.data-import-header__status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 960px) {
+  .data-import-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .data-import-header__status {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .data-import-header__title-row {
+    flex-wrap: wrap;
+    gap: 6px 10px;
+  }
+}

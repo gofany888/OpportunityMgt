@@ -1,13 +1,13 @@
 <template>
-  <div class="bg-[#f5f6fa] border border-[#e8ecef] rounded-3xl p-6 mt-6">
+  <a-card :bordered="false" class="detail-subitem-shell">
     <SubItemHeader @toggle="isExpanded = !isExpanded" :is-expanded="isExpanded" />
-    <div v-show="isExpanded">
+    <div v-show="isExpanded" class="detail-subitem-content">
       <FinanceMatrix />
       <RollingForecast />
       <BusinessConfig />
       <ProcurementControl />
     </div>
-  </div>
+  </a-card>
 </template>
 
 <script setup>
@@ -20,3 +20,5 @@ import ProcurementControl from './subitem/ProcurementControl.vue'
 
 const isExpanded = ref(true)
 </script>
+
+<style scoped src="./styles/SubItemContainer.css"></style>

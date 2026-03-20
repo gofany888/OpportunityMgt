@@ -1,0 +1,318 @@
+.annual-init-progress-card {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 32px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
+  padding: 34px 28px 18px;
+}
+
+.annual-init-progress-card__hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.annual-init-progress-card__ring {
+  --progress: 0%;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 136px;
+  height: 136px;
+  margin-bottom: 26px;
+  border-radius: 999px;
+  background: conic-gradient(#3a63e3 0 var(--progress), #eef3fa var(--progress) 100%);
+  transition: background 0.18s linear;
+}
+
+.annual-init-progress-card__ring::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(235, 241, 249, 0.95);
+}
+
+.annual-init-progress-card__ring-glow {
+  position: absolute;
+  inset: 18px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(58, 99, 227, 0.1) 0%, rgba(58, 99, 227, 0) 72%);
+  animation: annual-init-progress-pulse 2.4s ease-in-out infinite;
+}
+
+.annual-init-progress-card__ring::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background:
+    conic-gradient(from 0deg, transparent 0 76%, rgba(58, 99, 227, 0.28) 84%, transparent 92%);
+  animation: annual-init-progress-orbit 2.8s linear infinite;
+}
+
+.annual-init-progress-card__icon-shell {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+  color: #3a63e3;
+}
+
+.annual-init-progress-card__icon-shell :deep(svg) {
+  font-size: 34px;
+}
+
+.annual-init-progress-card__title {
+  margin-bottom: 10px;
+  font-size: 18px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #263247;
+}
+
+.annual-init-progress-card__subtitle {
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: #a0aec2;
+}
+
+.annual-init-progress-card__stages {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px 18px 16px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #fbfdff 0%, #f5f8fd 100%);
+  border: 1px solid #edf2f8;
+}
+
+.annual-init-progress-card__stage {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.annual-init-progress-card__stage-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: #fff;
+  color: #d4dce8;
+  box-shadow: inset 0 0 0 1px #edf2f8;
+  flex: 0 0 auto;
+}
+
+.annual-init-progress-card__stage-icon.is-done {
+  background: #58c187;
+  color: #fff;
+  box-shadow: none;
+}
+
+.annual-init-progress-card__stage-icon.is-done :deep(svg) {
+  font-size: 20px;
+}
+
+.annual-init-progress-card__stage-icon.is-active {
+  background: #4a6ef0;
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(74, 110, 240, 0.18);
+  animation: annual-init-progress-active-pulse 1.2s ease-in-out infinite;
+}
+
+.annual-init-progress-card__stage-icon.is-active :deep(.anticon-loading) {
+  animation: annual-init-progress-active-spin 0.9s linear infinite;
+}
+
+.annual-init-progress-card__stage-icon.is-active::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 18px;
+  border: 2px solid rgba(74, 110, 240, 0.24);
+  animation: annual-init-progress-ripple-strong 1.2s ease-out infinite;
+}
+
+.annual-init-progress-card__stage-icon.is-active-soft {
+  background: #eef4ff;
+  color: #4a6ef0;
+  box-shadow: inset 0 0 0 1px #dce7ff;
+  animation: annual-init-progress-active-soft-pulse 1.6s ease-in-out infinite;
+}
+
+.annual-init-progress-card__stage-icon.is-active-soft :deep(svg) {
+  animation: annual-init-progress-scan 1s ease-in-out infinite;
+}
+
+.annual-init-progress-card__stage-icon.is-active-soft::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 16px;
+  border: 2px solid rgba(74, 110, 240, 0.22);
+  animation: annual-init-progress-ripple-strong 1.4s ease-out infinite;
+}
+
+.annual-init-progress-card__stage-icon.is-waiting {
+  background: #fff;
+  color: #d4dce8;
+  box-shadow: inset 0 0 0 1px #edf2f8;
+}
+
+.annual-init-progress-card__stage-title {
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: #b5c0d1;
+}
+
+.annual-init-progress-card__stage-title.is-done {
+  color: #263247;
+}
+
+.annual-init-progress-card__stage-title.is-active {
+  color: #3a63e3;
+}
+
+.annual-init-progress-card__stage-title.is-active-soft {
+  color: #4f7df1;
+}
+
+.annual-init-progress-card__stage-title.is-waiting {
+  color: #c1cad8;
+}
+
+.annual-init-progress-card__actions {
+  display: flex;
+  justify-content: center;
+  padding-top: 18px;
+}
+
+.annual-init-progress-card__cancel {
+  min-width: 136px;
+  height: 40px;
+  padding: 0 18px;
+  border: 1px solid #d9e2f1;
+  border-radius: 16px;
+  background: #fff;
+  color: #7f8da3;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: none;
+}
+
+.annual-init-progress-card__cancel:hover,
+.annual-init-progress-card__cancel:focus {
+  border-color: #c7d5ea !important;
+  color: #56647a !important;
+  background: #fbfdff !important;
+}
+
+@keyframes annual-init-progress-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+
+@keyframes annual-init-progress-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes annual-init-progress-scan {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.14);
+    opacity: 1;
+  }
+}
+
+@keyframes annual-init-progress-ripple {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  30% {
+    opacity: 0.45;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.14);
+  }
+}
+
+@keyframes annual-init-progress-active-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes annual-init-progress-active-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 10px 20px rgba(74, 110, 240, 0.18);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 14px 26px rgba(74, 110, 240, 0.26);
+  }
+}
+
+@keyframes annual-init-progress-active-soft-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: inset 0 0 0 1px #dce7ff;
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: inset 0 0 0 1px #c9d9ff, 0 8px 18px rgba(74, 110, 240, 0.12);
+  }
+}
+
+@keyframes annual-init-progress-ripple-strong {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  25% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.18);
+  }
+}

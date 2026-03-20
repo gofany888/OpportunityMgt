@@ -1,0 +1,95 @@
+<template>
+  <div class="import-log-section">
+    <div class="import-log-section__label">
+      <HistoryOutlined class="import-log-section__icon" />
+      <span>{{ importLogSection.title }}</span>
+    </div>
+
+    <a-card :bordered="false" class="import-log-card">
+      <a-table
+        :columns="importLogColumns"
+        :data-source="importLogRows"
+        :pagination="paginationConfig"
+        :bordered="false"
+        row-key="key"
+        class="import-log-table"
+      >
+        <template #bodyCell="{ column, record }">
+          <template v-if="column.dataIndex === 'source'">
+            <a-tag :color="record.source === 'EIS' ? 'blue' : 'processing'" class="import-log-table__tag">
+              {{ record.source }}
+            </a-tag>
+          </template>
+
+          <template v-else-if="column.dataIndex === 'operator'">
+            <a-space :size="8">
+              <UserOutlined class="import-log-table__user-icon" />
+              <span>{{ record.operator }}</span>
+            </a-space>
+          </template>
+
+          <template v-else-if="column.dataIndex === 'status'">
+            <a-tag color="success" class="import-log-table__status">
+              {{ record.status }}
+            </a-tag>
+          </template>
+
+          <template v-else-if="column.dataIndex === 'attachment'">
+            <a-button type="link" class="import-log-table__attachment">
+              <template #icon>
+                <PaperClipOutlined />
+              </template>
+              {{ record.attachment }}
+            </a-button>
+          </template>
+
+          <template v-else-if="column.dataIndex === 'action'">
+            <div class="import-log-table__action-cell">
+              <a-button type="link" class="import-log-table__action" @click="openDetail(record)">
+                {{ importLogSection.detailActionText }}
+                <RightOutlined />
+              </a-button>
+            </div>
+          </template>
+        </template>
+      </a-table>
+    </a-card>
+  </div>
+</template>
+
+<script setup>
+import { computed } from 'vue'
+import { useRouter } from 'vue-router'
+import {
+  HistoryOutlined,
+  PaperClipOutlined,
+  RightOutlined,
+  UserOutlined,
+} from '@ant-design/icons-vue'
+import {
+  importLogColumns,
+  importLogRows,
+  importLogSection,
+} from '@/data/data-import-center/dataImportCenterData'
+
+const router = useRouter()
+
+const paginationConfig = computed(() => ({
+  total: importLogSection.total,
+  current: importLogSection.current,
+  pageSize: importLogSection.pageSize,
+  showSizeChanger: false,
+  showTotal: importLogSection.totalText,
+}))
+
+const openDetail = (record) => {
+  router.push({
+    name: 'data-import-audit-detail',
+    params: {
+      logId: record.recordNo,
+    },
+  })
+}
+</script>
+
+<style scoped src="./styles/ImportLogsTable.css"></style>

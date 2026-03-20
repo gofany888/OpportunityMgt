@@ -1,0 +1,233 @@
+.detail-rolling-card {
+  margin-bottom: 20px;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03),
+              0 1px 6px -1px rgba(0, 0, 0, 0.02),
+              0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.detail-rolling-card :deep(.ant-card-head) {
+  min-height: auto;
+  padding: 16px 24px;
+}
+
+.detail-rolling-card :deep(.ant-card-body) {
+  padding: 24px;
+}
+
+.detail-rolling-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.detail-rolling-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #1677ff;
+  color: #fff;
+}
+
+.detail-rolling-main-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.detail-rolling-subtitle {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.detail-rolling-table :deep(.ant-table-cell) {
+  border-inline-end: none !important;
+  padding: 10px 8px !important;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.detail-rolling-table :deep(.ant-table-thead > tr > th) {
+  white-space: nowrap;
+}
+
+.detail-rolling-table :deep(.ant-table-tbody > tr:hover > td) {
+  background: rgba(22, 119, 255, 0.04) !important;
+}
+
+.detail-rolling-header-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.detail-rolling-header-cell.is-forecast {
+  color: #1677ff;
+  font-weight: 500;
+}
+
+.detail-rolling-header-cell small {
+  font-size: 9px;
+}
+
+.detail-rolling-metric {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding-inline-start: 28px;
+}
+
+.detail-rolling-connector {
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  width: 20px;
+  height: calc(100% + 24px);
+  pointer-events: none;
+}
+
+.detail-rolling-connector-stem {
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  border-left: 3px solid #d9dee8;
+}
+
+.detail-rolling-connector-corner {
+  position: absolute;
+  left: 0;
+  width: 16px;
+  height: 12px;
+}
+
+.detail-rolling-connector-corner.is-top {
+  top: 0;
+  border-left: 3px solid #d9dee8;
+  border-top: 3px solid #d9dee8;
+  border-top-left-radius: 16px;
+}
+
+.detail-rolling-connector-corner.is-bottom {
+  bottom: 0;
+  border-left: 3px solid #d9dee8;
+  border-bottom: 3px solid #d9dee8;
+  border-bottom-left-radius: 16px;
+}
+
+.detail-rolling-metric-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.detail-rolling-metric-icon.is-soft-blue {
+  background: #e6f4ff;
+  color: #1677ff;
+}
+
+.detail-rolling-metric-icon.is-solid-blue {
+  background: #1677ff;
+  color: #fff;
+}
+
+.detail-rolling-metric-icon.is-soft-gray {
+  background: #f5f5f5;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.detail-rolling-metric-icon.is-orange {
+  background: #fff2e8;
+  color: #fa541c;
+}
+
+.detail-rolling-metric-icon.is-green {
+  background: #f6ffed;
+  color: #52c41a;
+}
+
+.detail-rolling-metric-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.8);
+  line-height: 1.3;
+}
+
+.detail-rolling-metric-subtitle {
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.4);
+  line-height: 1.3;
+}
+
+.detail-rolling-value {
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.detail-rolling-value.is-forecast {
+  color: #1677ff;
+}
+
+.detail-rolling-value.is-danger {
+  color: #f5222d;
+  font-weight: 600;
+}
+
+.detail-rolling-value.is-success {
+  color: #52c41a;
+  font-weight: 600;
+}
+
+.detail-rolling-value.is-total {
+  font-weight: 600;
+}
+
+.detail-rolling-value.is-total.is-danger {
+  color: #f5222d;
+}
+
+.detail-rolling-value.is-total.is-success {
+  color: #52c41a;
+}
+
+.detail-rolling-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.detail-rolling-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.detail-rolling-status-value {
+  color: rgba(0, 0, 0, 0.76);
+}
+
+.detail-rolling-alert {
+  max-width: 460px;
+}
+
+@media (max-width: 1280px) {
+  .detail-rolling-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

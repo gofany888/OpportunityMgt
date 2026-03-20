@@ -41,7 +41,7 @@ export const menuGroups = [
         key: 'data-hub',
         label: '数据中枢',
         items: [
-            { key: '/sync', label: '全量同步', icon: 'setting-outlined', disabled: true },
+            { key: '/sync', label: '数据导入中心', icon: 'setting-outlined' },
         ],
     },
 ]

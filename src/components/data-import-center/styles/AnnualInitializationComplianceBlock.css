@@ -1,0 +1,199 @@
+.annual-init-compliance-card {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 32px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
+}
+
+.annual-init-compliance-card__banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 24px 22px 20px;
+  background: linear-gradient(180deg, #cf3d31 0%, #cf3d31 100%);
+}
+
+.annual-init-compliance-card__close {
+  position: absolute;
+  top: 24px;
+  right: 18px;
+  color: rgba(255, 235, 232, 0.92);
+}
+
+.annual-init-compliance-card__close:hover {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.annual-init-compliance-card__banner-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.annual-init-compliance-card__icon-shell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.05);
+  color: #ffd2cb;
+}
+
+.annual-init-compliance-card__icon-shell :deep(svg) {
+  font-size: 30px;
+}
+
+.annual-init-compliance-card__banner-copy {
+  text-align: left;
+}
+
+.annual-init-compliance-card__banner-title {
+  margin-bottom: 6px;
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #fff;
+}
+
+.annual-init-compliance-card__banner-subtitle {
+  font-size: 12px;
+  line-height: 1.55;
+  font-weight: 400;
+  color: rgba(255, 235, 232, 0.9);
+}
+
+.annual-init-compliance-card__body {
+  padding: 22px 22px 20px;
+}
+
+.annual-init-compliance-card__summary-box {
+  margin-bottom: 20px;
+  padding: 22px 20px;
+  border-radius: 22px;
+  border: 1px solid #f5d8d3;
+  background: linear-gradient(180deg, #fff7f6 0%, #fffaf9 100%);
+  text-align: center;
+}
+
+.annual-init-compliance-card__summary {
+  margin-bottom: 14px;
+  font-size: 16px;
+  line-height: 1.7;
+  font-weight: 600;
+  color: #b33b31;
+}
+
+.annual-init-compliance-card__summary span {
+  font-size: 30px;
+  line-height: 1;
+  color: #cf3d31;
+  font-weight: 700;
+}
+
+.annual-init-compliance-card__detail {
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: #e09189;
+}
+
+.annual-init-compliance-card__metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.annual-init-compliance-card__metric {
+  padding: 20px 16px;
+  border-radius: 20px;
+  border: 1px solid #edf2f8;
+  background: linear-gradient(180deg, #fbfdff 0%, #f6f9fd 100%);
+  text-align: center;
+}
+
+.annual-init-compliance-card__metric-label {
+  margin-bottom: 14px;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #a1afc3;
+}
+
+.annual-init-compliance-card__metric-value {
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #263247;
+  font-variant-numeric: tabular-nums;
+}
+
+.annual-init-compliance-card__metric-value.is-danger {
+  color: #cf3d31;
+}
+
+.annual-init-compliance-card__solutions {
+  margin-bottom: 20px;
+}
+
+.annual-init-compliance-card__solutions-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 500;
+  color: #98a6bb;
+}
+
+.annual-init-compliance-card__solutions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0 0 0 14px;
+  list-style: none;
+}
+
+.annual-init-compliance-card__solution-item {
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  font-size: 12px;
+  line-height: 1.7;
+  font-weight: 400;
+  color: #6d7c95;
+}
+
+.annual-init-compliance-card__solution-dot {
+  width: 10px;
+  height: 10px;
+  margin-top: 7px;
+  border-radius: 999px;
+  background: #5e87f0;
+}
+
+.annual-init-compliance-card__primary {
+  height: 52px;
+  margin-bottom: 0;
+  border: none;
+  border-radius: 999px;
+  background: #182033 !important;
+  box-shadow: 0 14px 28px rgba(24, 32, 51, 0.16);
+  color: #fff !important;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.annual-init-compliance-card__primary:hover,
+.annual-init-compliance-card__primary:focus {
+  background: #111a2d !important;
+}

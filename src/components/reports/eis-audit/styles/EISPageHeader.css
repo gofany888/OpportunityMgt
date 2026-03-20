@@ -1,1 +1,105 @@
-/* Extracted styles */
+.eis-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+}
+
+.eis-page-header__main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.eis-page-header__indicator {
+  width: 4px;
+  height: 14px;
+  border-radius: 999px;
+  background: #1677ff;
+  flex-shrink: 0;
+}
+
+.eis-page-header__title {
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.88);
+  white-space: nowrap;
+}
+
+.eis-page-header__subtitle {
+  min-width: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.45);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.eis-page-header__status {
+  display: flex;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+}
+
+.eis-page-header__badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: #f6ffed;
+  border: 1px solid #b7eb8f;
+}
+
+.eis-page-header__badge :deep(.ant-badge-status-dot) {
+  width: 8px;
+  height: 8px;
+  background: #52c41a;
+  box-shadow: 0 0 0 0 rgba(82, 196, 26, 0.28);
+  animation: eisBadgeBreath 1.8s ease-in-out infinite;
+}
+
+.eis-page-header__badge :deep(.ant-badge-status-text) {
+  margin-inline-start: 8px;
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: #237804;
+}
+
+@keyframes eisBadgeBreath {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(82, 196, 26, 0.16);
+  }
+
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 6px rgba(82, 196, 26, 0);
+  }
+}
+
+@media (max-width: 960px) {
+  .eis-page-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .eis-page-header__main {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .eis-page-header__status {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

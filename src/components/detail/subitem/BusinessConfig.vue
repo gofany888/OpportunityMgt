@@ -1,104 +1,82 @@
 <template>
-<!-- 5.5 Dual-Column Config Cards -->
-<div class="grid grid-cols-2 gap-5 mb-5">
-    <!-- Left: 经营性质与滚动分类 -->
-    <div
-        class="bg-white rounded-2xl p-6 shadow-sm border border-gray-50 flex flex-col h-full">
-        <div class="flex items-center gap-2 mb-6 text-gray-800 font-bold text-[14px]">
-            <i class="fa-solid fa-shapes text-[#2f54eb]"></i> 经营性质与滚动分类
-        </div>
+  <a-row :gutter="[20, 20]" class="mb-5">
+    <a-col :xs="24" :xl="12">
+      <a-card :bordered="false" class="detail-business-card">
+        <template #title>
+          <div class="detail-business-title">
+            <AppstoreOutlined class="detail-business-title-icon" />
+            <span>{{ businessConfigData.leftTitle }}</span>
+          </div>
+        </template>
 
-        <div class="grid grid-cols-2 gap-4 mb-4">
-            <div>
-                <label class="block text-[11px] text-gray-500 mb-1.5">项目分类</label>
-                <div class="relative">
-                    <select
-                        class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-[13px] text-gray-700 appearance-none bg-white focus:outline-none focus:border-[#2f54eb] focus:ring-1 focus:ring-[#f0f5ff]">
-                        <option>产品能力</option>
-                    </select>
-                    <i
-                        class="fa-solid fa-angle-down absolute right-3 top-3.5 text-gray-400 text-[10px] pointer-events-none"></i>
-                </div>
-            </div>
-            <div>
-                <label class="block text-[11px] text-gray-500 mb-1.5">项目类型</label>
-                <div class="relative">
-                    <select
-                        class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-[13px] text-gray-700 appearance-none bg-white focus:outline-none focus:border-[#2f54eb] focus:ring-1 focus:ring-[#f0f5ff]">
-                        <option>项目型</option>
-                    </select>
-                    <i
-                        class="fa-solid fa-angle-down absolute right-3 top-3.5 text-gray-400 text-[10px] pointer-events-none"></i>
-                </div>
-            </div>
-        </div>
+        <a-form layout="vertical">
+          <a-row :gutter="[16, 0]">
+            <a-col
+              v-for="field in businessConfigData.leftFields"
+              :key="field.key"
+              :xs="24"
+              :md="field.key === 'rollingClue' ? 24 : 12"
+            >
+              <a-form-item :label="field.label">
+                <a-select
+                  v-model:value="leftForm[field.key]"
+                  :options="field.options.map((option) => ({ label: option, value: option }))"
+                />
+              </a-form-item>
+            </a-col>
+          </a-row>
+        </a-form>
 
-        <div class="mb-4">
-            <label class="block text-[11px] text-gray-500 mb-1.5">项目滚动线索</label>
-            <div class="relative">
-                <select
-                    class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-[13px] text-gray-700 appearance-none bg-white focus:outline-none focus:border-[#2f54eb] focus:ring-1 focus:ring-[#f0f5ff]">
-                    <option>延续项目</option>
-                </select>
-                <i
-                    class="fa-solid fa-angle-down absolute right-3 top-3.5 text-gray-400 text-[10px] pointer-events-none"></i>
-            </div>
-        </div>
+        <a-typography-text type="secondary" class="detail-business-hint">
+          {{ businessConfigData.hint }}
+        </a-typography-text>
+      </a-card>
+    </a-col>
 
-        <div class="text-[11px] text-gray-400 mt-auto pt-2">
-            提示：延期项目在测算时将直接产生收入的延续单元。
-        </div>
-    </div>
+    <a-col :xs="24" :xl="12">
+      <a-card :bordered="false" class="detail-business-card">
+        <template #title>
+          <div class="detail-business-title">
+            <ApartmentOutlined class="detail-business-title-icon is-green" />
+            <span>{{ businessConfigData.rightTitle }}</span>
+          </div>
+        </template>
 
-    <!-- Right: 细分产品画像 -->
-    <div
-        class="bg-white rounded-2xl p-6 shadow-sm border border-gray-50 flex flex-col h-full">
-        <div class="flex items-center gap-2 mb-6 text-gray-800 font-bold text-[14px]">
-            <i class="fa-solid fa-border-all text-[#52c41a]"></i> 细分产品画像
-        </div>
-
-        <div class="space-y-4">
-            <div>
-                <label class="block text-[11px] text-gray-500 mb-1.5">业务营销领域</label>
-                <div class="relative">
-                    <select
-                        class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-[13px] text-gray-700 appearance-none bg-white focus:outline-none focus:border-[#2f54eb] focus:ring-1 focus:ring-[#f0f5ff]">
-                        <option>系统集成</option>
-                    </select>
-                    <i
-                        class="fa-solid fa-angle-down absolute right-3 top-3.5 text-gray-400 text-[10px] pointer-events-none"></i>
-                </div>
-            </div>
-
-            <div>
-                <label class="block text-[11px] text-gray-500 mb-1.5">产品大类</label>
-                <div class="relative">
-                    <select
-                        class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-[13px] text-gray-700 appearance-none bg-white pl-3 w-[60%] focus:outline-none focus:border-[#2f54eb] focus:ring-1 focus:ring-[#f0f5ff]">
-                        <option>产研探索</option>
-                    </select>
-                    <i
-                        class="fa-solid fa-angle-down absolute right-[45%] top-3.5 text-gray-400 text-[10px] pointer-events-none"></i>
-                </div>
-            </div>
-
-            <div class="pb-2">
-                <label class="block text-[11px] text-gray-500 mb-1.5">产品细类</label>
-                <div class="relative">
-                    <select
-                        class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-[13px] text-gray-700 appearance-none bg-white focus:outline-none focus:border-[#2f54eb] focus:ring-1 focus:ring-[#f0f5ff]">
-                        <option>数字化底座</option>
-                    </select>
-                    <i
-                        class="fa-solid fa-angle-down absolute right-3 top-3.5 text-gray-400 text-[10px] pointer-events-none"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
+        <a-form layout="vertical">
+          <a-form-item
+            v-for="field in businessConfigData.rightFields"
+            :key="field.key"
+            :label="field.label"
+          >
+            <a-select
+              v-model:value="rightForm[field.key]"
+              :options="field.options.map((option) => ({ label: option, value: option }))"
+            />
+          </a-form-item>
+        </a-form>
+      </a-card>
+    </a-col>
+  </a-row>
 </template>
 
 <script setup>
+import { reactive } from 'vue'
+import { ApartmentOutlined, AppstoreOutlined } from '@ant-design/icons-vue'
+import { businessConfigData } from '@/data/detailPageData'
+
+const leftForm = reactive(
+  businessConfigData.leftFields.reduce((acc, field) => {
+    acc[field.key] = field.value
+    return acc
+  }, {})
+)
+
+const rightForm = reactive(
+  businessConfigData.rightFields.reduce((acc, field) => {
+    acc[field.key] = field.value
+    return acc
+  }, {})
+)
 </script>
+
+<style scoped src="./styles/BusinessConfig.css"></style>
