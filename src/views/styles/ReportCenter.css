@@ -1,4 +1,13 @@
+.report-center-page {
+  background-color: transparent;
+  margin: -24px -24px 0 -24px; /* 抵消 layout-main-content 的 padding */
+  min-height: calc(100vh - 56px);
+  padding: 24px;
+}
+
 .report-center {
+  max-width: 1600px;
+  margin: 0 auto;
   padding: 0;
 }
 

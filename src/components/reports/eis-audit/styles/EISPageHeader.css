@@ -4,8 +4,9 @@
   justify-content: space-between;
   gap: 16px;
   width: 100%;
-  min-width: 0;
-  height: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 16px 24px;
 }
 
 .eis-page-header__main {

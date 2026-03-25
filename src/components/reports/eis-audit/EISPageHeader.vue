@@ -3,7 +3,7 @@
     <div class="eis-page-header__main">
       <span class="eis-page-header__indicator"></span>
       <span class="eis-page-header__title">EIS 差异查询与审计中心</span>
-      <span class="eis-page-header__subtitle">审计引擎: 经营推盘 (BO) VS 销服参考 (EIS)</span>
+      <span class="eis-page-header__subtitle">审计引擎: 经营数据 (BG) VS 销售参考 (EIS)</span>
     </div>
 
     <div class="eis-page-header__status">

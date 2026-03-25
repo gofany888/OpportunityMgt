@@ -1,3 +1,31 @@
+.eis-filter-bar {
+  width: 100%;
+}
+
+.eis-filter-bar__top {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.eis-filter-bar__top :deep(.ant-input) {
+  background-color: #f9fafb !important;
+}
+
+.eis-filter-bar__top :deep(.ant-input:hover) {
+  background-color: #f9fafb !important;
+}
+
+.eis-filter-bar__top :deep(.ant-input:focus) {
+  background-color: #f9fafb !important;
+}
+
+.eis-filter-bar__bottom {
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 16px;
+}
+
 .custom-radio-group {
     background-color: #f5f7fa;
     border-radius: 8px;

@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <!-- 差异卡片列表 (无需顶部栏) -->
-    <div class="space-y-4">
+  <div class="eis-audit-list-container">
+
+    <!-- 差异卡片列表 (大白板内容区) -->
+    <div class="eis-audit-list-content">
       <EISDiscrepancyCard 
         v-for="record in auditRecords" 
         :key="record.id" 
@@ -9,8 +10,8 @@
       />
     </div>
 
-    <!-- 底部翻页 -->
-    <div class="mt-8 flex justify-end">
+    <!-- 底部翻页 (收编入大白板) -->
+    <div class="eis-audit-pagination-footer">
       <a-pagination 
         :total="120" 
         :show-size-changer="false" 

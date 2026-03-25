@@ -6,22 +6,6 @@
 
     <Teleport to="#header-actions-portal" v-if="isMounted">
       <div class="annual-initialization-page__actions">
-        <div v-if="currentStep === 0" class="annual-initialization-page__demo">
-          <span class="annual-initialization-page__demo-label">演示</span>
-          <a-segmented
-            v-model:value="demoMode"
-            :options="demoModeOptions"
-            class="annual-initialization-page__demo-segmented"
-          />
-        </div>
-        <div v-else-if="currentStep === 1" class="annual-initialization-page__demo">
-          <span class="annual-initialization-page__demo-label">演示</span>
-          <a-segmented
-            v-model:value="governanceDemoMode"
-            :options="governanceDemoOptions"
-            class="annual-initialization-page__demo-segmented"
-          />
-        </div>
         <div class="annual-initialization-page__snapshot">
           <component
             :is="snapshotIcon"
@@ -86,6 +70,43 @@
           :scenario-key="activeScenarioKey"
           @complete="handleFinalizeProgressComplete"
         />
+      </div>
+    </div>
+
+    <!-- 浮动演示控制面板 -->
+    <div class="demo-control-panel" :class="{ 'is-collapsed': isDemoCollapsed }">
+      <div class="demo-control-header" @click="isDemoCollapsed = !isDemoCollapsed">
+        <span class="demo-control-title">
+          <span class="demo-control-icon">🎬</span>
+          演示模式
+        </span>
+        <span class="demo-control-toggle">{{ isDemoCollapsed ? '展开' : '收起' }}</span>
+      </div>
+      <div v-if="!isDemoCollapsed" class="demo-control-body">
+        <div v-if="currentStep === 0" class="demo-control-section">
+          <div class="demo-control-label">步骤 1：文件上传</div>
+          <a-segmented
+            v-model:value="demoMode"
+            :options="demoModeOptions"
+            size="small"
+            block
+            class="demo-control-segmented"
+          />
+        </div>
+        <div v-else-if="currentStep === 1" class="demo-control-section">
+          <div class="demo-control-label">步骤 2：数据治理</div>
+          <a-segmented
+            v-model:value="governanceDemoMode"
+            :options="governanceDemoOptions"
+            size="small"
+            block
+            class="demo-control-segmented"
+          />
+        </div>
+        <div v-else class="demo-control-section">
+          <div class="demo-control-label">步骤 3：定稿存证</div>
+          <div class="demo-control-info">自动执行中...</div>
+        </div>
       </div>
     </div>
 
@@ -212,6 +233,7 @@ const router = useRouter()
 const isMounted = ref(false)
 const demoMode = ref('normal')
 const governanceDemoMode = ref('with-issues')
+const isDemoCollapsed = ref(false)
 const resultModalVisible = ref(false)
 const activeResultType = ref('')
 const currentStep = ref(0)

@@ -1,0 +1,91 @@
+.data-import-center-page {
+  background-color: transparent;
+  margin: -24px -24px 0 -24px; /* 抵消 layout-main-content 的 padding */
+  min-height: calc(100vh - 56px);
+  position: relative;
+}
+
+/* 浮动演示控制面板 */
+.demo-control-panel {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: auto;
+  min-width: 240px;
+  max-width: 400px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.demo-control-panel.is-collapsed {
+  width: 140px;
+  min-width: 140px;
+}
+
+.demo-control-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s;
+}
+
+.demo-control-header:hover {
+  background-color: #fafafa;
+}
+
+.demo-control-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1677ff;
+  white-space: nowrap;
+}
+
+.demo-control-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.demo-control-toggle {
+  font-size: 12px;
+  color: #8c8c8c;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.demo-control-body {
+  padding: 16px;
+}
+
+.demo-control-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.demo-control-checkboxes :deep(.ant-checkbox-wrapper) {
+  margin: 0;
+  font-size: 13px;
+  color: #262626;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.demo-control-checkboxes :deep(.ant-checkbox-wrapper:hover) {
+  color: #1677ff;
+}
+
+.demo-control-checkboxes :deep(.ant-checkbox-checked .ant-checkbox-inner) {
+  background-color: #1677ff;
+  border-color: #1677ff;
+}

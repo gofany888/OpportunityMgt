@@ -94,8 +94,8 @@
 
     <!-- 收起按钮 -->
     <div class="collapse-trigger" @click="collapsed = !collapsed">
-      <menu-unfold-outlined v-if="collapsed" />
-      <menu-fold-outlined v-else />
+      <right-outlined v-if="collapsed" />
+      <left-outlined v-else />
     </div>
   </a-layout-sider>
 
@@ -103,7 +103,7 @@
   <a-layout class="layout-content-area">
 
     <!-- 顶部导航栏 -->
-    <a-layout-header class="layout-header">
+    <a-layout-header v-if="showLayoutHeader" class="layout-header">
       <!-- 页面标题 -->
       <div class="header-title-block">
         <template v-if="!route.meta.customTitle">
@@ -149,8 +149,8 @@ import {
   HistoryOutlined,
   SettingOutlined,
   SlidersOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
+  LeftOutlined,
+  RightOutlined,
   SafetyCertificateOutlined,
 } from '@ant-design/icons-vue'
 import { menuGroups, bottomMenuItems, appInfo } from '@/data/menuData'
@@ -158,6 +158,7 @@ import { menuGroups, bottomMenuItems, appInfo } from '@/data/menuData'
 const route = useRoute()
 const router = useRouter()
 const collapsed = ref(false)
+const showLayoutHeader = computed(() => route.meta.layoutHeader !== false)
 
 /** 当前选中的菜单项 */
 const selectedKeys = computed(() => {
