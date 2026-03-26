@@ -7,17 +7,6 @@
         <a-typography-text type="secondary">{{ financeMatrixConfig.subtitle }}</a-typography-text>
       </div>
     </template>
-    <template #extra>
-      <a-space :size="8">
-        <a-typography-text type="secondary">{{ financeMatrixConfig.taxRateLabel }}</a-typography-text>
-        <a-select
-          v-model:value="taxRate"
-          size="small"
-          :options="financeMatrixConfig.taxRateOptions.map((option) => ({ label: option, value: option }))"
-          class="detail-tax-rate-select"
-        />
-      </a-space>
-    </template>
 
     <div class="detail-finance-grid">
       <div
@@ -52,10 +41,8 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { financeMatrixConfig } from '@/data/detailPageData'
-
-const taxRate = ref(financeMatrixConfig.taxRate)
 
 const parseStatistic = (value) => Number(String(value).replace(/[¥,]/g, ''))
 const getPrefix = (value) => (String(value).includes('¥') ? '¥' : '')

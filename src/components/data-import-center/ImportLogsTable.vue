@@ -6,7 +6,15 @@
     </div>
 
     <a-card :bordered="false" class="import-log-card">
+      <div v-if="showEmpty" class="import-log-empty">
+        <div class="import-log-empty__icon">
+          <FileSearchOutlined />
+        </div>
+        <div class="import-log-empty__title">暂无流水记录</div>
+        <div class="import-log-empty__desc">尚未执行任何数据采集或变更定稿任务</div>
+      </div>
       <a-table
+        v-else
         :columns="importLogColumns"
         :data-source="importLogRows"
         :pagination="paginationConfig"
@@ -61,6 +69,7 @@
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import {
+  FileSearchOutlined,
   HistoryOutlined,
   PaperClipOutlined,
   RightOutlined,
@@ -73,6 +82,12 @@ import {
 } from '@/data/data-import-center/dataImportCenterData'
 
 const router = useRouter()
+defineProps({
+  showEmpty: {
+    type: Boolean,
+    default: false,
+  },
+})
 
 const paginationConfig = computed(() => ({
   total: importLogSection.total,

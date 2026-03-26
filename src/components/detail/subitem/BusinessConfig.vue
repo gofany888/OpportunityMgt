@@ -1,5 +1,5 @@
 <template>
-  <a-row :gutter="[20, 20]" class="mb-5">
+  <a-row :gutter="[20, 20]">
     <a-col :xs="24" :xl="12">
       <a-card :bordered="false" class="detail-business-card">
         <template #title>

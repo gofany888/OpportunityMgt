@@ -7,7 +7,14 @@
       :sm="12"
       :xl="6"
     >
-      <a-card :bordered="false" :class="['import-summary-card', { 'is-emphasized': card.emphasized }]">
+      <a-card
+        :bordered="false"
+        :class="[
+          'import-summary-card',
+          { 'is-emphasized': card.emphasized && !(isBgMissing && ['matched', 'pending', 'coverage'].includes(card.key)) },
+          { 'is-disabled': isBgMissing && ['matched', 'pending', 'coverage'].includes(card.key) }
+        ]"
+      >
         <div class="import-summary-card__content">
           <div :class="['import-summary-card__icon', `is-${card.tone}`]">
             <component :is="iconMap[card.icon]" />
@@ -17,12 +24,28 @@
               {{ card.title }}
             </a-typography-text>
             <div class="import-summary-card__value-row">
-              <a-statistic
-                :value="parseStatistic(card.value)"
-                :precision="card.unit === '%' ? 1 : 0"
-                :suffix="card.unit"
-                :value-style="statValueStyle"
-              />
+              <template v-if="isBgMissing && ['matched', 'pending', 'coverage'].includes(card.key)">
+                <a-statistic
+                  v-if="card.key !== 'coverage'"
+                  :value="0"
+                  :precision="0"
+                  :suffix="card.unit"
+                  :value-style="statValueStyle"
+                />
+                <div v-else class="ant-statistic">
+                  <div class="ant-statistic-content" :style="statValueStyle">
+                    <span class="ant-statistic-content-value">--</span>
+                  </div>
+                </div>
+              </template>
+              <template v-else>
+                <a-statistic
+                  :value="parseStatistic(card.value)"
+                  :precision="card.unit === '%' ? 1 : 0"
+                  :suffix="card.unit"
+                  :value-style="statValueStyle"
+                />
+              </template>
             </div>
           </div>
         </div>
@@ -41,6 +64,15 @@ import {
   SettingOutlined,
 } from '@ant-design/icons-vue'
 import { dataImportSummaryCards } from '@/data/data-import-center/dataImportCenterData'
+
+const props = defineProps({
+  missingSources: {
+    type: Array,
+    default: () => [],
+  },
+})
+
+const isBgMissing = computed(() => props.missingSources.includes('bg'))
 
 const iconMap = {
   InboxOutlined,

@@ -22,9 +22,9 @@ export const menuGroups = [
     },
     {
         key: 'ledger',
-        label: '业务台帐',
+        label: '商机台帐',
         items: [
-            { key: '/ledger', label: '台账中心', icon: 'search-outlined', disabled: true },
+            { key: '/ledger', label: '台账中心', icon: 'profile-outlined' },
             { key: '/approval', label: '审批待办中心', icon: 'check-square-outlined', disabled: true },
         ],
     },

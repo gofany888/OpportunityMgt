@@ -7,7 +7,7 @@ export const importAuditDetailMap = {
     statusText: '审计已定稿',
     statusTone: 'success',
     sectionLabel: '导入执行详情',
-    sourceTitle: 'EIS 系统 / 接口同步',
+    sourceTitle: 'EIS 系统 / EXCEL导入',
     sourceSubtitle: '数据源与方式',
     operatorName: '张管理 (Admin_01)',
     operatorLabel: '导入执行人',

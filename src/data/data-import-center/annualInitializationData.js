@@ -29,9 +29,9 @@ export const annualInitializationScenarios = {
     ],
     uploadCard: {
       title: '同步原始对标明细',
-      descriptionPrefix: '载入销售系统明细。数据将首先进入',
+      descriptionPrefix: '载入EIS系统明细。数据将首先进入',
       descriptionHighlight: '诊断沙箱',
-      descriptionSuffix: '进行差异比对，在管理员完成决策前不会影响生产底账。',
+      descriptionSuffix: '进行差异比对。',
       buttonText: '选择文件并上传',
       helperText: '支持格式：.XLSX / .CSV',
       mainIcon: 'CloudUploadOutlined',
@@ -41,13 +41,13 @@ export const annualInitializationScenarios = {
       {
         key: 'sandbox',
         title: '诊断沙箱隔离',
-        description: '数据进场即触发预警计算',
+        description: '数据进场即触发合规检测',
         icon: 'Cluster',
       },
       {
         key: 'compare',
         title: '逻辑差异校核',
-        description: '自动对标 2026-03-08 10:00 基准',
+        description: '自动对标最新台账基准',
         icon: 'Swap',
       },
       {

@@ -49,6 +49,23 @@
         >
           {{ step.title }}
         </div>
+        
+        <div
+          v-if="step.time"
+          :class="[
+            'detail-progress-time',
+            `is-${step.status}`,
+          ]"
+        >
+          {{ step.time }}
+        </div>
+        
+        <div
+          v-if="step.stayDays && step.status === 'process'"
+          class="detail-progress-warning"
+        >
+          已停留 {{ step.stayDays }} 天
+        </div>
       </div>
     </div>
   </a-card>

@@ -1,5 +1,5 @@
 <template>
-  <a-card :bordered="false" class="detail-subheader-card">
+  <a-card id="software" :bordered="false" class="detail-subheader-card">
     <div class="detail-subheader-top">
       <a-space :size="12">
         <div class="detail-subheader-icon">

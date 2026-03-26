@@ -1,7 +1,7 @@
 <template>
-  <a-row :gutter="[20, 20]" class="mb-5 detail-info-row">
+  <a-row :gutter="[20, 20]" class="detail-info-row">
     <a-col :xs="24" :xl="12" class="detail-info-col">
-      <a-card :bordered="false" class="detail-info-card">
+      <a-card :bordered="false" class="detail-info-card detail-info-card-editable">
         <template #title>
           <div class="detail-section-title">
             <ApartmentOutlined class="detail-section-title-icon" />
@@ -9,7 +9,7 @@
           </div>
         </template>
 
-        <div class="detail-info-grid">
+        <div class="detail-info-grid" ref="orgCardRef">
           <div
             v-for="field in organizationOverviewConfig.fields"
             :key="field.key"
@@ -17,68 +17,46 @@
           >
             <div class="detail-field-label">
               <span>{{ field.label }}</span>
-              <a-tag color="processing" class="detail-source-tag">{{ field.tag }}</a-tag>
+              <a-tag v-if="field.tag" color="processing" class="detail-source-tag">{{ field.tag }}</a-tag>
             </div>
-            <a-typography-text class="detail-field-value">{{ field.value }}</a-typography-text>
-          </div>
-        </div>
-
-        <a-divider class="detail-card-divider" />
-
-        <div class="detail-timeline-header">
-          <a-space :size="8">
-            <ClockCircleOutlined class="detail-section-title-icon" />
-            <a-typography-text type="secondary">
-              {{ organizationOverviewConfig.timelineTitle }} ({{ organizationOverviewConfig.timelineSuffix }})
-            </a-typography-text>
-          </a-space>
-          <a-typography-link>{{ organizationOverviewConfig.timelineAction }}</a-typography-link>
-        </div>
-
-        <div class="detail-draft-box">
-          <a-textarea
-            v-model:value="draftText"
-            :rows="4"
-            :placeholder="organizationOverviewConfig.draftPlaceholder"
-          />
-          <div class="detail-draft-actions">
-            <a-button type="primary">
-              <template #icon><PlusOutlined /></template>
-              {{ organizationOverviewConfig.draftActionText }}
-            </a-button>
-          </div>
-        </div>
-
-        <a-timeline class="detail-activity-timeline">
-          <a-timeline-item
-            v-for="entry in detailTimelineEntries"
-            :key="entry.key"
-            :color="entry.type === 'draft' ? '#1677ff' : '#91caff'"
-          >
-            <div :class="['detail-timeline-card', { 'is-draft': entry.type === 'draft' }]">
-              <div class="detail-timeline-meta">
-                <div class="detail-timeline-headline">
-                  <span class="detail-timeline-author">{{ entry.meta }} · {{ entry.author }}</span>
-                  <a-tag v-if="entry.status" color="warning" class="detail-timeline-tag">
-                    {{ entry.status }}
-                  </a-tag>
+            
+            <div 
+              class="detail-inline-edit-wrapper"
+              @click.stop="startEdit(field.key, field.value)"
+            >
+              <template v-if="editingFieldKey === field.key">
+                <a-select
+                  v-if="field.key === 'department'"
+                  v-model:value="orgForm[field.key]"
+                  :options="deptOptions"
+                  autofocus
+                  open
+                  class="detail-edit-input"
+                  @change="confirmEdit(field.key)"
+                />
+                <a-input
+                  v-else
+                  v-model:value="orgForm[field.key]"
+                  autofocus
+                  class="detail-edit-input"
+                  @pressEnter="confirmEdit(field.key)"
+                />
+              </template>
+              <template v-else>
+                <div :class="['detail-field-value-container', { 'is-modified': modifiedFields[field.key] }]">
+                  <span class="detail-field-value">{{ field.value }}</span>
+                  <EditOutlined class="inline-edit-icon" />
+                  <span v-if="modifiedFields[field.key]" class="modified-dot"></span>
                 </div>
-                <a-space v-if="entry.type === 'draft'" :size="0">
-                  <a-button type="text" size="small" :icon="h(EditOutlined)" />
-                  <a-button type="text" size="small" danger :icon="h(DeleteOutlined)" />
-                </a-space>
-              </div>
-              <a-typography-paragraph class="detail-timeline-content">
-                {{ entry.content }}
-              </a-typography-paragraph>
+              </template>
             </div>
-          </a-timeline-item>
-        </a-timeline>
+          </div>
+        </div>
       </a-card>
     </a-col>
 
     <a-col :xs="24" :xl="12" class="detail-info-col">
-      <a-card :bordered="false" class="detail-info-card">
+      <a-card :bordered="false" class="detail-info-card detail-info-card-editable">
         <template #title>
           <div class="detail-section-title">
             <FileTextOutlined class="detail-section-title-icon" />
@@ -86,7 +64,7 @@
           </div>
         </template>
 
-        <div class="detail-info-grid">
+        <div class="detail-info-grid" ref="financeCardRef">
           <div
             v-for="field in financeProfileConfig.fields"
             :key="field.key"
@@ -102,33 +80,60 @@
                 {{ field.tag }}
               </a-tag>
             </div>
-            <a-select
-              v-if="field.type === 'select'"
-              v-model:value="financeForm[field.key]"
-              :options="field.options.map((option) => ({ label: option, value: option }))"
-            />
-            <a-typography-text
-              v-else
-              :class="['detail-field-value', { 'num-font': field.numeric }]"
+            
+            <div 
+              class="detail-inline-edit-wrapper"
+              @click.stop="startEdit(field.key, field.value)"
             >
-              {{ field.value }}
-            </a-typography-text>
+              <template v-if="editingFieldKey === field.key">
+                <a-select
+                  v-if="field.type === 'select'"
+                  v-model:value="orgForm[field.key]"
+                  :options="field.options.map((option) => ({ label: option, value: option }))"
+                  open
+                  autofocus
+                  class="detail-edit-input"
+                  :popupClassName="field.key === 'bidType' ? 'select-wide-dropdown' : ''"
+                  @change="confirmEdit(field.key)"
+                />
+                <a-input
+                  v-else
+                  v-model:value="orgForm[field.key]"
+                  autofocus
+                  class="detail-edit-input"
+                  @pressEnter="confirmEdit(field.key)"
+                />
+              </template>
+              <template v-else>
+                <div :class="['detail-field-value-container', { 'is-modified': modifiedFields[field.key] }]">
+                  <span :class="['detail-field-value', { 'num-font': field.numeric }]">
+                    {{ field.value }}
+                  </span>
+                  <EditOutlined class="inline-edit-icon" />
+                  <span v-if="modifiedFields[field.key]" class="modified-dot"></span>
+                </div>
+              </template>
+            </div>
           </div>
         </div>
 
         <div class="detail-summary-panel">
-          <a-typography-text class="detail-summary-label">
-            {{ financeProfileConfig.summaryTitle }}
-          </a-typography-text>
-          <a-statistic
-            :value="financeProfileConfig.summaryValue"
-            :prefix="financeProfileConfig.summaryPrefix"
-            :suffix="financeProfileConfig.summaryUnit"
-            :value-style="summaryValueStyle"
-          />
-          <div class="detail-summary-note">
-            <SafetyCertificateOutlined />
-            <span>{{ financeProfileConfig.summaryNote }}</span>
+          <div class="detail-summary-main">
+            <div class="detail-summary-info">
+              <a-typography-text class="detail-summary-label">
+                {{ financeProfileConfig.summaryTitle }}
+              </a-typography-text>
+              <div class="detail-summary-note">
+                <SafetyCertificateOutlined />
+                <span>{{ financeProfileConfig.summaryNote }}</span>
+              </div>
+            </div>
+            <a-statistic
+              :value="financeProfileConfig.summaryValue"
+              :prefix="financeProfileConfig.summaryPrefix"
+              :suffix="financeProfileConfig.summaryUnit"
+              :value-style="summaryValueStyle"
+            />
           </div>
         </div>
       </a-card>
@@ -137,23 +142,18 @@
 </template>
 
 <script setup>
-import { computed, reactive, ref, h } from 'vue'
+import { computed, reactive, h, ref, onMounted, onUnmounted } from 'vue'
 import {
   ApartmentOutlined,
-  ClockCircleOutlined,
-  DeleteOutlined,
   EditOutlined,
   FileTextOutlined,
-  PlusOutlined,
   SafetyCertificateOutlined,
 } from '@ant-design/icons-vue'
 import {
-  detailTimelineEntries,
   financeProfileConfig,
   organizationOverviewConfig,
 } from '@/data/detailPageData'
 
-const draftText = ref('')
 const financeForm = reactive(
   financeProfileConfig.fields.reduce((acc, field) => {
     if (field.type === 'select') {
@@ -163,9 +163,80 @@ const financeForm = reactive(
   }, {})
 )
 
+// 行内编辑相关状态
+const orgCardRef = ref(null)
+const financeCardRef = ref(null)
+const editingFieldKey = ref(null)
+const modifiedFields = reactive({})
+const orgForm = reactive({})
+const initialOrgValues = {} // 记录初始值，用于脏检查
+const initialFinanceValues = {}
+
+const deptOptions = [
+  { label: '云业务运营产品部', value: '云业务运营产品部' },
+  { label: '电力二部', value: '电力二部' },
+  { label: '电力三部', value: '电力三部' },
+  { label: '政府事业部', value: '政府事业部' },
+]
+
+const startEdit = (key, value) => {
+  if (editingFieldKey.value === key) return
+  editingFieldKey.value = key
+  orgForm[key] = value
+}
+
+const confirmEdit = (key) => {
+  if (!key) return
+  
+  // 按照 Key 在两个配置中查找对应的字段和初始值
+  let field = organizationOverviewConfig.fields.find(f => f.key === key)
+  let initialValue = initialOrgValues[key]
+  
+  if (!field) {
+    field = financeProfileConfig.fields.find(f => f.key === key)
+    initialValue = initialFinanceValues[key]
+  }
+
+  if (field) {
+    field.value = orgForm[key]
+    // 只有与初始值不同时，才显示红点
+    modifiedFields[key] = field.value !== initialValue
+  }
+  editingFieldKey.value = null
+}
+
+const handleGlobalClick = (e) => {
+  if (editingFieldKey.value) {
+    // 检查点击是否在当前编辑的区域外（涉及两张卡片）
+    const isOutsideOrg = !orgCardRef.value?.contains(e.target)
+    const isOutsideFinance = !financeCardRef.value?.contains(e.target)
+    const isDropdown = e.target.closest('.ant-select-dropdown')
+    
+    // 只有同时在两张卡片之外且不是下拉弹窗时，才触发确认
+    if (isOutsideOrg && isOutsideFinance && !isDropdown) {
+      confirmEdit(editingFieldKey.value)
+    }
+  }
+}
+
+onMounted(() => {
+  // 初始化初始值，用于脏检查
+  organizationOverviewConfig.fields.forEach(field => {
+    initialOrgValues[field.key] = field.value
+  })
+  financeProfileConfig.fields.forEach(field => {
+    initialFinanceValues[field.key] = field.value
+  })
+  window.addEventListener('mousedown', handleGlobalClick, true)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('mousedown', handleGlobalClick, true)
+})
+
 const summaryValueStyle = computed(() => ({
   color: '#adc6ff',
-  fontSize: '56px',
+  fontSize: '32px',
   fontWeight: 600,
   fontVariantNumeric: 'tabular-nums',
 }))

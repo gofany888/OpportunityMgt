@@ -13,10 +13,6 @@
         </div>
       </div>
     </div>
-
-    <div class="data-import-header__status">
-      <a-badge status="success" :text="dataImportHeaderConfig.statusText" class="data-import-header__badge" />
-    </div>
   </div>
 </template>
 

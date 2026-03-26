@@ -22,77 +22,79 @@
       </div>
     </template>
     <template v-else>
-      <div class="annual-init-finalize-progress__completion">
-        <div
-          :class="[
-            'annual-init-finalize-progress__completion-shell',
-            { 'is-entered': resultEntered },
-          ]"
-        >
-          <div class="annual-init-finalize-progress__metrics">
-            <div
-              v-for="metric in displayMetrics"
-              :key="metric.key"
-              :class="['annual-init-finalize-progress__metric', `is-${metric.tone}`]"
-            >
-              <div :class="['annual-init-finalize-progress__metric-icon', `is-${metric.tone}`]">
-                <component :is="metricIconMap[metric.icon]" />
-              </div>
-              <div class="annual-init-finalize-progress__metric-copy">
-                <div :class="['annual-init-finalize-progress__metric-value', `is-${metric.tone}`]">
-                  {{ metric.value }}
+      <div :class="['annual-init-finalize-progress__debug-container', { 'is-entered': resultEntered }]">
+        <div class="annual-init-finalize-progress__completion">
+          <div
+            :class="[
+              'annual-init-finalize-progress__completion-shell',
+              { 'is-entered': resultEntered },
+            ]"
+          >
+            <div class="annual-init-finalize-progress__metrics">
+              <div
+                v-for="metric in displayMetrics"
+                :key="metric.key"
+                :class="['annual-init-finalize-progress__metric', `is-${metric.tone}`]"
+              >
+                <div :class="['annual-init-finalize-progress__metric-icon', `is-${metric.tone}`]">
+                  <component :is="metricIconMap[metric.icon]" />
                 </div>
-                <div class="annual-init-finalize-progress__metric-title">{{ metric.title }}</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="annual-init-finalize-progress__success">
-            <div class="annual-init-finalize-progress__success-icon-shell">
-              <CheckCircleOutlined />
-            </div>
-            <div class="annual-init-finalize-progress__success-title">
-              {{ completionConfig.title }}
-            </div>
-            <div class="annual-init-finalize-progress__success-badge">
-              <StarOutlined />
-              <span>{{ completionConfig.badge }}</span>
-            </div>
-
-            <div class="annual-init-finalize-progress__success-panel">
-              <div class="annual-init-finalize-progress__success-summary">
-                {{ completionConfig.summaryPrefix }}
-                <span class="annual-init-finalize-progress__success-count">
-                  {{ completionConfig.summaryCount }}
-                </span>
-                {{ completionConfig.summarySuffix }}
-              </div>
-
-              <div class="annual-init-finalize-progress__success-split">
-                <div class="annual-init-finalize-progress__success-metric">
-                  <div class="annual-init-finalize-progress__success-metric-value is-blue">
-                    {{ completionConfig.admitCount }}
+                <div class="annual-init-finalize-progress__metric-copy">
+                  <div :class="['annual-init-finalize-progress__metric-value', `is-${metric.tone}`]">
+                    {{ metric.value }}
                   </div>
-                  <div class="annual-init-finalize-progress__success-metric-label">
-                    {{ completionConfig.admitLabel }}
-                  </div>
-                </div>
-                <div class="annual-init-finalize-progress__success-divider" />
-                <div class="annual-init-finalize-progress__success-metric">
-                  <div class="annual-init-finalize-progress__success-metric-value is-orange">
-                    {{ completionConfig.writeoffCount }}
-                  </div>
-                  <div class="annual-init-finalize-progress__success-metric-label">
-                    {{ completionConfig.writeoffLabel }}
-                  </div>
+                  <div class="annual-init-finalize-progress__metric-title">{{ metric.title }}</div>
                 </div>
               </div>
             </div>
 
-            <div class="annual-init-finalize-progress__success-actions">
-              <a-button class="annual-init-finalize-progress__success-primary" @click.prevent="handleClose">
-                {{ completionConfig.primaryActionText }}
-              </a-button>
+            <div class="annual-init-finalize-progress__success">
+              <div class="annual-init-finalize-progress__success-icon-shell">
+                <CheckCircleOutlined />
+              </div>
+              <div class="annual-init-finalize-progress__success-title">
+                {{ completionConfig.title }}
+              </div>
+              <div class="annual-init-finalize-progress__success-badge">
+                <StarOutlined />
+                <span>{{ completionConfig.badge }}</span>
+              </div>
+
+              <div class="annual-init-finalize-progress__success-panel">
+                <div class="annual-init-finalize-progress__success-summary">
+                  {{ completionConfig.summaryPrefix }}
+                  <span class="annual-init-finalize-progress__success-count">
+                    {{ completionConfig.summaryCount }}
+                  </span>
+                  {{ completionConfig.summarySuffix }}
+                </div>
+
+                <div class="annual-init-finalize-progress__success-split">
+                  <div class="annual-init-finalize-progress__success-metric">
+                    <div class="annual-init-finalize-progress__success-metric-value is-blue">
+                      {{ completionConfig.admitCount }}
+                    </div>
+                    <div class="annual-init-finalize-progress__success-metric-label">
+                      {{ completionConfig.admitLabel }}
+                    </div>
+                  </div>
+                  <div class="annual-init-finalize-progress__success-divider" />
+                  <div class="annual-init-finalize-progress__success-metric">
+                    <div class="annual-init-finalize-progress__success-metric-value is-orange">
+                      {{ completionConfig.writeoffCount }}
+                    </div>
+                    <div class="annual-init-finalize-progress__success-metric-label">
+                      {{ completionConfig.writeoffLabel }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="annual-init-finalize-progress__success-actions">
+                <a-button class="annual-init-finalize-progress__success-primary" @click.prevent="handleClose">
+                  {{ completionConfig.primaryActionText }}
+                </a-button>
+              </div>
             </div>
           </div>
         </div>
@@ -214,11 +216,9 @@ onMounted(() => {
         completeTimerId = window.setTimeout(() => {
           isCompleted.value = true
           emit('complete')
-          nextTick(() => {
-            window.requestAnimationFrame(() => {
-              resultEntered.value = true
-            })
-          })
+          setTimeout(() => {
+            resultEntered.value = true
+          }, 50)
           completeTimerId = null
         }, 600)
       }
@@ -247,4 +247,4 @@ function handleClose() {
 }
 </script>
 
-<style scoped src="./styles/AnnualInitializationFinalizeProgress.css"></style>
+<style scoped src="./styles/AnnualInitializationFinalizeProgress.css?v=2"></style>

@@ -21,7 +21,10 @@
             {{ panel.description }}
           </a-typography-paragraph>
 
-          <div :class="['import-panel-card__snapshot', `is-${panel.cardTone}`]">
+          <div
+            v-if="!isPanelMissing(panel.key)"
+            :class="['import-panel-card__snapshot', `is-${panel.cardTone}`]"
+          >
             <div class="import-panel-card__snapshot-icon">
               <component :is="iconMap[panel.icon]" />
             </div>
@@ -30,14 +33,22 @@
                 {{ panel.timestampLabel }}
               </a-typography-text>
               <div class="import-panel-card__snapshot-time">{{ panel.timestamp }}</div>
-              <div class="import-panel-card__snapshot-meta">
-                <a-tag :class="['import-panel-card__snapshot-tag', `is-${panel.statusTone}`]">
+              <div class="import-panel-card__snapshot-meta" v-if="panel.statusTag || panel.pendingLabel">
+                <a-tag
+                  v-if="panel.statusTag"
+                  :class="['import-panel-card__snapshot-tag', `is-${panel.statusTone}`]"
+                >
                   {{ panel.statusTag }}
                 </a-tag>
-                <span class="import-panel-card__snapshot-pending">
-                  {{ panel.pendingLabel }}：
+                <span class="import-panel-card__snapshot-pending" v-if="panel.pendingLabel">
+                  {{ panel.pendingLabel }}
                   <strong>{{ panel.pendingCount }}</strong>
-                  <span class="import-panel-card__snapshot-unit">项</span>
+                  <span class="import-panel-card__snapshot-unit">{{ panel.unit }}</span>
+                  <template v-if="panel.secondaryLabel">
+                    ，{{ panel.secondaryLabel }}
+                    <strong>{{ panel.secondaryCount }}</strong>
+                    <span class="import-panel-card__snapshot-unit">{{ panel.unit }}</span>
+                  </template>
                 </span>
               </div>
 
@@ -61,6 +72,13 @@
               <component :is="iconMap[panel.watermarkIcon]" />
             </div>
           </div>
+          <div v-else class="import-panel-card__empty-shell">
+            <div class="import-panel-card__empty-icon">
+              <component :is="iconMap[getEmptyState(panel.key).icon]" />
+            </div>
+            <div class="import-panel-card__empty-title">{{ getEmptyState(panel.key).title }}</div>
+            <div class="import-panel-card__empty-desc">{{ getEmptyState(panel.key).description }}</div>
+          </div>
 
           <a-button
             block
@@ -74,6 +92,16 @@
             </template>
             {{ panel.actionText }}
           </a-button>
+
+          <div v-if="panel.key === 'eis' && isBgMissing" class="import-panel-card__mask">
+            <div class="import-panel-card__mask-icon">
+              <LockOutlined />
+            </div>
+            <div class="import-panel-card__mask-title">对标功能暂未激活</div>
+            <div class="import-panel-card__mask-desc">
+              EIS 仅作为外部参照，系统必须首先完成 <span>【内部经营底账】</span> 的载入以确立审计坐标系。
+            </div>
+          </div>
         </a-card>
       </div>
     </a-col>
@@ -81,18 +109,31 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import {
   ClockCircleOutlined,
   CloudUploadOutlined,
   DownloadOutlined,
+  FileSearchOutlined,
+  FileTextOutlined,
   FileDoneOutlined,
   FileExcelOutlined,
   LinkOutlined,
   PaperClipOutlined,
   SyncOutlined,
+  LockOutlined,
 } from '@ant-design/icons-vue'
 import { importSourcePanels } from '@/data/data-import-center/dataImportCenterData'
+
+const props = defineProps({
+  missingSources: {
+    type: Array,
+    default: () => [],
+  },
+})
+
+const isBgMissing = computed(() => props.missingSources.includes('bg'))
 
 const router = useRouter()
 
@@ -105,7 +146,25 @@ const iconMap = {
   FileExcelOutlined,
   PaperClipOutlined,
   DownloadOutlined,
+  FileSearchOutlined,
+  FileTextOutlined,
 }
+
+const emptyStateMap = {
+  eis: {
+    icon: 'FileSearchOutlined',
+    title: '暂无历史同步记录',
+    description: '导入首份EIS对标附件以后启动治理引擎',
+  },
+  bg: {
+    icon: 'FileTextOutlined',
+    title: '底账主表为空',
+    description: '请执行批量导入以建立BG经营业务商机库',
+  },
+}
+
+const isPanelMissing = (key) => props.missingSources.includes(key)
+const getEmptyState = (key) => emptyStateMap[key] ?? emptyStateMap.eis
 
 const openInitialization = (panel) => {
   router.push({

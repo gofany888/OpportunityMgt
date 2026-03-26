@@ -3,11 +3,19 @@
     <SubItemHeader @toggle="isExpanded = !isExpanded" :is-expanded="isExpanded" />
     <div v-show="isExpanded" class="detail-subitem-content">
       <FinanceMatrix />
-      <RollingForecast />
-      <BusinessConfig />
-      <ProcurementControl />
+      <div id="forecast">
+        <RollingForecast />
+      </div>
+      <div id="profile">
+        <BusinessConfig />
+      </div>
+      <div id="procurement">
+        <ProcurementControl />
+      </div>
     </div>
   </a-card>
+  <div id="hardware">
+  </div>
 </template>
 
 <script setup>

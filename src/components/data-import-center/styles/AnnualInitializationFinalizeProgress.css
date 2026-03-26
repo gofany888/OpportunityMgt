@@ -2,9 +2,24 @@
   width: 100%;
 }
 
-.annual-init-finalize-progress__completion {
+.annual-init-finalize-progress__debug-container {
+  width: 100%;
+  border: 1px solid #d1d5db;
   display: flex;
   justify-content: center;
+  border-radius: 34px;
+  transition: border-color 1000ms ease-out;
+}
+
+.annual-init-finalize-progress__debug-container.is-entered {
+  border-color: transparent;
+}
+
+.annual-init-finalize-progress__completion {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 0;
 }
 
 .annual-init-finalize-progress__completion-shell {
@@ -15,7 +30,7 @@
   margin: 0 auto;
   opacity: 0;
   transform-origin: center center;
-  transform: scale(0.9) translateX(-16px) translateY(16px);
+  transform: scale(0.9);
   transition:
     opacity 1000ms ease-out,
     transform 1000ms ease-out;
@@ -24,7 +39,7 @@
 
 .annual-init-finalize-progress__completion-shell.is-entered {
   opacity: 1;
-  transform: scale(1) translateX(0) translateY(0);
+  transform: scale(1);
 }
 
 .annual-init-finalize-progress__metrics {

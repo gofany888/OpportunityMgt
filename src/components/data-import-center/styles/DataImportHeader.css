@@ -12,7 +12,7 @@
   align-items: center;
   gap: 10px;
   min-width: 0;
-  flex: 1 1 auto;
+  flex: 0 1 auto;
 }
 
 .data-import-header__indicator {

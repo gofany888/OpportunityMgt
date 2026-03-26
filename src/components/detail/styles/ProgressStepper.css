@@ -1,5 +1,4 @@
 .detail-progress-card {
-  margin-bottom: 20px;
   border-radius: 16px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03),
               0 1px 6px -1px rgba(0, 0, 0, 0.02),
@@ -113,6 +112,52 @@
 
 .detail-progress-label.is-process {
   color: #2f54eb;
+}
+
+.detail-progress-time {
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+}
+
+.detail-progress-time.is-finish {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.detail-progress-time.is-process {
+  color: rgba(47, 84, 235, 0.65);
+}
+
+.detail-progress-time.is-wait {
+  color: rgba(0, 0, 0, 0.15);
+}
+
+.detail-progress-warning {
+  position: absolute;
+  top: 2px;
+  left: 100%;
+  transform: translateX(-50%);
+  z-index: 10;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #ff4d4f;
+  background: #fff2f0;
+  border: 1px solid #ffccc7;
+  border-radius: 4px;
+  white-space: nowrap;
+  animation: warning-blink 2s ease-in-out infinite;
+}
+
+@keyframes warning-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
 }
 
 @media (max-width: 960px) {

@@ -1,0 +1,212 @@
+.detail-info-card {
+  width: 100%;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03),
+              0 1px 6px -1px rgba(0, 0, 0, 0.02),
+              0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+
+
+.detail-info-card :deep(.ant-card-body) {
+  background: #ffffff;
+}
+
+.detail-info-card :deep(.ant-card-head) {
+  min-height: auto;
+  padding: 16px 24px;
+}
+
+.detail-info-card :deep(.ant-card-body) {
+  padding: 24px;
+}
+
+.detail-timeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 0;
+}
+
+.detail-timeline-action-link {
+  font-size: 13px;
+  font-weight: 400 !important;
+  color: #1677ff;
+}
+
+.detail-timeline-action-link:hover {
+  color: #4096ff;
+}
+
+.detail-timeline-item-box .detail-timeline-header {
+  margin-bottom: 16px;
+}
+
+.detail-timeline-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-timeline-icon {
+  color: #1677ff;
+  font-size: 14px;
+}
+
+.detail-timeline-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.detail-timeline-suffix {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.detail-draft-box {
+  margin-top: -8px;
+  margin-bottom: 24px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 12px;
+  transition: all 0.2s ease;
+}
+
+.detail-draft-box:focus-within {
+  border-color: #1677ff;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.06);
+}
+
+.detail-draft-box :deep(.ant-input) {
+  padding: 0;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  resize: none;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.detail-draft-box :deep(.ant-input::placeholder) {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.detail-draft-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.detail-draft-actions :deep(.ant-btn) {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  border-radius: 8px;
+  font-size: 13px;
+  padding-inline: 16px;
+}
+
+.detail-activity-timeline :deep(.ant-timeline-item-tail) {
+  border-inline-start-color: #d9e8ff;
+  top: 0;
+  height: 100%;
+}
+
+/* Force the tail to show for the last item so it connects to the dot */
+.detail-activity-timeline :deep(.ant-timeline-item-last .ant-timeline-item-tail) {
+  display: block;
+  height: 50%;
+}
+
+.detail-activity-timeline :deep(.ant-timeline-item-head) {
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: -8px; 
+}
+
+.detail-activity-timeline :deep(.ant-timeline-item) {
+  padding-bottom: 16px;
+}
+
+.detail-timeline-item-box {
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 12px 14px;
+}
+
+.detail-timeline-item-box.is-draft {
+  background: rgba(22, 119, 255, 0.05);
+  border: 1px dashed #91caff;
+}
+
+.detail-timeline-meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.detail-timeline-headline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.detail-timeline-author {
+  font-size: 12px;
+  color: #1677ff;
+  font-weight: 500;
+}
+
+.detail-timeline-tag {
+  margin-inline-end: 0;
+  border-radius: 8px;
+}
+
+.detail-timeline-content {
+  margin-bottom: 0 !important;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.72);
+  line-height: 1.6;
+}
+
+.detail-timeline-content.is-ellipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.detail-timeline-expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  color: #1677ff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.detail-expand-icon {
+  font-size: 12px;
+  transform: rotate(90deg);
+  margin-top: 1px;
+}
+
+.detail-timeline-expand-btn:hover {
+  color: #4096ff;
+  text-decoration: underline;
+}

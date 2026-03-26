@@ -1,0 +1,157 @@
+.opportunity-tabs-wrapper {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  margin: 0; /* Full width */
+  border-bottom: 1px solid #edf2f8; /* Only bottom border */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  width: 100%;
+}
+
+.opportunity-tabs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 4px 48px; /* More generous for full-width header */
+}
+
+.opportunity-tabs__main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.opportunity-tabs__main :deep(.ant-tabs-nav) {
+  margin: 0;
+}
+
+.opportunity-tabs__main :deep(.ant-tabs-nav::before) {
+  border-bottom: none;
+}
+
+.opportunity-tabs__main :deep(.ant-tabs-tab) {
+  padding: 18px 4px 19px;
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 500;
+  color: #74839a;
+}
+
+.opportunity-tabs__main :deep(.ant-tabs-tab:hover) {
+  color: #1677ff;
+}
+
+.opportunity-tabs__main :deep(.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn) {
+  color: #1677ff;
+  font-weight: 600;
+}
+
+.opportunity-tabs__main :deep(.ant-tabs-ink-bar) {
+  height: 2px;
+  border-radius: 999px;
+}
+
+.opportunity-tabs__extra {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.opportunity-sort {
+  height: 34px;
+  padding-inline: 10px;
+  border-radius: 10px;
+  color: #74839a;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.opportunity-sort-icon {
+  font-size: 14px;
+  transform: rotate(90deg);
+}
+
+/* Alert Text Badge per USER request */
+.opportunity-tabs__alert {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #eef5ff;
+  padding: 0 10px;
+  height: 26px; /* Slightly taller for 12px text */
+  border-radius: 999px;
+  border: 1px solid #d9e6ff;
+}
+
+.opportunity-tabs__alert-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #345dff;
+}
+
+.opportunity-tabs__alert-text {
+  font-size: 12px;
+  color: #345dff;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.opportunity-tabs__divider {
+  width: 1px;
+  height: 14px;
+  background: #e2e8f0;
+  margin: 0 12px;
+}
+
+.opportunity-sub-tabs {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 48px;
+  background: transparent;
+  border-top: 1px solid #f8fafc; /* Subtle separator inside the white card */
+}
+
+
+.sub-tabs-label {
+  flex: 0 0 auto;
+  font-size: 12px;
+  font-weight: 500;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+.sub-tabs-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sub-tab-tag {
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 0 16px;
+  height: 32px;
+  line-height: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748b;
+  background: #f1f5f9;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+  margin: 0 !important;
+}
+
+.sub-tab-tag:hover {
+  color: #1677ff;
+  border-color: #1677ff;
+}
+
+.sub-tab-tag.is-active {
+  background: #ffffff;
+  color: #1677ff;
+  border-color: #1677ff;
+  box-shadow: 0 2px 4px rgba(22, 119, 255, 0.1);
+}

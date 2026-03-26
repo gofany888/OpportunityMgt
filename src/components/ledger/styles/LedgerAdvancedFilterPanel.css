@@ -1,0 +1,462 @@
+.ledger-filter-panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  z-index: 30;
+  width: 920px;
+  max-width: min(920px, calc(100vw - 96px));
+  background: #ffffff;
+  border: 1px solid #e8eef7;
+  border-radius: 28px;
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.12);
+  overflow: hidden;
+}
+
+.ledger-filter-panel__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 24px;
+  border-bottom: 1px solid #edf2f7;
+  position: relative;
+}
+
+.ledger-filter-panel__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2d3d;
+}
+
+.ledger-filter-panel__hint {
+  font-size: 12px;
+  font-weight: 500;
+  color: #94a3b8;
+  flex: 1;
+}
+
+.ledger-filter-panel__close {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.ledger-filter-panel__close:hover {
+  background: #f5f7fb;
+  color: #64748b;
+}
+
+.ledger-filter-panel__close:active {
+  background: #edf2f7;
+}
+
+.ledger-filter-panel__body {
+  padding: 20px 24px 18px;
+}
+
+.ledger-filter-panel__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px 34px;
+}
+
+.ledger-filter-panel__section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+.ledger-filter-panel__section-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #334155;
+}
+
+.ledger-filter-panel__section-title svg {
+  font-size: 20px;
+  color: #4f83ff;
+}
+
+.ledger-filter-panel__section-title--spaced {
+  margin-top: 8px;
+}
+
+.ledger-filter-panel__subsection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.ledger-filter-panel__label {
+  font-size: 12px;
+  font-weight: 400;
+  color: #94a3b8;
+}
+
+.ledger-filter-panel__chips {
+  display: block;
+}
+
+.ledger-filter-panel__section:first-child .ledger-filter-panel__chips {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, max-content));
+  gap: 10px 12px;
+  align-content: start;
+}
+
+.ledger-filter-panel__tag {
+  margin-inline-end: 0 !important;
+  margin-bottom: 0 !important;
+  padding: 8px 16px;
+  border-radius: 14px;
+  border: 1px solid #d8e2f0;
+  background: #ffffff;
+  color: #5d6e88;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.ledger-filter-panel__tag.ant-tag-checkable-checked {
+  background: #edf4ff;
+  border-color: #adc8ff;
+  color: #345dff;
+  box-shadow: 0 0 0 3px rgba(52, 93, 255, 0.08);
+}
+
+.ledger-filter-panel__single-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.ledger-filter-panel__tag--single {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.ledger-filter-panel__segmented :deep(.ant-segmented) {
+  background: #f1f5f9;
+  padding: 4px;
+  border-radius: 16px;
+}
+
+.ledger-filter-panel__segmented :deep(.ant-segmented-group) {
+  gap: 8px;
+}
+
+.ledger-filter-panel__segmented :deep(.ant-segmented-item) {
+  min-height: 38px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.ledger-filter-panel__segmented :deep(.ant-segmented-item-selected) {
+  color: #345dff;
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.08);
+}
+
+.ledger-filter-panel__segmented--inline {
+  min-width: 220px;
+}
+
+.ledger-filter-panel__range {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding-right: 0;
+}
+
+.ledger-filter-panel__dash {
+  color: #c3cfdf;
+  font-size: 18px;
+}
+
+/* 包裹器 - 用于定位"万"字 */
+.ledger-filter-panel__number-wrapper {
+  flex: 1 1 0;
+  min-width: 0;
+  position: relative;
+}
+
+.ledger-filter-panel__number-input {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* "万"字覆盖层 - 默认在右侧，聚焦时左移 */
+.ledger-filter-panel__number-unit-overlay {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(calc(-50% - 2px));
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 400;
+  pointer-events: none;
+  z-index: 1;
+  transition: right 0.2s ease;
+  line-height: 1;
+}
+
+/* 聚焦或悬停时，"万"字左移为按钮让位 */
+.ledger-filter-panel__number-wrapper:hover .ledger-filter-panel__number-unit-overlay,
+.ledger-filter-panel__number-wrapper:focus-within .ledger-filter-panel__number-unit-overlay {
+  right: 34px;
+}
+
+/* 覆盖 ant-input-number 的根元素样式 - 创建一体化背景容器 */
+.ledger-filter-panel__number-input :deep(.ant-input-number) {
+  width: 100% !important;
+  height: 38px !important;
+  border: 1px solid #d8e2f0 !important;
+  border-radius: 14px !important;
+  background-color: #f8fbff !important;
+  padding-left: 12px !important;
+  padding-right: 32px !important;
+  box-shadow: none !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, padding-right 0.2s ease !important;
+}
+
+/* 聚焦或悬停时，增加右侧 padding 为按钮留空间 */
+.ledger-filter-panel__number-input :deep(.ant-input-number:hover),
+.ledger-filter-panel__number-input :deep(.ant-input-number-focused) {
+  padding-right: 54px !important;
+}
+
+/* 输入框包裹层 */
+.ledger-filter-panel__number-input :deep(.ant-input-number-input-wrap) {
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  padding-top: 2px !important;
+}
+
+/* 输入框本身 - 透明背景融入外层 */
+.ledger-filter-panel__number-input :deep(.ant-input-number-input) {
+  height: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: #334155 !important;
+  background-color: transparent !important;
+  text-align: left !important;
+  border: none !important;
+  transform: translateY(1px) !important;
+}
+
+/* placeholder 样式 - 和"万"字对齐 */
+.ledger-filter-panel__number-input :deep(.ant-input-number-input::placeholder) {
+  color: #b0bccf !important;
+  font-weight: 400 !important;
+  opacity: 1 !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
+}
+
+/* 聚焦和悬停状态 */
+.ledger-filter-panel__number-input :deep(.ant-input-number-focused),
+.ledger-filter-panel__number-input :deep(.ant-input-number:hover) {
+  border-color: #bfdbfe !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.08) !important;
+  background-color: #f8fbff !important;
+}
+
+/* 增减按钮容器 - 默认隐藏，悬停/聚焦时显示 */
+.ledger-filter-panel__number-input :deep(.ant-input-number-handler-wrap) {
+  background: transparent !important;
+  border-left: 1px solid #e0e7f0 !important;
+  opacity: 0 !important;
+  width: 22px !important;
+  border-radius: 0 14px 14px 0 !important;
+  transition: opacity 0.2s ease !important;
+}
+
+/* 悬停或聚焦时显示按钮 */
+.ledger-filter-panel__number-input :deep(.ant-input-number:hover .ant-input-number-handler-wrap),
+.ledger-filter-panel__number-input :deep(.ant-input-number-focused .ant-input-number-handler-wrap) {
+  opacity: 1 !important;
+}
+
+/* 增减按钮 */
+.ledger-filter-panel__number-input :deep(.ant-input-number-handler) {
+  border: none !important;
+  background: transparent !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.ledger-filter-panel__number-input :deep(.ant-input-number-handler:hover) {
+  background: rgba(79, 131, 255, 0.08) !important;
+}
+
+.ledger-filter-panel__number-input :deep(.ant-input-number-handler:active) {
+  background: rgba(79, 131, 255, 0.15) !important;
+}
+
+/* 按钮图标颜色 */
+.ledger-filter-panel__number-input :deep(.ant-input-number-handler .anticon) {
+  color: #94a3b8 !important;
+}
+
+.ledger-filter-panel__number-input :deep(.ant-input-number-handler:hover .anticon) {
+  color: #4f83ff !important;
+}
+
+.ledger-filter-panel__select .ant-select-selector {
+  height: 46px !important;
+  border-radius: 18px !important;
+  border-color: #d8e2f0 !important;
+  background: #f8fbff !important;
+  padding: 0 16px !important;
+  box-shadow: none !important;
+}
+
+.ledger-filter-panel__select .ant-select-selection-item {
+  line-height: 44px !important;
+  font-size: 13px;
+  font-weight: 400;
+  color: #334155;
+}
+
+.ledger-filter-panel__select .ant-select-selection-placeholder {
+  line-height: 44px !important;
+  color: #a3afc2 !important;
+}
+
+.ledger-filter-panel__select.ant-select-focused .ant-select-selector,
+.ledger-filter-panel__select:hover .ant-select-selector {
+  border-color: #bfdbfe !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.08) !important;
+}
+
+.ledger-filter-panel__toggle-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ledger-filter-panel__toggle-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  border: 1px solid #e6edf7;
+  background: #fbfdff;
+}
+
+.ledger-filter-panel__toggle-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.ledger-filter-panel__toggle-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px;
+  border-radius: 14px;
+  background: #eef3f9;
+  flex: 0 0 auto;
+}
+
+.ledger-filter-panel__toggle-option {
+  border: 0;
+  background: transparent;
+  min-width: 62px;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 10px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.ledger-filter-panel__toggle-option:hover {
+  color: #475569;
+}
+
+.ledger-filter-panel__grid > .ledger-filter-panel__section:nth-child(3) {
+  justify-content: space-between;
+}
+
+.ledger-filter-panel__toggle-switch.is-orange .ledger-filter-panel__toggle-option.is-active {
+  background: #ffffff;
+  color: #f97316;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.ledger-filter-panel__toggle-switch.is-purple .ledger-filter-panel__toggle-option.is-active {
+  background: #ffffff;
+  color: #8b5cf6;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.ledger-filter-panel__footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 24px 22px;
+  border-top: 1px solid #edf2f7;
+}
+
+.ledger-filter-panel__reset.ant-btn {
+  height: 38px;
+  min-width: 88px;
+  padding-inline: 18px;
+  border-radius: 10px;
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.ledger-filter-panel__reset.ant-btn:hover,
+.ledger-filter-panel__reset.ant-btn:focus {
+  color: #64748b !important;
+  background: #f5f7fb !important;
+  font-weight: 500 !important;
+}
+
+.ledger-filter-panel__submit.ant-btn {
+  min-width: 132px;
+  height: 42px;
+  border-radius: 16px !important;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.12);
+}

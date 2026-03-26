@@ -88,3 +88,18 @@
   font-size: 13px;
   color: rgba(0, 0, 0, 0.35);
 }
+
+.import-summary-card.is-disabled {
+  opacity: 0.75;
+  filter: grayscale(40%);
+  pointer-events: none;
+  background-color: #fafbfc;
+}
+
+.import-summary-card.is-disabled:hover {
+  transform: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03),
+              0 1px 6px -1px rgba(0, 0, 0, 0.02),
+              0 2px 4px rgba(0, 0, 0, 0.02);
+  border-color: #edf2f7;
+}

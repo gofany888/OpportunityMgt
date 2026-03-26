@@ -35,3 +35,15 @@
 .detail-sidebar-menu :deep(.ant-menu-item-selected) {
   font-weight: 600;
 }
+
+/* SubMenu title selected state */
+.detail-sidebar-menu :deep(.submenu-selected > .ant-menu-submenu-title) {
+  background-color: #e6f4ff !important;
+  color: #1677ff !important;
+  font-weight: 600 !important;
+}
+
+.detail-sidebar-menu :deep(.submenu-selected > .ant-menu-submenu-title:hover) {
+  background-color: #e6f4ff !important;
+  color: #1677ff !important;
+}

@@ -11,13 +11,29 @@ const router = createRouter({
                     path: '',
                     name: 'index-dashboard',
                     component: () => import('../views/IndexDashboard.vue'),
-                    meta: { title: '经营驾驶舱' }
+                    meta: { 
+                        title: '经营驾驶舱',
+                        layoutHeader: false
+                    }
+                },
+                {
+                    path: 'ledger',
+                    name: 'ledger-center',
+                    component: () => import('../views/LedgerCenter.vue'),
+                    meta: {
+                        layoutHeader: false,
+                        customTitle: true,
+                        customActions: true
+                    }
                 },
                 {
                     path: 'report',
                     name: 'report-center',
                     component: () => import('../views/ReportCenter.vue'),
-                    meta: { title: '报表中心' }
+                    meta: { 
+                        title: '报表中心',
+                        layoutHeader: false
+                    }
                 },
                 {
                     path: 'report/business-opportunity',
@@ -33,6 +49,7 @@ const router = createRouter({
                     name: 'eis-audit',
                     component: () => import('../views/reports/EISAudit.vue'),
                     meta: {
+                        layoutHeader: false,
                         customTitle: true,
                         customActions: true
                     }
@@ -42,6 +59,7 @@ const router = createRouter({
                     name: 'data-import-center',
                     component: () => import('../views/data-import-center/DataImportCenter.vue'),
                     meta: {
+                        layoutHeader: false,
                         customTitle: true,
                         customActions: true
                     }

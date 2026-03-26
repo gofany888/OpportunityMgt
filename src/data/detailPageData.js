@@ -1,16 +1,18 @@
 export const detailHeaderConfig = {
-  parentTag: '父商机预览',
+  id: 'OPP-26-Z005',
   title: '某省电力数字化转型二期总集项目',
-  ownerLabel: '总负责人',
-  owner: '张销售',
-  saveText: '保存商务变更',
+  ownerLabel: '项目经理',
+  owner: '张经理',
+  lastUpdate: '2024-03-08 11:20',
+  saveText: '提交商务变更',
 }
 
 export const detailSidebarConfig = {
   primaryLabel: '维度导航',
   primaryItems: [
-    { key: 'overview', label: '商务全景', icon: 'AppstoreOutlined', active: true },
-    { key: 'contract', label: '合同明细', icon: 'FileTextOutlined' },
+    { key: 'overview', label: '商务全生命周期', icon: 'AppstoreOutlined', active: true },
+    { key: 'contract', label: '组织、客户与合同', icon: 'FileTextOutlined' },
+    { key: 'progress', label: '商机进展', icon: 'RiseOutlined' },
     { key: 'milestone', label: '环节里程碑', icon: 'FlagOutlined' },
     { key: 'delivery', label: '交付管控', icon: 'LineChartOutlined' },
   ],
@@ -34,31 +36,31 @@ export const detailProgressConfig = {
   title: '商机全生命周期追踪',
   currentSubStage: '候选人公示',
   steps: [
-    { key: 'discover', title: '商机发现', status: 'finish' },
-    { key: 'confirm', title: '商机确立', status: 'finish' },
-    { key: 'setup', title: '立项环节', status: 'finish' },
-    { key: 'procurement', title: '采购环节', status: 'process' },
-    { key: 'contract', title: '合同合签', status: 'wait' },
-    { key: 'company', title: '公司立项', status: 'wait' },
-    { key: 'conversion', title: '商机转化', status: 'wait' },
+    { key: 'discover', title: '商机发现', status: 'finish', time: '01-01' },
+    { key: 'confirm', title: '商机确立', status: 'finish', time: '01-12' },
+    { key: 'setup', title: '立项环节', status: 'finish', time: '02-01' },
+    { key: 'procurement', title: '采购环节', status: 'process', time: '03-15', stayDays: 7 },
+    { key: 'contract', title: '合同合签', status: 'wait', time: '04-01' },
+    { key: 'company', title: '公司立项', status: 'wait', time: '04-13' },
+    { key: 'conversion', title: '商机转化', status: 'wait', time: '04-23' },
   ],
 }
 
 export const organizationOverviewConfig = {
   title: '组织归属与客户全景',
   fields: [
-    { key: 'department', label: '二级部门', value: '云业务运营产品部', tag: 'EIS同步' },
-    { key: 'salesUnit', label: '销售单元', value: '南部部分公司 / 张销售', tag: 'EIS同步' },
-    { key: 'manager', label: '客户经理', value: '李经理', tag: 'EIS同步' },
-    { key: 'region', label: '地区', value: '华南大区 / 某省', tag: 'EIS同步' },
-    { key: 'customer', label: '客户归属', value: '某省电力公司', tag: 'EIS同步' },
-    { key: 'endCustomer', label: '最终客户名称', value: '某省电力集团物资部', tag: 'EIS同步' },
+    { key: 'department', label: '二级部门', value: '云业务运营产品部' },
+    { key: 'salesUnit', label: '销售单元', value: '南部部分公司 / 张销售' },
+    { key: 'manager', label: '客户经理', value: '李经理' },
+    { key: 'region', label: '地区', value: '华南大区 / 某省' },
+    { key: 'customer', label: '客户归属', value: '某省电力公司' },
+    { key: 'endCustomer', label: '最终客户名称', value: '某省电力集团物资部' },
   ],
   timelineTitle: '商机进度执行轨迹',
   timelineSuffix: '经营必要',
   timelineAction: '查看完整轨迹记录',
   draftPlaceholder: '追加客观商务进展说明...',
-  draftActionText: '追加草稿',
+  draftActionText: '提交进展',
 }
 
 export const detailTimelineEntries = [
@@ -75,39 +77,40 @@ export const detailTimelineEntries = [
     type: 'history',
     author: '张销售',
     meta: '2026-03-02 10:15',
-    content: '客户侧预算批复已过会，准备进行单一来源采购公示。',
+    content: '客户侧预算批复已过会，准备进行单一来源采购公示。为了确保后续流程顺畅，我们需要在下周三之前完成所有子项的初期预算评估，并提交给财务部进行初步审核。此外，客户提到的技术架构调整建议也需要尽快落实到方案中，以免影响整体进度。同时，我们还需要与第三方供应商沟通硬件到货时间，确保整体交付里程碑不受影响。另外，关于后期的维保服务协议也需要提前启动起草工作。',
   },
   {
     key: 'history-2',
     type: 'history',
     author: '李经理',
     meta: '2026-02-25 14:30',
-    content: '二期方案对齐会结束，技术参数已录入客户内审系统。',
+    content: '关于某省电力数字化转型二期总集项目的最新方案对齐会已顺利结束，目前技术参数已经正式录入客户的业务内审系统。为了确保后续各个环节能够无缝衔接，项目组需要在下周三之前完成所有子项的初期预算评估报告，并正式提交给财务部进行首轮合规性审核。此外，客户在会上提到的关于技术架构分布式弹性扩容的调整建议也需要尽快落实到技术说明书中，以免在项目立项环节产生不必要的沟通损耗。同时，我们还需要与第三方硬件供应商进行深度沟通，确认关键设备的到货周期，确保整体交付里程碑不受供应链波动的影响。关于后期的维保服务协议（SLA）以及运维支持流程，也需要提前启动起草与内部法务评审工作，争取在商机转化阶段同步完成电子签签署。最后，各个职能部门需要加强信息共享与协同配合，通过周例会制度确保关键风险点能够及时曝光并得到闭环处理。以上所有信息对于项目的顺利推进至关重要，请张销售务必重点在现场进行跟进落实，如果遇到跨部门协调或者客户侧中高层决策支撑的困难，请第一时间整理成书面反馈并升级到我这里进行专项处理。为了保证质量，我们还需要在内部进行一次模拟评审。',
   },
 ]
 
 export const financeProfileConfig = {
   title: '合同财务与经营画像',
   fields: [
-    { key: 'contractNo', label: '合同编号', value: 'CT-2026-X8992', tag: 'EIS同步', numeric: true },
-    { key: 'contractStatus', label: '合同状态', value: '执行中', tag: 'EIS同步' },
-    { key: 'contractName', label: '合同名称', value: '某省电力数字化转型二期框架协议', tag: 'EIS同步', span: 2 },
+    { key: 'contractNo', label: '合同编号', value: 'CT-2026-X8992', numeric: true },
+    { key: 'contractStatus', label: '合同状态', value: '执行中' },
+    { key: 'contractName', label: '合同名称', value: '某省电力数字化转型二期框架协议' },
+    { key: 'taxRate', label: '税率', type: 'select', value: '6%', options: ['免税', '6%', '9%', '13%'] },
     {
       key: 'bidType',
       label: '投标类型 (本地核定)',
       type: 'select',
       value: '公开招标',
-      options: ['公开招标', '邀请招标'],
+      options: ['公开招标', '公开询比', '直接采购（单一来源）', '框架下订单', '原子能力下单'],
     },
-    { key: 'tradeType', label: '关联交易类型', value: 'IT服务', tag: 'EIS同步' },
-    { key: 'financeType', label: '财务分类', value: '国内软件技术服务收入', tag: 'EIS同步' },
-    { key: 'projectType', label: '项目属性', value: '非资源池', tag: 'EIS同步' },
+    { key: 'tradeType', label: '关联交易类型', value: 'IT服务' },
+    { key: 'financeType', label: '财务分类', value: '国内软件技术服务收入' },
+    { key: 'projectType', label: '项目属性', value: '非资源池' },
   ],
   summaryTitle: '子项总金额 (含税)',
   summaryValue: '2,400.00',
   summaryUnit: '万',
   summaryPrefix: '¥',
-  summaryNote: '基因已锁定至 2026 年度底稿',
+  summaryNote: '基因已锁定至 2026 年度底账',
 }
 
 export const milestoneConfig = {
@@ -320,7 +323,7 @@ export const financeMatrixConfig = {
   blocks: [
     {
       key: 'previous',
-      title: '往年收入实结',
+      title: '往年收入实绩',
       incomeLabel: '收入小计',
       income: '450.00',
       profitLabel: '毛利小计',
@@ -329,7 +332,7 @@ export const financeMatrixConfig = {
     },
     {
       key: 'current-actual',
-      title: '今年收入实结',
+      title: '今年收入实绩',
       incomeLabel: '收入小计',
       income: '80.00',
       profitLabel: '毛利小计',
@@ -338,7 +341,7 @@ export const financeMatrixConfig = {
     },
     {
       key: 'current-expected',
-      title: '今年尚未收入预计',
+      title: '今年预测收入预计',
       incomeLabel: '收入小计',
       income: '670.00',
       profitLabel: '毛利小计',
