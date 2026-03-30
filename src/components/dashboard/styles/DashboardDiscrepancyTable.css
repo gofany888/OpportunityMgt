@@ -72,7 +72,7 @@
 
 .custom-grouped-table :deep(.ant-table-thead > tr > th) {
   padding: 14px 4px;
-  background-color: #ffffff !important;
+  background-color: #fafbfc !important;
   border-bottom: 1px solid #e5e6eb !important;
   border-right: 1px solid #e5e6eb !important;
   border-left: none !important;
@@ -139,6 +139,10 @@
   transition: background-color 0.25s;
 }
 
+.custom-grouped-table :deep(.ant-table-tbody > tr > td.is-zebra-column) {
+  background-color: #f7f8fa;
+}
+
 /* Remove table cell rightmost border limits */
 .custom-grouped-table :deep(.ant-table-tbody > tr > td:last-child) {
     border-right: none !important;
@@ -147,6 +151,10 @@
 /* Subtle Row Hover */
 .custom-grouped-table :deep(.ant-table-tbody > tr:hover > td) {
   background-color: #fcfdff !important;
+}
+
+.custom-grouped-table :deep(.ant-table-tbody > tr:hover > td.is-zebra-column) {
+  background-color: #f3f6fb !important;
 }
 
 .custom-grouped-table :deep(.metric-neutral) {
@@ -218,6 +226,10 @@
   border-bottom: none !important;
   border-left: none !important;
   border-right: none !important;
+}
+
+.custom-grouped-table :deep(.total-row > td.is-zebra-column) {
+  background-color: #f5f7fa;
 }
 
 .custom-grouped-table :deep(.ant-table-tbody > tr > td:not(:first-child)) {
