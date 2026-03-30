@@ -9,7 +9,7 @@
           </div>
         </template>
 
-        <div class="detail-info-grid" ref="orgCardRef">
+        <div class="detail-info-grid">
           <div
             v-for="field in organizationOverviewConfig.fields"
             :key="field.key"
@@ -22,6 +22,7 @@
             
             <div 
               class="detail-inline-edit-wrapper"
+              :data-field-key="field.key"
               @click.stop="startEdit(field.key, field.value)"
             >
               <template v-if="editingFieldKey === field.key">
@@ -64,7 +65,7 @@
           </div>
         </template>
 
-        <div class="detail-info-grid" ref="financeCardRef">
+        <div class="detail-info-grid">
           <div
             v-for="field in financeProfileConfig.fields"
             :key="field.key"
@@ -83,6 +84,7 @@
             
             <div 
               class="detail-inline-edit-wrapper"
+              :data-field-key="field.key"
               @click.stop="startEdit(field.key, field.value)"
             >
               <template v-if="editingFieldKey === field.key">
@@ -142,7 +144,7 @@
 </template>
 
 <script setup>
-import { computed, reactive, h, ref, onMounted, onUnmounted } from 'vue'
+import { computed, reactive, ref, onMounted, onUnmounted } from 'vue'
 import {
   ApartmentOutlined,
   EditOutlined,
@@ -154,23 +156,13 @@ import {
   organizationOverviewConfig,
 } from '@/data/detailPageData'
 
-const financeForm = reactive(
-  financeProfileConfig.fields.reduce((acc, field) => {
-    if (field.type === 'select') {
-      acc[field.key] = field.value
-    }
-    return acc
-  }, {})
-)
-
 // 行内编辑相关状态
-const orgCardRef = ref(null)
-const financeCardRef = ref(null)
 const editingFieldKey = ref(null)
 const modifiedFields = reactive({})
 const orgForm = reactive({})
 const initialOrgValues = {} // 记录初始值，用于脏检查
 const initialFinanceValues = {}
+const financeSyncTick = ref(0)
 
 const deptOptions = [
   { label: '云业务运营产品部', value: '云业务运营产品部' },
@@ -201,22 +193,49 @@ const confirmEdit = (key) => {
     field.value = orgForm[key]
     // 只有与初始值不同时，才显示红点
     modifiedFields[key] = field.value !== initialValue
+
+    if (key === 'bidType') {
+      window.dispatchEvent(
+        new CustomEvent('detail:bid-type-change', {
+          detail: { value: field.value },
+        })
+      )
+    }
   }
   editingFieldKey.value = null
 }
 
 const handleGlobalClick = (e) => {
   if (editingFieldKey.value) {
-    // 检查点击是否在当前编辑的区域外（涉及两张卡片）
-    const isOutsideOrg = !orgCardRef.value?.contains(e.target)
-    const isOutsideFinance = !financeCardRef.value?.contains(e.target)
+    const activeWrapper = e.target.closest('.detail-inline-edit-wrapper')
+    const isCurrentField =
+      activeWrapper?.dataset.fieldKey === editingFieldKey.value
     const isDropdown = e.target.closest('.ant-select-dropdown')
-    
-    // 只有同时在两张卡片之外且不是下拉弹窗时，才触发确认
-    if (isOutsideOrg && isOutsideFinance && !isDropdown) {
+
+    // 只要点击位置不在当前编辑字段内部，就立即确认保存
+    if (!isCurrentField && !isDropdown) {
       confirmEdit(editingFieldKey.value)
     }
   }
+}
+
+const handleBidTypeSync = (event) => {
+  const nextValue = event.detail?.value
+
+  if (!nextValue) {
+    return
+  }
+
+  const bidTypeField = financeProfileConfig.fields.find((field) => field.key === 'bidType')
+
+  if (!bidTypeField || bidTypeField.value === nextValue) {
+    return
+  }
+
+  bidTypeField.value = nextValue
+  orgForm.bidType = nextValue
+  modifiedFields.bidType = nextValue !== initialFinanceValues.bidType
+  financeSyncTick.value += 1
 }
 
 onMounted(() => {
@@ -228,10 +247,12 @@ onMounted(() => {
     initialFinanceValues[field.key] = field.value
   })
   window.addEventListener('mousedown', handleGlobalClick, true)
+  window.addEventListener('detail:bid-type-change', handleBidTypeSync)
 })
 
 onUnmounted(() => {
   window.removeEventListener('mousedown', handleGlobalClick, true)
+  window.removeEventListener('detail:bid-type-change', handleBidTypeSync)
 })
 
 const summaryValueStyle = computed(() => ({

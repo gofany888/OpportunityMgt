@@ -123,7 +123,7 @@ const createDefaultFilterState = () => ({
   timePreset: 'all',
   auditToggles: [
     { label: '本地自建项（账外）', tone: 'orange', value: 'all' },
-    { label: '权责预估单（含负债）', tone: 'purple', value: 'all' }
+    { label: '资源池', tone: 'purple', value: 'all' }
   ]
 })
 const filterState = ref(createDefaultFilterState())

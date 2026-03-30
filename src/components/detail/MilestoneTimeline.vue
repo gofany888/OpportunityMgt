@@ -7,9 +7,32 @@
       </div>
     </template>
     <template #extra>
-      <a-button type="primary" :icon="h(HistoryOutlined)">
-        {{ milestoneConfig.actionText }}
-      </a-button>
+      <div class="detail-milestone-toolbar">
+        <span class="detail-milestone-toolbar-label">招标类型：</span>
+        <div
+          class="detail-milestone-bid-type-editor"
+          data-field-key="bidType"
+          @click.stop="startBidTypeEdit"
+        >
+          <a-select
+            v-if="isEditingBidType"
+            :value="selectedBidType"
+            :options="bidTypeOptions"
+            open
+            autofocus
+            class="detail-milestone-bid-type-select"
+            @change="handleBidTypeSelectChange"
+          />
+          <div
+            v-else
+            :class="['detail-milestone-bid-type-display', { 'is-modified': bidTypeModified }]"
+          >
+            <span class="detail-milestone-bid-type-text">{{ selectedBidType }}</span>
+            <EditOutlined class="inline-edit-icon" />
+            <span v-if="bidTypeModified" class="modified-dot"></span>
+          </div>
+        </div>
+      </div>
     </template>
 
     <a-table
@@ -47,24 +70,33 @@
 
         <template v-else-if="column.dataIndex === 'actual'">
           <div
-            v-if="record.actualEditable"
+            v-if="isActualEditorVisible(record)"
             :class="['detail-actual-editors', { 'is-processing': record.statusType === 'processing' }]"
           >
-            <a-date-picker
-              v-model:value="record.actualStart"
-              :locale="zhCN"
-              value-format="YYYY-MM-DD"
-              placeholder="开始日期"
-              class="detail-actual-picker"
-            />
-            <span class="detail-actual-divider">~</span>
-            <a-date-picker
-              v-model:value="record.actualEnd"
-              :locale="zhCN"
-              value-format="YYYY-MM-DD"
-              placeholder="结束日期"
-              class="detail-actual-picker"
-            />
+            <div class="detail-actual-editor-stack">
+              <div class="detail-actual-editor-row">
+                <a-date-picker
+                  v-model:value="record.actualStart"
+                  :locale="zhCN"
+                  value-format="YYYY-MM-DD"
+                  placeholder="开始日期"
+                  class="detail-actual-picker"
+                  @change="(value) => handleActualDateChange(record, 'actualStart', value)"
+                />
+                <span class="detail-actual-divider">~</span>
+                <a-date-picker
+                  v-model:value="record.actualEnd"
+                  :locale="zhCN"
+                  value-format="YYYY-MM-DD"
+                  placeholder="结束日期"
+                  class="detail-actual-picker"
+                  @change="(value) => handleActualDateChange(record, 'actualEnd', value)"
+                />
+              </div>
+              <div v-if="actualValidationMessages[record.key]" class="detail-actual-error">
+                {{ actualValidationMessages[record.key] }}
+              </div>
+            </div>
           </div>
           <a-typography-text v-else class="detail-milestone-date-text" type="secondary">
             {{ record.actualText || '--' }}
@@ -73,29 +105,92 @@
 
         <template v-else-if="column.dataIndex === 'proof'">
           <div class="detail-proof-cell">
-            <CheckCircleFilled
-              v-if="record.proof === 'done'"
-              class="detail-proof-icon is-success"
-            />
             <a-button
-              v-else-if="record.proof === 'upload'"
+              v-if="record.level === 'item' && record.proof === 'done'"
               type="text"
               size="small"
-              :icon="h(PaperClipOutlined)"
-            />
+              class="detail-proof-action is-attached"
+            >
+              <template #icon>
+                <PaperClipOutlined class="detail-proof-icon is-attachment is-attached" />
+              </template>
+              修改附件
+            </a-button>
+            <a-button
+              v-if="record.level === 'item' && record.proof === 'done'"
+              type="text"
+              size="small"
+              class="detail-proof-action is-download"
+            >
+              <template #icon>
+                <DownloadOutlined class="detail-proof-icon is-download" />
+              </template>
+              下载
+            </a-button>
+            <a-button
+              v-else-if="
+                record.level === 'item' &&
+                record.proof === 'upload' &&
+                ['processing', 'success'].includes(record.statusType)
+              "
+              type="text"
+              size="small"
+              class="detail-proof-action is-upload"
+            >
+              <template #icon>
+                <PaperClipOutlined class="detail-proof-icon is-attachment is-upload" />
+              </template>
+              上传附件
+            </a-button>
+            <a-tooltip
+              v-else-if="
+                record.level === 'stage' &&
+                getStageProofSummary(record).visible &&
+                getStageProofSummary(record).state === 'none'
+              "
+              title="子环节均未上传附件"
+            >
+              <MinusCircleOutlined class="detail-proof-summary-icon is-none" />
+            </a-tooltip>
+            <a-tooltip
+              v-else-if="
+                record.level === 'stage' &&
+                getStageProofSummary(record).visible &&
+                getStageProofSummary(record).state === 'partial'
+              "
+              title="已有部分子环节上传附件"
+            >
+              <ExclamationCircleOutlined class="detail-proof-summary-icon is-partial" />
+            </a-tooltip>
+            <a-tooltip
+              v-else-if="
+                record.level === 'stage' &&
+                getStageProofSummary(record).visible &&
+                getStageProofSummary(record).state === 'all'
+              "
+              title="子环节均已上传附件"
+            >
+              <CheckCircleFilled class="detail-proof-summary-icon is-all" />
+            </a-tooltip>
             <a-typography-text v-else type="secondary">--</a-typography-text>
           </div>
         </template>
 
         <template v-else-if="column.dataIndex === 'planned'">
-          <a-range-picker
-            v-if="record.planEditable"
-            v-model:value="record.plannedRange"
-            :locale="zhCN"
-            :placeholder="['开始日期', '结束日期']"
-            value-format="YYYY-MM-DD"
-            class="detail-range-picker"
-          />
+          <div v-if="isPlannedEditorVisible(record)" class="detail-plan-editor-stack">
+            <a-range-picker
+              :value="record.plannedRange"
+              :locale="zhCN"
+              :placeholder="['开始日期', '结束日期']"
+              value-format="YYYY-MM-DD"
+              size="small"
+              class="detail-range-picker"
+              @change="(value) => handlePlannedRangeChange(record, value)"
+            />
+            <div v-if="plannedValidationMessages[record.key]" class="detail-plan-error">
+              {{ plannedValidationMessages[record.key] }}
+            </div>
+          </div>
           <a-typography-text v-else class="detail-milestone-date-text">
             {{ record.plannedText }}
           </a-typography-text>
@@ -112,42 +207,98 @@
 </template>
 
 <script setup>
-import { computed, h, reactive, ref } from 'vue'
+import { computed, h, onMounted, onUnmounted, reactive, ref } from 'vue'
 import zhCN from 'ant-design-vue/es/date-picker/locale/zh_CN'
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 import {
   CheckCircleFilled,
+  DownloadOutlined,
   DownOutlined,
+  EditOutlined,
+  ExclamationCircleOutlined,
   FlagOutlined,
-  HistoryOutlined,
+  MinusCircleOutlined,
   PaperClipOutlined,
   UpOutlined,
 } from '@ant-design/icons-vue'
-import { milestoneConfig, milestoneRows } from '@/data/detailPageData'
+import { financeProfileConfig, milestoneConfig, milestoneRows } from '@/data/detailPageData'
 
 dayjs.locale('zh-cn')
 
-const cloneRows = (rows) =>
+const parseActualRange = (actualText) => {
+  if (!actualText || actualText === '--' || !actualText.includes('~')) {
+    return { start: undefined, end: undefined }
+  }
+
+  const [startText, endText] = actualText.split('~').map((item) => item.trim())
+
+  return {
+    start: startText && startText !== '--' ? startText : undefined,
+    end: endText && endText !== '--' ? endText : undefined,
+  }
+}
+
+const parsePlannedRange = (plannedText) => {
+  if (!plannedText || plannedText === '--' || !plannedText.includes('~')) {
+    return undefined
+  }
+
+  const [startText, endText] = plannedText.split('~').map((item) => item.trim())
+
+  if (!startText || !endText || startText === '--' || endText === '--') {
+    return undefined
+  }
+
+  return [startText, endText]
+}
+
+const cloneRows = (rows, parentKey) =>
   rows.map((row) => ({
     ...row,
+    parentKey,
     hasChildren: Boolean(row.children?.length),
-    plannedRange: row.plannedRange ? [...row.plannedRange] : undefined,
-    actualStart: row.actualStart || undefined,
-    actualEnd: row.actualEnd || undefined,
-    children: row.children ? cloneRows(row.children) : undefined,
+    plannedRange: row.plannedRange ? [...row.plannedRange] : parsePlannedRange(row.plannedText),
+    actualStart: row.actualStart || parseActualRange(row.actualText).start,
+    actualEnd: row.actualEnd || parseActualRange(row.actualText).end,
+    actualStartAutoFilled: false,
+    actualEndAutoFilled: false,
+    children: row.children ? cloneRows(row.children, row.key) : undefined,
   }))
 
 const tableData = reactive(cloneRows(milestoneRows))
-const expandedRowKeys = ref(['l4'])
+const expandedRowKeys = ref(
+  tableData.filter((row) => row.level === 'stage' && row.statusType === 'processing').map((row) => row.key)
+)
+const actualValidationMessages = reactive({})
+const plannedValidationMessages = reactive({})
 
 const columns = [
-  { title: '环节阶段 / 具体子项', dataIndex: 'stage', key: 'stage', width: '36%' },
-  { title: '经营实际时刻 (PM 填报)', dataIndex: 'actual', key: 'actual', width: '24%' },
-  { title: '证明材料', dataIndex: 'proof', key: 'proof', width: 120, align: 'center' },
-  { title: '计划周期', dataIndex: 'planned', key: 'planned', width: '26%' },
-  { title: '当前状态', dataIndex: 'status', key: 'status', width: 120, align: 'right' },
+  { title: '环节阶段 / 具体子项', dataIndex: 'stage', key: 'stage', width: '28%' },
+  { title: '经营实际时刻 (PM 填报)', dataIndex: 'actual', key: 'actual', width: '23%' },
+  { title: '证明材料', dataIndex: 'proof', key: 'proof', width: 188, align: 'center' },
+  { title: '计划周期', dataIndex: 'planned', key: 'planned', width: '27%' },
+  { title: '当前状态', dataIndex: 'status', key: 'status', width: 156, align: 'right' },
 ]
+
+const getCurrentBidType = () =>
+  financeProfileConfig.fields.find((field) => field.key === 'bidType')?.value || '公开招标'
+
+const bidTypeOptions = financeProfileConfig.fields
+  .find((field) => field.key === 'bidType')
+  ?.options.map((option) => ({ label: option, value: option })) || []
+
+const selectedBidType = ref(getCurrentBidType())
+const initialBidType = ref(getCurrentBidType())
+const isEditingBidType = ref(false)
+
+const procurementStageTemplates = {
+  '公开招标': ['采购需求', '采购方案', '公告发布', '文件投递截止及递交', '候选人公示', '采购结果'],
+  '公开询比': ['采购需求', '采购方案', '公告发布', '文件投递截止及递交', '候选人公示', '采购结果'],
+  '直接采购（单一来源）': ['采购需求', '采购方案', '公告发布', '候选人公示', '采购结果'],
+  '框架下订单': ['采购需求', '采购方案', '订单生成'],
+  '原子能力下单': ['采购需求', '采购方案', '订单生成'],
+}
 
 const isExpanded = (key) => expandedRowKeys.value.includes(key)
 
@@ -157,16 +308,462 @@ const toggleExpand = (key) => {
     : [...expandedRowKeys.value, key]
 }
 
+const setBidTypeValue = (value) => {
+  const bidTypeField = financeProfileConfig.fields.find((field) => field.key === 'bidType')
+
+  if (bidTypeField) {
+    bidTypeField.value = value
+  }
+
+  selectedBidType.value = value
+}
+
+const bidTypeModified = computed(() => selectedBidType.value !== initialBidType.value)
+
+const rebuildProcurementStage = (bidType) => {
+  const procurementStage = tableData.find((row) => row.key === 'l4')
+
+  if (!procurementStage) {
+    return
+  }
+
+  const steps = procurementStageTemplates[bidType] || procurementStageTemplates['原子能力下单']
+  procurementStage.stage = `L4. 采购环节（${bidType}）`
+
+  procurementStage.children = steps.map((stageName, index) => ({
+    key: `l4-${index + 1}`,
+    parentKey: procurementStage.key,
+    level: 'item',
+    stage: stageName,
+    currentTag: '',
+    linkTag: stageName === '公告发布' ? 'EIS 认定进度' : '',
+    actualEditable: false,
+    actualStart: '',
+    actualEnd: '',
+    actualText: '--',
+    proof: 'none',
+    plannedText: '--',
+    plannedRange: undefined,
+    planEditable: true,
+    status: '计划中',
+    statusType: 'default',
+  }))
+  procurementStage.hasChildren = true
+}
+
+const formatActualRangeText = (start, end) => {
+  if (start && end) {
+    return `${start} ~ ${end}`
+  }
+
+  if (start) {
+    return `${start} ~ --`
+  }
+
+  if (end) {
+    return `-- ~ ${end}`
+  }
+
+  return '--'
+}
+
+const formatPlannedRangeText = (range) => {
+  if (!range?.length) {
+    return '--'
+  }
+
+  const [start, end] = range
+
+  if (start && end) {
+    return `${start} ~ ${end}`
+  }
+
+  return '--'
+}
+
+const findRowByKey = (rows, key) => {
+  for (const row of rows) {
+    if (row.key === key) {
+      return row
+    }
+
+    if (row.children?.length) {
+      const matched = findRowByKey(row.children, key)
+
+      if (matched) {
+        return matched
+      }
+    }
+  }
+
+  return null
+}
+
+const getPreviousSibling = (record) => {
+  if (!record.parentKey) {
+    return null
+  }
+
+  const parent = findRowByKey(tableData, record.parentKey)
+
+  if (!parent?.children?.length) {
+    return null
+  }
+
+  const currentIndex = parent.children.findIndex((child) => child.key === record.key)
+
+  if (currentIndex <= 0) {
+    return null
+  }
+
+  return parent.children[currentIndex - 1]
+}
+
+const getPreviousTopLevelStage = (record) => {
+  if (record.parentKey) {
+    const parent = findRowByKey(tableData, record.parentKey)
+
+    if (parent) {
+      return parent
+    }
+  }
+
+  const currentIndex = tableData.findIndex((row) => row.key === record.key)
+
+  if (currentIndex <= 0) {
+    return null
+  }
+
+  return tableData[currentIndex - 1]
+}
+
+const getPreviousSequentialEnd = (record) => {
+  const previousSibling = getPreviousSibling(record)
+
+  if (previousSibling?.actualEnd) {
+    return previousSibling.actualEnd
+  }
+
+  const previousTopLevelStage = getPreviousTopLevelStage(record)
+
+  if (!previousTopLevelStage) {
+    return ''
+  }
+
+  return getStageActualRange(previousTopLevelStage).end || ''
+}
+
+const getPreviousSequentialPlannedEnd = (record) => {
+  const previousSibling = getPreviousSibling(record)
+
+  if (previousSibling?.plannedRange?.[1]) {
+    return previousSibling.plannedRange[1]
+  }
+
+  const previousTopLevelStage = getPreviousTopLevelStage(record)
+
+  if (!previousTopLevelStage) {
+    return ''
+  }
+
+  if (previousTopLevelStage.hasChildren && previousTopLevelStage.children?.length) {
+    const lastChild = previousTopLevelStage.children[previousTopLevelStage.children.length - 1]
+    return lastChild?.plannedRange?.[1] || ''
+  }
+
+  return previousTopLevelStage.plannedRange?.[1] || ''
+}
+
+const getNextSequentialTarget = (record) => {
+  if (record.parentKey) {
+    const parent = findRowByKey(tableData, record.parentKey)
+
+    if (!parent?.children?.length) {
+      return null
+    }
+
+    const currentIndex = parent.children.findIndex((child) => child.key === record.key)
+    const nextChild = parent.children[currentIndex + 1]
+
+    if (nextChild) {
+      return { target: nextChild, expandStageKey: null }
+    }
+
+    const parentIndex = tableData.findIndex((row) => row.key === parent.key)
+    const nextStage = tableData[parentIndex + 1]
+
+    if (!nextStage) {
+      return null
+    }
+
+    if (nextStage.hasChildren && nextStage.children?.length) {
+      return { target: nextStage.children[0], expandStageKey: nextStage.key }
+    }
+
+    return { target: nextStage, expandStageKey: null }
+  }
+
+  const currentIndex = tableData.findIndex((row) => row.key === record.key)
+  const nextStage = tableData[currentIndex + 1]
+
+  if (!nextStage) {
+    return null
+  }
+
+  if (nextStage.hasChildren && nextStage.children?.length) {
+    return { target: nextStage.children[0], expandStageKey: nextStage.key }
+  }
+
+  return { target: nextStage, expandStageKey: null }
+}
+
+const getStageActualRange = (record) => {
+  if (!record.hasChildren || !record.children?.length) {
+    return {
+      start: record.actualStart,
+      end: record.actualEnd,
+      text: record.actualText || formatActualRangeText(record.actualStart, record.actualEnd),
+    }
+  }
+
+  const firstChild = record.children[0]
+  const lastChild = record.children[record.children.length - 1]
+  const start = firstChild?.actualStart || ''
+  const end = lastChild?.actualEnd || ''
+
+  return {
+    start,
+    end,
+    text: formatActualRangeText(start, end),
+  }
+}
+
+const getRecordActualText = (record) => {
+  if (record.level === 'stage') {
+    return getStageActualRange(record).text
+  }
+
+  if (!record.actualStart && !record.actualEnd && record.actualText) {
+    return record.actualText
+  }
+
+  return formatActualRangeText(record.actualStart, record.actualEnd)
+}
+
+const applySequentialActualStart = (record, endValue) => {
+  if (!endValue) {
+    return
+  }
+
+  const nextTargetConfig = getNextSequentialTarget(record)
+
+  if (!nextTargetConfig?.target) {
+    return
+  }
+
+  const { target, expandStageKey } = nextTargetConfig
+
+  if (expandStageKey && !expandedRowKeys.value.includes(expandStageKey)) {
+    expandedRowKeys.value = [...expandedRowKeys.value, expandStageKey]
+  }
+
+  if (target.actualStart) {
+    return
+  }
+
+  target.actualStart = dayjs(endValue).add(1, 'day').format('YYYY-MM-DD')
+  target.actualStartAutoFilled = true
+  target.actualEditable = true
+}
+
+const clearSequentialActualStart = (record) => {
+  const nextTargetConfig = getNextSequentialTarget(record)
+
+  if (!nextTargetConfig?.target) {
+    return
+  }
+
+  const { target } = nextTargetConfig
+
+  if (target.actualStartAutoFilled) {
+    target.actualStart = undefined
+    target.actualStartAutoFilled = false
+  }
+
+  if (target.actualEndAutoFilled) {
+    target.actualEnd = undefined
+    target.actualEndAutoFilled = false
+  }
+}
+
+const handleActualDateChange = (record, field, value) => {
+  const targetRecord = findRowByKey(tableData, record.key)
+
+  if (!targetRecord) {
+    return
+  }
+
+  const nextValue = value || ''
+  const nextStart = field === 'actualStart' ? nextValue : targetRecord.actualStart
+  const nextEnd = field === 'actualEnd' ? nextValue : targetRecord.actualEnd
+  const previousSequentialEnd = getPreviousSequentialEnd(targetRecord)
+
+  if (
+    field === 'actualStart' &&
+    nextStart &&
+    previousSequentialEnd &&
+    dayjs(nextStart).isBefore(dayjs(previousSequentialEnd), 'day')
+  ) {
+    actualValidationMessages[targetRecord.key] = '实际开始时间不能小于上一环节结束时间'
+    targetRecord.actualStart = undefined
+    targetRecord.actualStartAutoFilled = false
+    return
+  }
+
+  if (nextStart && nextEnd && dayjs(nextEnd).isBefore(dayjs(nextStart), 'day')) {
+    actualValidationMessages[targetRecord.key] = '结束时间必须大于或等于开始时间'
+
+    if (field === 'actualEnd') {
+      targetRecord.actualEnd = undefined
+      targetRecord.actualEndAutoFilled = false
+    }
+
+    return
+  }
+
+  delete actualValidationMessages[targetRecord.key]
+
+  targetRecord[field] = nextValue
+
+  if (field === 'actualStart') {
+    targetRecord.actualStartAutoFilled = false
+  }
+
+  if (field === 'actualEnd') {
+    targetRecord.actualEndAutoFilled = false
+  }
+
+  if (field === 'actualEnd' && value) {
+    applySequentialActualStart(targetRecord, value)
+  }
+
+  if (field === 'actualEnd' && !value) {
+    clearSequentialActualStart(targetRecord)
+  }
+}
+
+const handlePlannedRangeChange = (record, value) => {
+  const targetRecord = findRowByKey(tableData, record.key)
+
+  if (!targetRecord) {
+    return
+  }
+
+  const nextRange = value ? [...value] : []
+  const nextStart = nextRange?.[0] || ''
+  const previousPlannedEnd = getPreviousSequentialPlannedEnd(targetRecord)
+
+  if (
+    nextStart &&
+    previousPlannedEnd &&
+    dayjs(nextStart).isBefore(dayjs(previousPlannedEnd), 'day')
+  ) {
+    plannedValidationMessages[targetRecord.key] = '计划开始时间不能小于上一环节结束时间'
+    targetRecord.plannedRange = targetRecord.plannedRange ? [...targetRecord.plannedRange] : undefined
+    return
+  }
+
+  delete plannedValidationMessages[targetRecord.key]
+  targetRecord.plannedRange = nextRange.length ? nextRange : undefined
+  targetRecord.plannedText = formatPlannedRangeText(targetRecord.plannedRange)
+}
+
+const isActualEditorVisible = (record) => {
+  if (record.hasChildren) {
+    return false
+  }
+
+  const targetRecord = findRowByKey(tableData, record.key)
+
+  if (!targetRecord) {
+    return false
+  }
+
+  if (targetRecord.actualEditable || targetRecord.actualStart || targetRecord.actualEnd) {
+    return true
+  }
+
+  if (!targetRecord.parentKey) {
+    const previousTopLevelStage = getPreviousTopLevelStage(targetRecord)
+
+    if (!previousTopLevelStage) {
+      return false
+    }
+
+    return Boolean(getStageActualRange(previousTopLevelStage).end)
+  }
+
+  const previousSibling = getPreviousSibling(targetRecord)
+
+  return Boolean(previousSibling?.actualEnd)
+}
+
+const isPlannedEditorVisible = (record) => {
+  if (record.level === 'stage') {
+    return ['default', 'processing'].includes(record.statusType)
+  }
+
+  const parentStage = record.parentKey ? findRowByKey(tableData, record.parentKey) : null
+
+  if (parentStage?.statusType === 'processing') {
+    return true
+  }
+
+  return Boolean(record.planEditable)
+}
+
+const getStageProofSummary = (record) => {
+  if (record.statusType === 'default') {
+    return { state: 'none', visible: false }
+  }
+
+  if (!record.hasChildren || !record.children?.length) {
+    if (record.proof === 'done') {
+      return { state: 'all', visible: true }
+    }
+
+    if (record.proof === 'upload') {
+      return { state: 'none', visible: true }
+    }
+
+    return { state: 'none', visible: false }
+  }
+
+  const childProofs = record.children.map((child) => child.proof)
+  const uploadedCount = childProofs.filter((proof) => proof === 'done').length
+
+  if (uploadedCount === 0) {
+    return { state: 'none', visible: true }
+  }
+
+  if (uploadedCount === childProofs.length) {
+    return { state: 'all', visible: true }
+  }
+
+  return { state: 'partial', visible: true }
+}
+
 const displayTableData = computed(() =>
   tableData.flatMap((row) => [
     {
       ...row,
-      children: undefined,
+      actualText: getRecordActualText(row),
     },
     ...(row.hasChildren && isExpanded(row.key)
       ? row.children.map((child) => ({
           ...child,
           children: undefined,
+          actualText: getRecordActualText(child),
         }))
       : []),
   ])
@@ -178,6 +775,56 @@ const customRow = (record) => ({
     record.level === 'item' ? 'detail-item-row' : '',
     record.active ? 'detail-active-row' : '',
   ].filter(Boolean).join(' '),
+})
+
+const startBidTypeEdit = () => {
+  if (isEditingBidType.value) {
+    return
+  }
+
+  isEditingBidType.value = true
+}
+
+const handleBidTypeChange = (event) => {
+  const nextValue = event.detail?.value || getCurrentBidType()
+  setBidTypeValue(nextValue)
+  rebuildProcurementStage(nextValue)
+}
+
+const handleBidTypeSelectChange = (value) => {
+  setBidTypeValue(value)
+  rebuildProcurementStage(value)
+  isEditingBidType.value = false
+  window.dispatchEvent(
+    new CustomEvent('detail:bid-type-change', {
+      detail: { value },
+    })
+  )
+}
+
+const handleBidTypeOutsideClick = (event) => {
+  if (!isEditingBidType.value) {
+    return
+  }
+
+  const isInsideEditor = event.target.closest('.detail-milestone-bid-type-editor')
+  const isDropdown = event.target.closest('.ant-select-dropdown')
+
+  if (!isInsideEditor && !isDropdown) {
+    isEditingBidType.value = false
+  }
+}
+
+onMounted(() => {
+  setBidTypeValue(getCurrentBidType())
+  rebuildProcurementStage(getCurrentBidType())
+  window.addEventListener('mousedown', handleBidTypeOutsideClick, true)
+  window.addEventListener('detail:bid-type-change', handleBidTypeChange)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('mousedown', handleBidTypeOutsideClick, true)
+  window.removeEventListener('detail:bid-type-change', handleBidTypeChange)
 })
 </script>
 

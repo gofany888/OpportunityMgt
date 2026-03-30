@@ -9,12 +9,12 @@
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+  color: #111827;
 }
 
 .import-log-section__icon {
-  color: rgba(0, 0, 0, 0.35);
+  color: #94a3b8;
 }
 
 .import-log-section__sub {
@@ -23,12 +23,20 @@
 }
 
 .import-log-card {
-  border-radius: 32px;
-  border: 1px solid #e8eef5;
+  border-radius: 28px;
+  border: 1px solid #edf1f5;
   overflow: hidden;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03),
               0 1px 6px -1px rgba(0, 0, 0, 0.02),
               0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.import-log-card:hover {
+  transform: translateY(-2px);
+  border-color: #dbe6f3;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08),
+              0 8px 18px rgba(15, 23, 42, 0.05);
 }
 
 .import-log-card :deep(.ant-card-body) {
@@ -44,36 +52,45 @@
   gap: 10px;
   padding: 40px 24px;
   text-align: center;
+  background:
+    linear-gradient(180deg, rgba(248, 250, 252, 0.9) 0%, rgba(244, 247, 251, 0.88) 100%),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.22) 0,
+      rgba(255, 255, 255, 0.22) 10px,
+      rgba(255, 255, 255, 0.08) 10px,
+      rgba(255, 255, 255, 0.08) 20px
+    );
 }
 
 .import-log-empty__icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 88px;
-  height: 88px;
-  border-radius: 24px;
-  background: #ffffff;
-  color: #d4ddec;
-  box-shadow: 0 10px 18px rgba(15, 23, 42, 0.04);
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #cbd5e1;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.03);
 }
 
 .import-log-empty__icon :deep(.anticon) {
-  font-size: 40px;
+  font-size: 32px;
 }
 
 .import-log-empty__title {
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1.35;
-  font-weight: 600;
-  color: #96a4ba;
+  font-weight: 500;
+  color: #64748b;
 }
 
 .import-log-empty__desc {
   font-size: 13px;
   line-height: 1.6;
   font-weight: 400;
-  color: #bec9d9;
+  color: #94a3b8;
 }
 
 .import-log-table :deep(.ant-table-container) {
@@ -92,18 +109,26 @@
 
 .import-log-table :deep(.ant-table-thead > tr > th) {
   padding: 18px 24px 16px;
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.38);
-  font-weight: 500;
+  font-size: 13px;
+  color: #111827;
+  font-weight: 400;
   background: transparent;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f2f3f5;
+  border-inline-end: none !important;
 }
 
 .import-log-table :deep(.ant-table-tbody > tr > td) {
   padding: 20px 24px;
   font-size: 14px;
   font-variant-numeric: tabular-nums;
-  border-bottom: 1px solid #f5f5f5;
+  color: #111827;
+  border-bottom: 1px solid #f2f3f5;
+  border-inline-end: none !important;
+  font-weight: 400;
+}
+
+.import-log-table :deep(.ant-table-tbody > tr:last-child > td) {
+  border-bottom: none !important;
 }
 
 .import-log-table :deep(.ant-table-tbody > tr:hover > td) {
@@ -158,14 +183,28 @@
 }
 
 .import-log-table__user-icon {
-  color: rgba(0, 0, 0, 0.3);
+  color: #94a3b8;
+}
+
+.import-log-table__operator-cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .import-log-table__attachment {
   gap: 6px;
   padding-inline: 0;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 400;
+}
+
+.import-log-table__count {
+  display: inline-block;
+  width: 100%;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
 }
 
 .import-log-table__action-cell {
@@ -177,5 +216,5 @@
 .import-log-table__action {
   padding-inline: 0;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 400;
 }

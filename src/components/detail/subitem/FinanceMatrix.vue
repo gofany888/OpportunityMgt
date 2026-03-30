@@ -18,7 +18,15 @@
           <div class="detail-finance-block-title">{{ block.title }}</div>
           <div class="detail-finance-block-metric">
             <a-typography-text class="detail-finance-metric-label">{{ block.incomeLabel }}</a-typography-text>
+            <a-typography-text
+              v-if="isPlaceholderValue(block.income)"
+              class="detail-finance-placeholder-value"
+              :style="getValueStyle(block.tone)"
+            >
+              --
+            </a-typography-text>
             <a-statistic
+              v-else
               :value="parseStatistic(block.income)"
               :prefix="getPrefix(block.income)"
               :precision="2"
@@ -27,7 +35,15 @@
           </div>
           <div class="detail-finance-block-metric">
             <a-typography-text class="detail-finance-metric-label">{{ block.profitLabel }}</a-typography-text>
+            <a-typography-text
+              v-if="isPlaceholderValue(block.profit)"
+              class="detail-finance-placeholder-value"
+              :style="getValueStyle(block.tone)"
+            >
+              --
+            </a-typography-text>
             <a-statistic
+              v-else
               :value="parseStatistic(block.profit)"
               :prefix="getPrefix(block.profit)"
               :precision="2"
@@ -44,6 +60,7 @@
 import { computed } from 'vue'
 import { financeMatrixConfig } from '@/data/detailPageData'
 
+const isPlaceholderValue = (value) => String(value).trim() === '--'
 const parseStatistic = (value) => Number(String(value).replace(/[¥,]/g, ''))
 const getPrefix = (value) => (String(value).includes('¥') ? '¥' : '')
 const getValueStyle = (tone) => {

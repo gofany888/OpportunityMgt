@@ -1,16 +1,9 @@
 .audit-detail-header {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   min-width: 0;
   width: 100%;
-}
-
-.audit-detail-header__back {
-  flex-shrink: 0;
-  width: 32px;
-  height: 32px;
-  color: #1677ff;
 }
 
 .audit-detail-header__copy {
@@ -29,18 +22,19 @@
 
 .audit-detail-header__title {
   margin: 0 !important;
-  font-size: 16px !important;
+  font-size: 18px !important;
   font-weight: 600 !important;
-  color: rgba(0, 0, 0, 0.88) !important;
+  line-height: 1.3 !important;
+  color: #1d2129 !important;
   white-space: nowrap;
 }
 
 .audit-detail-header__subtitle {
   min-width: 0;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.4;
   font-weight: 400;
-  color: rgba(0, 0, 0, 0.38);
+  color: #86909c;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

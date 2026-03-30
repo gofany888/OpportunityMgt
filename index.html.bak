@@ -330,7 +330,7 @@
                             diff: { count: 3, income: 63, procurement: '0', profit: 84 }
                         },
                         {
-                            org: '云业务生态业务部',
+                            org: '云生态业务部',
                             managed: { count: '48', selfBuiltCount: '5', income: '6,247', procurement: '1,890', profit: '4,441' },
                             forecast: { count: '45', income: '6,144', procurement: '1,866', profit: '4,343' },
                             diff: { count: 3, income: 104, procurement: '24', profit: 99 }

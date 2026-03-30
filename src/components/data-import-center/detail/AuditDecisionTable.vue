@@ -49,17 +49,17 @@
                 <div v-if="block.type === 'diff'" class="audit-decision-table__diff-list">
                   <div v-for="item in block.rows" :key="`${record.key}-${item.label}`" class="audit-decision-table__diff-row">
                     <span class="audit-decision-table__diff-label">{{ item.label }}</span>
-                    <span class="audit-decision-table__diff-from">{{ item.from }}</span>
+                    <span class="audit-decision-table__diff-from tabular-num">{{ item.from }}</span>
                     <ArrowRightOutlined class="audit-decision-table__diff-arrow" />
-                    <span class="audit-decision-table__diff-to">{{ item.to }}</span>
+                    <span class="audit-decision-table__diff-to tabular-num">{{ item.to }}</span>
                   </div>
                 </div>
 
                 <div v-else-if="block.type === 'pair'" class="audit-decision-table__pair-row">
                   <span class="audit-decision-table__pair-label">{{ block.label }}</span>
-                  <span class="audit-decision-table__pair-from">{{ block.from }}</span>
+                  <span class="audit-decision-table__pair-from tabular-num">{{ block.from }}</span>
                   <ArrowRightOutlined class="audit-decision-table__diff-arrow" />
-                  <span class="audit-decision-table__pair-to">{{ block.to }}</span>
+                  <span class="audit-decision-table__pair-to tabular-num">{{ block.to }}</span>
                 </div>
 
                 <a-alert

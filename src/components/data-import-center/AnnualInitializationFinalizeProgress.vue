@@ -37,20 +37,35 @@
                 :class="['annual-init-finalize-progress__metric', `is-${metric.tone}`]"
               >
                 <div :class="['annual-init-finalize-progress__metric-icon', `is-${metric.tone}`]">
-                  <component :is="metricIconMap[metric.icon]" />
+                  <template v-if="metric.icon === 'PlusCircleOutlined'">
+                    <span class="annual-init-finalize-progress__symbol annual-init-finalize-progress__symbol--plus" aria-hidden="true"></span>
+                  </template>
+                  <template v-else-if="metric.icon === 'MinusCircleOutlined'">
+                    <span class="annual-init-finalize-progress__symbol annual-init-finalize-progress__symbol--minus" aria-hidden="true"></span>
+                  </template>
+                  <template v-else-if="metric.icon === 'CheckCircleOutlined'">
+                    <svg class="annual-init-finalize-progress__check-svg" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M7 12.5L10.2 15.7L17 8.9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </template>
+                  <template v-else>
+                    <component :is="metricIconMap[metric.icon]" />
+                  </template>
                 </div>
                 <div class="annual-init-finalize-progress__metric-copy">
+                  <div class="annual-init-finalize-progress__metric-title">{{ metric.title }}</div>
                   <div :class="['annual-init-finalize-progress__metric-value', `is-${metric.tone}`]">
                     {{ metric.value }}
                   </div>
-                  <div class="annual-init-finalize-progress__metric-title">{{ metric.title }}</div>
                 </div>
               </div>
             </div>
 
             <div class="annual-init-finalize-progress__success">
               <div class="annual-init-finalize-progress__success-icon-shell">
-                <CheckCircleOutlined />
+                <svg class="annual-init-finalize-progress__success-check-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6.6 12.5L10.4 16.3L18 8.7" fill="none" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
               </div>
               <div class="annual-init-finalize-progress__success-title">
                 {{ completionConfig.title }}
@@ -247,4 +262,4 @@ function handleClose() {
 }
 </script>
 
-<style scoped src="./styles/AnnualInitializationFinalizeProgress.css?v=2"></style>
+<style scoped src="./styles/AnnualInitializationFinalizeProgress.css?v=10"></style>

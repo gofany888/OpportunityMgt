@@ -1,10 +1,6 @@
 <template>
   <div class="audit-detail-header">
-    <a-button type="text" class="audit-detail-header__back" @click="router.back()">
-      <template #icon>
-        <ArrowLeftOutlined />
-      </template>
-    </a-button>
+    <BackIconButton @click="router.back()" />
 
     <div class="audit-detail-header__copy">
       <div class="audit-detail-header__title-row">
@@ -20,8 +16,8 @@
 </template>
 
 <script setup>
-import { ArrowLeftOutlined } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
+import BackIconButton from '@/components/common/BackIconButton.vue'
 
 defineProps({
   detail: {

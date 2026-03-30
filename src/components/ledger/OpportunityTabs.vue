@@ -1,6 +1,10 @@
 <template>
   <div class="opportunity-tabs-wrapper">
     <div class="opportunity-tabs">
+      <div v-if="canGoBack" class="opportunity-tabs__back">
+        <BackIconButton @click="$emit('back')" />
+      </div>
+
       <a-tabs
         v-model:activeKey="activeTab"
         class="opportunity-tabs__main"
@@ -17,13 +21,6 @@
           <span class="opportunity-tabs__alert-dot"></span>
           <span class="opportunity-tabs__alert-text">{{ ledgerHeaderConfig.alertText }}</span>
         </div>
-        <span class="opportunity-tabs__divider"></span>
-        <a-button type="text" class="opportunity-sort">
-          <template #icon>
-            <SwapOutlined class="opportunity-sort-icon" />
-          </template>
-          按转化权重排序
-        </a-button>
       </div>
     </div>
 
@@ -45,8 +42,17 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { SwapOutlined } from '@ant-design/icons-vue'
+import BackIconButton from '@/components/common/BackIconButton.vue'
 import { opportunityTabs, ledgerHeaderConfig } from '@/data/ledgerData'
+
+defineProps({
+  canGoBack: {
+    type: Boolean,
+    default: false
+  }
+})
+
+defineEmits(['back'])
 
 const activeTab = ref('all')
 const activeSubTab = ref('all')

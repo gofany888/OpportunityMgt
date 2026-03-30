@@ -1,13 +1,40 @@
+.data-import-audit-detail-page {
+  padding-bottom: 32px;
+}
+
 .data-import-audit-detail-page__content {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  padding-top: 8px;
 }
 
 .data-import-audit-detail-page__export {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   border-radius: 999px;
-  height: 36px;
-  padding-inline: 16px;
-  font-size: 12px;
+  height: 38px;
+  padding-inline: 18px;
+  border: 1px solid #edf1f5;
+  background: rgba(255, 255, 255, 0.96);
+  color: #4e5969;
+  font-size: 13px;
   font-weight: 500;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+  transition:
+    transform 0.24s ease,
+    box-shadow 0.24s ease,
+    border-color 0.24s ease,
+    color 0.24s ease,
+    background-color 0.24s ease;
+}
+
+.data-import-audit-detail-page__export:hover {
+  color: #1d2129;
+  background: #ffffff;
+  border-color: #d9dee7;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
 }

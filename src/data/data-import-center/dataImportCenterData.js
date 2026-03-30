@@ -43,8 +43,6 @@ export const dataImportSummaryCards = [
 export const importSourcePanels = [
   {
     key: 'eis',
-    groupTitle: '外部对标源',
-    groupSubtitle: 'EIS',
     title: 'EIS销售口径同步',
     description: '系统识别 EIS 差异项并派发至管理员执行决策。',
     timestampLabel: '上次人工导入',
@@ -67,8 +65,6 @@ export const importSourcePanels = [
   },
   {
     key: 'bg',
-    groupTitle: '内部商机源',
-    groupSubtitle: 'BG',
     title: '经营底账商机更新',
     description: '系统自动识别新增和更新的商机。',
     timestampLabel: '上次人工导入',
@@ -104,7 +100,7 @@ export const importLogColumns = [
   { title: '记录编号', dataIndex: 'recordNo', key: 'recordNo', width: 180 },
   { title: '操作时间', dataIndex: 'operatedAt', key: 'operatedAt', width: 200 },
   { title: '数据来源', dataIndex: 'source', key: 'source', width: 120, align: 'center' },
-  { title: '操作账号', dataIndex: 'operator', key: 'operator', width: 220 },
+  { title: '操作账号', dataIndex: 'operator', key: 'operator', width: 220, align: 'center' },
   { title: '记录条数', dataIndex: 'recordCount', key: 'recordCount', width: 160, align: 'right' },
   { title: '状态', dataIndex: 'status', key: 'status', width: 140, align: 'center' },
   { title: 'Excel 附件', dataIndex: 'attachment', key: 'attachment', width: 220, align: 'center' },

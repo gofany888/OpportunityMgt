@@ -7,12 +7,6 @@
       :xl="12"
     >
       <div class="import-panels-group">
-        <div class="import-panels-group__label">
-          <LinkOutlined class="import-panels-group__icon" />
-          <span>{{ panel.groupTitle }}</span>
-          <a-typography-text class="import-panels-group__sub">{{ panel.groupSubtitle }}</a-typography-text>
-        </div>
-
         <a-card :bordered="false" class="import-panel-card">
           <a-typography-title :level="3" class="import-panel-card__title">
             {{ panel.title }}
@@ -119,7 +113,6 @@ import {
   FileTextOutlined,
   FileDoneOutlined,
   FileExcelOutlined,
-  LinkOutlined,
   PaperClipOutlined,
   SyncOutlined,
   LockOutlined,
@@ -138,7 +131,6 @@ const isBgMissing = computed(() => props.missingSources.includes('bg'))
 const router = useRouter()
 
 const iconMap = {
-  LinkOutlined,
   ClockCircleOutlined,
   FileDoneOutlined,
   SyncOutlined,

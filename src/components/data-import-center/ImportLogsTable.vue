@@ -30,7 +30,7 @@
           </template>
 
           <template v-else-if="column.dataIndex === 'operator'">
-            <a-space :size="8">
+            <a-space :size="8" class="import-log-table__operator-cell">
               <UserOutlined class="import-log-table__user-icon" />
               <span>{{ record.operator }}</span>
             </a-space>
@@ -51,11 +51,14 @@
             </a-button>
           </template>
 
+          <template v-else-if="column.dataIndex === 'recordCount'">
+            <span class="import-log-table__count tabular-num">{{ formatAmount(record.recordCount) }}</span>
+          </template>
+
           <template v-else-if="column.dataIndex === 'action'">
             <div class="import-log-table__action-cell">
               <a-button type="link" class="import-log-table__action" @click="openDetail(record)">
                 {{ importLogSection.detailActionText }}
-                <RightOutlined />
               </a-button>
             </div>
           </template>
@@ -72,7 +75,6 @@ import {
   FileSearchOutlined,
   HistoryOutlined,
   PaperClipOutlined,
-  RightOutlined,
   UserOutlined,
 } from '@ant-design/icons-vue'
 import {
@@ -96,6 +98,8 @@ const paginationConfig = computed(() => ({
   showSizeChanger: false,
   showTotal: importLogSection.totalText,
 }))
+
+const formatAmount = (value) => Math.round(Number(String(value).replace(/,/g, '')))
 
 const openDetail = (record) => {
   router.push({

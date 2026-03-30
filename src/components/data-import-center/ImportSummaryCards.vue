@@ -85,10 +85,11 @@ const iconMap = {
 const parseStatistic = (value) => Number(String(value).replace(/,/g, ''))
 
 const statValueStyle = computed(() => ({
-  color: 'rgba(0, 0, 0, 0.88)',
-  fontSize: '18px',
+  color: '#111827',
+  fontSize: '32px',
   fontWeight: 600,
   fontVariantNumeric: 'tabular-nums',
+  lineHeight: 1,
 }))
 </script>
 

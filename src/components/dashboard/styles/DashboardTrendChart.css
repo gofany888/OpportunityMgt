@@ -1,0 +1,348 @@
+.trend-chart-card {
+  margin-bottom: 24px;
+  border-radius: 28px;
+  border: 1px solid #edf1f5;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03), 0 1px 6px -1px rgba(0,0,0,0.02), 0 2px 4px rgba(0,0,0,0.02);
+  transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+}
+
+.trend-chart-card:hover {
+  transform: translateY(-2px);
+  border-color: #dbe6f3;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08),
+              0 8px 18px rgba(15, 23, 42, 0.05);
+}
+
+.trend-chart-card :deep(.ant-card-body) {
+  padding: 28px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.dashboard-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1d2129;
+  display: flex;
+  align-items: center;
+}
+
+.icon-title {
+  color: #4f83ff;
+  margin-right: 12px;
+}
+
+.header-right-controls {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.metric-switcher :deep(.ant-radio-button-wrapper) {
+  height: 32px;
+  line-height: 30px;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 0 18px;
+  border-radius: 10px;
+  border-color: #edf1f5;
+  color: #4e5969;
+  border-inline-start-width: 0;
+}
+
+.metric-switcher :deep(.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)) {
+  box-shadow: none;
+  color: #ffffff;
+  background: #1677ff;
+  border-color: #1677ff;
+}
+
+.metric-switcher :deep(.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover) {
+  color: #ffffff;
+  background: #1677ff;
+  border-color: #1677ff;
+}
+
+.metric-switcher :deep(.ant-radio-button-wrapper:not(:first-child)::before) {
+  display: none;
+}
+
+.divider-vertical {
+  width: 1px;
+  height: 16px;
+  background-color: #edf1f5;
+}
+
+.custom-legend {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: nowrap;
+}
+
+.legend-item.with-series-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: default;
+  white-space: nowrap;
+  color: #4e5969;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.series-state-box {
+  display: flex;
+  width: 18px;
+  height: 12px;
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.state-actual, .state-forecast {
+  flex: 1;
+  height: 100%;
+}
+
+/* EIS Theme */
+.eis-theme .state-actual {
+  background: #3b82f6;
+}
+
+.eis-theme .state-forecast {
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(191, 219, 254, 0.55),
+    rgba(191, 219, 254, 0.55) 1px,
+    #3b82f6 1px,
+    #3b82f6 2px
+  );
+}
+
+/* Ledger Theme */
+.ledger-theme .state-actual {
+  background: #0d9488;
+}
+
+.ledger-theme .state-forecast {
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(153, 246, 228, 0.5),
+    rgba(153, 246, 228, 0.5) 1px,
+    #0d9488 1px,
+    #0d9488 2px
+  );
+}
+
+
+/* Visualization Area Layout */
+.main-viz-area {
+  margin-bottom: 32px;
+}
+
+.chart-container {
+  width: 100%;
+  height: 280px;
+  position: relative;
+}
+
+.echart-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+/* Detail Data Table */
+.data-detail-table-area {
+  padding-top: 24px;
+}
+
+.monthly-data-table :deep(.ant-table) {
+  background: transparent;
+  border-top: 1px solid #edf1f5;
+}
+
+.monthly-data-table :deep(.ant-table-thead > tr > th) {
+  background: transparent;
+  border-bottom: 1px solid #f2f3f5;
+  border-inline-end: none !important;
+  font-size: 13px;
+  color: #1d2129;
+  font-weight: 400;
+  padding: 14px 8px;
+}
+
+.multi-level-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.table-header-month {
+  color: #1d2129;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.table-header-status {
+  font-size: 11px;
+  padding: 0 4px;
+  border-radius: 2px;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.is-actual-text {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.is-forecast-text {
+  color: #94a3b8;
+}
+
+.is-ytd-text {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.monthly-data-table :deep(.ant-table-tbody > tr > td) {
+  border-bottom: 1px solid #f2f3f5;
+  border-inline-end: none !important;
+  padding: 12px 8px;
+}
+
+.monthly-data-table :deep(.column-actual) {
+  background-color: rgba(241, 245, 249, 0.92) !important;
+}
+
+.monthly-data-table :deep(.column-ytd) {
+  background-color: rgba(240, 249, 255, 0.95) !important;
+}
+
+.monthly-data-table :deep(.dimension-row > td) {
+  background: rgba(248, 250, 252, 0.92);
+  border-bottom: 1px solid #f2f3f5;
+  padding-top: 22px;
+  padding-bottom: 10px;
+  font-weight: 500;
+}
+
+.month-cell {
+  font-size: 14px;
+  font-weight: 400;
+  color: #475569;
+  padding-left: 22px;
+  display: inline-block;
+}
+
+.dimension-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1d2129;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.dimension-toggle {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: #3b82f6;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.is-procurement .dimension-toggle {
+  background: #7c3aed;
+}
+
+.is-gross-profit .dimension-toggle {
+  background: #52c41a;
+}
+
+.tabular-num {
+  font-variant-numeric: tabular-nums;
+  font-family: Inter, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #1d2129;
+}
+
+.drilldown-value {
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.18s ease, opacity 0.18s ease;
+}
+
+.drilldown-value:hover {
+  opacity: 1;
+  color: #1677ff !important;
+}
+
+.drilldown-value::after {
+  content: '查看明细';
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%) translateY(4px);
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.88);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 2;
+}
+
+.drilldown-value:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.actual-value-cell {
+  color: #475569;
+  font-weight: 400;
+}
+
+.forecast-value-cell {
+  color: #64748b;
+}
+
+.ytd-value-cell {
+  color: #0f766e;
+  font-weight: 400;
+}
+
+.gap-cell {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.text-success { color: #10b981; }
+.text-error { color: #ef4444; }
+.text-neutral {
+  color: #c9cdd4;
+  font-weight: 400;
+}

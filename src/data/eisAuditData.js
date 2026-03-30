@@ -195,7 +195,7 @@ export const auditRecords = [
             profit: { management: 135, sales: 0, diff: 135, diffType: 'danger' },
             procurement: { management: 280, sales: 0, diff: 280, diffType: 'danger' },
             invoice: { management: 0, sales: 0, diff: 0, diffType: 'normal' },
-            parentStage: { management: 'L2 引导', sales: null, diff: '销服缺失', diffType: 'success' }
+            parentStage: { management: 'L2 引导', sales: null, diff: 'EIS缺失', diffType: 'success' }
         }
     },
     {
@@ -210,7 +210,7 @@ export const auditRecords = [
             profit: { management: 96, sales: null, diff: 96, diffType: 'danger' },
             procurement: { management: 150, sales: null, diff: 150, diffType: 'danger' },
             invoice: { management: 0, sales: null, diff: 0, diffType: 'normal' },
-            parentStage: { management: 'L3 立项', sales: null, diff: '销服缺失', diffType: 'success' }
+            parentStage: { management: 'L3 立项', sales: null, diff: 'EIS缺失', diffType: 'success' }
         }
     },
     {
@@ -285,7 +285,7 @@ export const auditRecords = [
             profit: { management: 168, sales: null, diff: 168, diffType: 'danger' },
             procurement: { management: 320, sales: null, diff: 320, diffType: 'danger' },
             invoice: { management: 0, sales: null, diff: 0, diffType: 'normal' },
-            parentStage: { management: 'L4 采购', sales: null, diff: '销服缺失', diffType: 'success' }
+            parentStage: { management: 'L4 采购', sales: null, diff: 'EIS缺失', diffType: 'success' }
         }
     }
 ];

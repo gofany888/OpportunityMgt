@@ -4,6 +4,11 @@
   align-items: center;
   gap: 16px;
   width: 100%;
+  padding: 16px 18px;
+  border: 1px solid #e8eef6;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
 }
 
 .ledger-header-actions__left {
@@ -24,7 +29,7 @@
   display: inline-flex;
   align-items: center;
   border: 1px solid #d8e2f0;
-  border-radius: 12px;
+  border-radius: 14px;
   background: #ffffff;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
@@ -82,8 +87,8 @@
 }
 
 .ledger-header-actions__search :deep(.ant-input-affix-wrapper) {
-  border-radius: 12px !important;
-  height: 34px; /* Reduced from 40px */
+  border-radius: 14px !important;
+  height: 38px;
   border: 0 !important;
   box-shadow: none !important;
   background: transparent;
@@ -113,6 +118,7 @@
   column-gap: 8px !important;
   font-size: 13px !important;
   font-weight: 400 !important;
+  min-height: 38px;
 }
 
 .ledger-header-actions__filter-icon {
@@ -184,8 +190,8 @@
   align-items: center;
   gap: 6px;
   margin-inline-end: 0;
-  min-height: 30px;
-  padding-inline: 10px;
+  min-height: 32px;
+  padding-inline: 12px;
   border-radius: 999px;
   font-size: 12px;
   font-weight: 500;
@@ -235,8 +241,8 @@
 
 .ledger-header-actions__btns :deep(.ant-btn) {
   border-radius: 34px !important; /* Pill shape */
-  height: 34px; /* Reduced from 40px */
-  padding-inline: 20px;
+  height: 38px;
+  padding-inline: 22px;
   font-size: 13px;
   font-weight: 500;
   display: inline-flex;
@@ -259,4 +265,5 @@
 
 .ledger-header-actions__btns :deep(.ant-btn-primary) {
   font-weight: 500;
+  box-shadow: 0 10px 24px rgba(22, 119, 255, 0.22);
 }

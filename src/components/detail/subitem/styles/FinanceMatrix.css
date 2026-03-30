@@ -103,6 +103,16 @@
   color: rgba(255, 255, 255, 0.72);
 }
 
+.detail-finance-placeholder-value {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 32px;
+  line-height: 32px;
+  margin-top: 0;
+  font-variant-numeric: tabular-nums;
+}
+
 @media (max-width: 1400px) {
   .detail-finance-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));

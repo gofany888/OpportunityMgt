@@ -249,7 +249,7 @@ const auditToggles = ref([
     ]
   },
   {
-    label: '权责预估单（含负债）',
+    label: '资源池',
     tone: 'purple',
     value: 'all',
     options: [

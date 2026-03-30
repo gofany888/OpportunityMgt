@@ -102,6 +102,9 @@
               <component :is="metricIconMap[metric.icon]" />
             </div>
             <div class="annual-init-workspace__metric-copy">
+              <div :class="['annual-init-workspace__metric-title', `is-${metric.tone}`]">
+                {{ metric.title }}
+              </div>
               <a-statistic
                 :value="Number(metric.value)"
                 :value-style="metricValueStyle(metric)"
@@ -113,9 +116,6 @@
                   { 'has-note': Boolean(metric.note) },
                 ]"
               >
-                <div :class="['annual-init-workspace__metric-title', `is-${metric.tone}`]">
-                  {{ metric.title }}
-                </div>
                 <div
                   v-if="metric.note"
                   class="annual-init-workspace__metric-note"
@@ -480,7 +480,7 @@
         <div class="annual-init-workspace__pending">
           <a-statistic
             :value="displayPendingCount"
-            :value-style="{ color: '#3b66ea', fontSize: '48px', fontWeight: 700, lineHeight: 1 }"
+            :value-style="{ color: '#1d2129', fontSize: '34px', fontWeight: 600, lineHeight: 1, fontVariantNumeric: 'tabular-nums' }"
             class="annual-init-workspace__pending-stat"
           >
             <template #title>
@@ -947,14 +947,14 @@ function selectedDeptLabel(value) {
 
 function metricValueStyle(metric) {
   if (metric.tone === 'success') {
-    return { color: '#12a16f', fontSize: '38px', fontWeight: 700, lineHeight: 1 }
+    return { color: '#00b42a', fontSize: '34px', fontWeight: 600, lineHeight: 1, fontVariantNumeric: 'tabular-nums' }
   }
 
   if (metric.tone === 'muted') {
-    return { color: '#b8c3d3', fontSize: '38px', fontWeight: 700, lineHeight: 1 }
+    return { color: '#c9cdd4', fontSize: '34px', fontWeight: 600, lineHeight: 1, fontVariantNumeric: 'tabular-nums' }
   }
 
-  return { color: '#16223b', fontSize: '38px', fontWeight: 700, lineHeight: 1 }
+  return { color: '#1d2129', fontSize: '34px', fontWeight: 600, lineHeight: 1, fontVariantNumeric: 'tabular-nums' }
 }
 </script>
 

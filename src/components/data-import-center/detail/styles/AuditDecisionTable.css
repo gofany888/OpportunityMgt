@@ -22,9 +22,9 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
-  color: #44536a;
+  color: #1d2129;
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -34,8 +34,8 @@
 }
 
 .audit-decision-table__segmented {
-  background: #f5f7fb;
-  border: 1px solid #e6edf7;
+  background: #f7f8fa;
+  border: 1px solid #edf1f5;
   padding: 4px;
   border-radius: 999px;
   flex-shrink: 0;
@@ -47,9 +47,9 @@
 
 .audit-decision-table__segmented :deep(.ant-segmented-item) {
   min-width: 88px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #8a98ad;
+  font-size: 13px;
+  font-weight: 400;
+  color: #4e5969;
   transition: color 0.2s ease;
 }
 
@@ -59,19 +59,27 @@
 }
 
 .audit-decision-table__segmented :deep(.ant-segmented-item-selected) {
-  color: #1677ff;
+  color: #1d2129;
   background: #fff;
   border-radius: 999px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
 }
 
 .audit-decision-table__card {
-  border-radius: 32px;
-  border: 1px solid #e6edf7;
+  border-radius: 28px;
+  border: 1px solid #edf1f5;
   overflow: hidden;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03),
               0 1px 6px -1px rgba(0, 0, 0, 0.02),
               0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.audit-decision-table__card:hover {
+  transform: translateY(-2px);
+  border-color: #dbe6f3;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08),
+              0 8px 18px rgba(15, 23, 42, 0.05);
 }
 
 .audit-decision-table__card :deep(.ant-card-body) {
@@ -86,18 +94,26 @@
 
 .audit-decision-table__table :deep(.ant-table-thead > tr > th) {
   padding: 22px 28px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #8a98ad;
+  font-size: 13px;
+  font-weight: 400;
+  color: #1d2129;
   background: #fafcff;
-  border-bottom: 1px solid #eef3fa;
+  border-bottom: 1px solid #f2f3f5;
+  border-inline-end: none !important;
 }
 
 .audit-decision-table__table :deep(.ant-table-tbody > tr > td) {
   padding: 30px 28px;
-  font-size: 13px;
+  font-size: 14px;
   vertical-align: top;
-  border-bottom: 1px solid #f3f6fb;
+  border-bottom: 1px solid #f2f3f5;
+  border-inline-end: none !important;
+  color: #1d2129;
+  font-weight: 400;
+}
+
+.audit-decision-table__table :deep(.ant-table-tbody > tr:last-child > td) {
+  border-bottom: none !important;
 }
 
 .audit-decision-table__table :deep(.ant-table-tbody > tr:hover > td) {
@@ -105,30 +121,37 @@
 }
 
 .audit-decision-table__table :deep(.ant-pagination) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin: 0 28px;
   padding: 20px 0 24px;
   border-top: 1px solid #f3f6fb;
 }
 
 .audit-decision-table__table :deep(.ant-pagination-item),
-.audit-decision-table__table :deep(.ant-pagination-prev .ant-pagination-item-link),
-.audit-decision-table__table :deep(.ant-pagination-next .ant-pagination-item-link) {
+.audit-decision-table__table :deep(.ant-pagination-prev),
+.audit-decision-table__table :deep(.ant-pagination-next) {
   min-width: 36px;
   height: 36px;
-  border-radius: 10px;
   line-height: 34px;
-  border: 1px solid #d9e1ec;
+  border-radius: 12px;
+  line-height: 34px;
+  border: 1px solid #dbe4ef;
   background: #fff;
 }
 
 .audit-decision-table__table :deep(.ant-pagination-item a) {
-  color: #5f6f87;
+  color: #475569;
   font-size: 13px;
   font-weight: 500;
 }
 
 .audit-decision-table__table :deep(.ant-pagination-prev),
 .audit-decision-table__table :deep(.ant-pagination-next) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-inline-end: 8px;
 }
 
@@ -141,42 +164,52 @@
   color: #fff;
 }
 
-.audit-decision-table__table :deep(.ant-pagination-prev .ant-pagination-item-link),
-.audit-decision-table__table :deep(.ant-pagination-next .ant-pagination-item-link) {
-  color: #6d7b90;
+.audit-decision-table__table :deep(.ant-pagination-prev button),
+.audit-decision-table__table :deep(.ant-pagination-next button) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  color: #64748b;
+  background: transparent;
+  transition: all 0.2s;
 }
 
-.audit-decision-table__table :deep(.ant-pagination-prev:hover .ant-pagination-item-link),
-.audit-decision-table__table :deep(.ant-pagination-next:hover .ant-pagination-item-link) {
+.audit-decision-table__table :deep(.ant-pagination-prev:hover button),
+.audit-decision-table__table :deep(.ant-pagination-next:hover button) {
+  background: #f1f5f9;
   color: #1677ff;
-  border-color: #91caff;
 }
 
 .audit-decision-table__table :deep(.ant-pagination-total-text) {
-  font-size: 12px;
-  color: #8a98ad;
-  font-weight: 400;
+  margin-inline-end: auto;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 .audit-decision-table__entity-row {
   margin-bottom: 10px;
   font-size: 12px;
-  font-weight: 500;
-  color: #93a0b3;
+  font-weight: 400;
+  color: #86909c;
 }
 
 .audit-decision-table__entity-name {
   margin-bottom: 8px;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.5;
-  font-weight: 600;
-  color: #2b3547;
+  font-weight: 500;
+  color: #1d2129;
 }
 
 .audit-decision-table__entity-code {
-  font-size: 12px;
-  font-weight: 500;
-  color: #b0b8c6;
+  font-size: 13px;
+  font-weight: 400;
+  color: #86909c;
   font-variant-numeric: tabular-nums;
 }
 
@@ -194,15 +227,15 @@
   background: #f5f7fb;
   color: #6d7b90;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .audit-decision-table__decision-status {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 400;
 }
 
 .audit-decision-table__decision-status.is-green {
@@ -256,23 +289,23 @@
 .audit-decision-table__pair-label {
   min-width: 72px;
   font-size: 12px;
-  font-weight: 500;
-  color: #6d7b90;
+  font-weight: 400;
+  color: #86909c;
 }
 
 .audit-decision-table__diff-from,
 .audit-decision-table__pair-from {
-  color: #b0b8c6;
-  font-size: 13px;
+  color: #86909c;
+  font-size: 14px;
   font-weight: 400;
   font-variant-numeric: tabular-nums;
 }
 
 .audit-decision-table__diff-to,
 .audit-decision-table__pair-to {
-  color: #2f54eb;
-  font-size: 13px;
-  font-weight: 500;
+  color: #1d2129;
+  font-size: 14px;
+  font-weight: 400;
   font-variant-numeric: tabular-nums;
 }
 

@@ -2,7 +2,14 @@
   <div class="eis-audit-page">
     <!-- Full-Width Filter Bar -->
     <div ref="filterBarRef" class="eis-audit-filter-wrapper">
-      <EISFilterBar />
+      <div class="eis-audit-filter-inner">
+        <div v-if="canGoBack" class="eis-audit-filter-back">
+          <BackIconButton @click="handleBack" />
+        </div>
+        <div class="eis-audit-filter-content">
+          <EISFilterBar />
+        </div>
+      </div>
     </div>
 
     <!-- 核心指标卡片 (sticky below filter) -->
@@ -16,24 +23,24 @@
     <div class="eis-audit-table-header-sticky" :style="{ top: tableHeaderTop + 'px' }">
       <div class="max-w-[1600px] mx-auto px-6">
         <div class="eis-audit-table-header-inner">
-          <a-row :gutter="48" class="items-center">
+          <a-row :gutter="48" class="items-center -mx-3 px-3">
             <a-col :span="2">
-                <div class="text-[13px] font-medium text-gray-400 uppercase tracking-wider">数据维度</div>
+                <div class="eis-audit-table-header-label is-left">数据维度</div>
             </a-col>
-            <a-col :span="4" class="text-right">
-                <div class="text-[13px] font-medium text-gray-400 uppercase tracking-wider">商机金额</div>
+            <a-col :span="4">
+                <div class="eis-audit-table-header-label is-right">商机金额(万)</div>
             </a-col>
-            <a-col :span="4" class="text-right">
-                <div class="text-[13px] font-medium text-gray-400 uppercase tracking-wider">毛利</div>
+            <a-col :span="4">
+                <div class="eis-audit-table-header-label is-right is-profit">毛利(万)</div>
             </a-col>
-            <a-col :span="4" class="text-right">
-                <div class="text-[13px] font-medium text-gray-400 uppercase tracking-wider">采购</div>
+            <a-col :span="4">
+                <div class="eis-audit-table-header-label is-right is-procurement">采购(万)</div>
             </a-col>
-            <a-col :span="4" class="text-right">
-                <div class="text-[13px] font-medium text-gray-400 uppercase tracking-wider">开票额</div>
+            <a-col :span="4">
+                <div class="eis-audit-table-header-label is-right is-invoice">开票额(万)</div>
             </a-col>
-            <a-col :span="6" class="text-center">
-                <div class="text-[13px] font-medium text-gray-400 uppercase tracking-wider">父环节对标</div>
+            <a-col :span="6">
+                <div class="eis-audit-table-header-label is-center">父环节对标</div>
             </a-col>
           </a-row>
         </div>
@@ -51,18 +58,27 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { computed, ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import BackIconButton from '@/components/common/BackIconButton.vue'
 import EISFilterBar from '@/components/reports/eis-audit/EISFilterBar.vue'
 import EISSummaryCards from '@/components/reports/eis-audit/EISSummaryCards.vue'
 import EISDiscrepancyList from '@/components/reports/eis-audit/EISDiscrepancyList.vue'
 
+const route = useRoute()
+const router = useRouter()
 const filterBarRef = ref(null)
 const summaryRef = ref(null)
 const summaryTop = ref(0)
 const tableHeaderTop = ref(0)
+const canGoBack = computed(() => route.query.from === 'dashboard')
 
 // 24px offset to account for .layout-main-content padding
 const PADDING_OFFSET = -24
+
+const handleBack = () => {
+  router.back()
+}
 
 const updateStickyOffsets = () => {
   const filterH = filterBarRef.value?.offsetHeight || 0
@@ -95,11 +111,29 @@ onUnmounted(() => {
 .eis-audit-filter-wrapper {
   width: 100%;
   background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid #edf1f5;
   padding: 16px 24px;
   position: sticky;
   top: -24px; /* offset for .layout-main-content padding */
   z-index: 30;
+}
+
+.eis-audit-filter-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.eis-audit-filter-back {
+  flex: 0 0 auto;
+  padding-top: 2px;
+}
+
+.eis-audit-filter-content {
+  flex: 1;
+  min-width: 0;
 }
 
 .eis-audit-summary-sticky {
@@ -117,9 +151,42 @@ onUnmounted(() => {
 }
 
 .eis-audit-table-header-inner {
-  padding: 12px 32px;
-  background-color: #f9fafb;
-  border-bottom: 1px solid #e5e7eb;
-  border-radius: 24px 24px 0 0;
+  padding: 14px 20px;
+  background-color: #fafcff;
+  border: 1px solid #edf1f5;
+  border-bottom: 1px solid #f2f3f5;
+  border-radius: 28px 28px 0 0;
+}
+
+.eis-audit-table-header-label {
+  font-size: 13px;
+  font-weight: 400;
+  color: #1d2129;
+  line-height: 1.4;
+  display: flex;
+  width: 100%;
+  text-align: center;
+}
+
+.eis-audit-table-header-label.is-left {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.eis-audit-table-header-label.is-right {
+  justify-content: flex-end;
+  text-align: right;
+  transform: translateX(28px);
+}
+
+.eis-audit-table-header-label.is-profit,
+.eis-audit-table-header-label.is-procurement,
+.eis-audit-table-header-label.is-invoice {
+  transform: translateX(18px);
+}
+
+.eis-audit-table-header-label.is-center {
+  justify-content: center;
+  text-align: center;
 }
 </style>

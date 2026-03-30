@@ -1,5 +1,106 @@
 .summary-cards-container {
-  border-radius: 0;
-  padding: 32px 24px;
-  background-color: rgb(240, 244, 248);
+  width: 100%;
+  margin: 0;
+  padding: 36px 0 44px 0; /* Increased vertical padding for luxurious breathing room */
+  background: transparent;
+  display: flex;
+  justify-content: space-between; /* Stick first and last cards to edges */
+  align-items: stretch;
+}
+
+.summary-card-wrapper {
+  flex: 0 0 220px; /* Reduced width to increase gaps between cards */
+}
+
+.eis-summary-card {
+  height: 100%;
+  border-radius: 24px !important;
+  border: 1px solid #edf1f5;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03),
+              0 1px 6px -1px rgba(0, 0, 0, 0.02),
+              0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+}
+
+.eis-summary-card:hover {
+  transform: translateY(-2px);
+  border-color: #dbe6f3;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08),
+              0 8px 18px rgba(15, 23, 42, 0.05);
+}
+
+.eis-summary-card :deep(.ant-card-body) {
+  padding: 14px 18px; /* Compact padding */
+}
+
+.eis-summary-card__body {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.eis-summary-card__icon {
+  width: 44px; /* Smaller icon */
+  height: 44px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.eis-summary-card__icon-svg {
+  font-size: 20px;
+}
+
+.eis-summary-card__copy {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.eis-summary-card__title {
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4e5969;
+}
+
+.eis-summary-card__value-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.eis-summary-card__stat {
+  min-width: 0;
+}
+
+.eis-summary-card__stat :deep(.ant-statistic-content) {
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.eis-summary-card__trend {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.eis-summary-card__trend.is-red {
+  color: #f53f3f;
+}
+
+.eis-summary-card__trend.is-blue {
+  color: #1677ff;
+}
+
+.eis-summary-card__trend.is-purple {
+  color: #722ed1;
+}
+
+.eis-summary-card__unit {
+  font-size: 12px;
+  font-weight: 400;
+  color: #86909c;
 }

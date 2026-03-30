@@ -312,6 +312,13 @@
   border-radius: 22px;
   border: 1px solid #edf2f8;
   box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.annual-init-workspace__metric-card:hover {
+  transform: translateY(-2px);
+  border-color: #dbe6f3;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08); /* Section 14: diffusion shadow */
 }
 
 .annual-init-workspace__metric-card :deep(.ant-card-body) {
@@ -322,17 +329,18 @@
 
 .annual-init-workspace__metric-shell {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
 }
 
 .annual-init-workspace__metric-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 72px;
-  height: 72px;
-  border-radius: 22px;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
   background: #fff4f1;
   color: #f15d4d;
   flex: 0 0 auto;
@@ -359,15 +367,16 @@
 }
 
 .annual-init-workspace__metric-icon :deep(svg) {
-  font-size: 34px;
+  font-size: 26px;
 }
 
 .annual-init-workspace__metric-copy {
   min-width: 0;
+  flex: 1 1 auto;
 }
 
 .annual-init-workspace__metric-meta {
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .annual-init-workspace__metric-meta.has-note {
@@ -377,14 +386,19 @@
   gap: 12px;
 }
 
-.annual-init-workspace__metric-stat :deep(.ant-statistic-content) {
+.annual-init-workspace__metric-stat :deep(.ant-statistic-content-value) {
+  font-size: 32px; /* Section 14: 28px-36px */
+  font-weight: 700; /* Section 14: 600 or 700 */
+  color: #1d2129; /* Section 14: standard deep neutral */
   font-variant-numeric: tabular-nums;
+  line-height: 1;
 }
 
 .annual-init-workspace__metric-title {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
-  color: #7f8da3;
+  color: #4e5969;
+  margin-bottom: 10px;
 }
 
 .annual-init-workspace__metric-title.is-success {
@@ -398,8 +412,8 @@
 .annual-init-workspace__metric-note {
   font-size: 12px;
   line-height: 1.4;
-  font-weight: 500;
-  color: #2f66f0;
+  font-weight: 400;
+  color: #86909c;
   white-space: nowrap;
   flex: 0 0 auto;
 }
@@ -507,15 +521,19 @@
 .annual-init-workspace__success-primary {
   position: relative;
   z-index: 1;
-  min-width: 280px;
-  height: 56px;
+  min-width: 240px;
+  height: 48px;
   margin-top: 12px;
   border: none;
   border-radius: 18px;
   background: #111a2f;
   box-shadow: 0 14px 24px rgba(17, 26, 47, 0.12);
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .annual-init-workspace__success-primary:hover,
@@ -524,7 +542,11 @@
 }
 
 .annual-init-workspace__success-primary :deep(.anticon) {
-  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
 }
 
 .annual-init-workspace__table-head {
@@ -533,7 +555,7 @@
   justify-content: space-between;
   gap: 12px;
   padding: 0 24px;
-  border-bottom: 1px solid #edf2f8;
+  border-bottom: 1px solid #f2f3f5;
 }
 
 .annual-init-workspace__table-head.is-business {
@@ -546,8 +568,8 @@
   align-items: center;
   gap: 12px;
   min-width: 0;
-  color: #253247;
-  font-size: 15px;
+  color: #1d2129;
+  font-size: 14px;
   line-height: 1.3;
   font-weight: 500;
 }
@@ -584,7 +606,7 @@
 
 .annual-init-workspace__tabs :deep(.ant-tabs-tab) {
   padding: 18px 0;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
 }
 
@@ -637,16 +659,21 @@
 .annual-init-workspace__table :deep(.ant-table-thead > tr > th) {
   padding: 18px 24px;
   background: #fafcff;
-  border-bottom: 1px solid #edf2f8;
-  font-size: 13px;
-  font-weight: 500;
-  color: #73819a;
+  border-bottom: 1px solid #f2f3f5; /* Section 14: light horizontal lines */
+  border-inline-end: none !important; /* Section 14: BAN vertical lines */
+  font-size: 14px;
+  font-weight: 400;
+  color: #1d2129;
 }
 
 .annual-init-workspace__table :deep(.ant-table-tbody > tr > td) {
   padding: 28px 24px;
   vertical-align: top;
-  border-bottom: 1px solid #edf2f8;
+  border-bottom: 1px solid #f2f3f5; /* Section 14: light horizontal lines */
+  border-inline-end: none !important; /* Section 14: BAN vertical lines */
+  font-size: 14px;
+  font-weight: 400;
+  color: #1d2129;
 }
 
 .annual-init-workspace__table :deep(.ant-table-tbody > tr:last-child > td) {
@@ -689,11 +716,10 @@
 }
 
 .annual-init-workspace__source-row {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
-  font-style: italic;
   line-height: 1.3;
-  color: #7f8da3;
+  color: #4e5969;
 }
 
 .annual-init-workspace__source-tag {
@@ -712,17 +738,17 @@
 }
 
 .annual-init-workspace__source-name {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1.35;
-  color: #243247;
+  color: #1d2129;
 }
 
 .annual-init-workspace__source-code {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 400;
   line-height: 1.4;
-  color: #97a3b6;
+  color: #86909c;
   font-variant-numeric: tabular-nums;
 }
 
@@ -820,8 +846,8 @@
 .annual-init-workspace__assignment-title {
   font-size: 12px;
   line-height: 1.5;
-  font-weight: 500;
-  color: #98a5b8;
+  font-weight: 400;
+  color: #86909c;
 }
 
 .annual-init-workspace__assignment-card {
@@ -906,8 +932,8 @@
 .annual-init-workspace__compound-title {
   margin-bottom: 8px;
   font-size: 12px;
-  font-weight: 500;
-  color: #7f8da3;
+  font-weight: 400;
+  color: #86909c;
 }
 
 .annual-init-workspace__compound-pending {
@@ -931,7 +957,7 @@
   background: #fafcfc;
   font-size: 14px;
   line-height: 1.7;
-  font-weight: 500;
+  font-weight: 400;
   color: #5f6f86;
   box-shadow: none;
 }
@@ -945,8 +971,8 @@
 .annual-init-workspace__duplicate-title {
   font-size: 13px;
   line-height: 1.5;
-  font-weight: 500;
-  color: #9aa8bd;
+  font-weight: 400;
+  color: #86909c;
 }
 
 .annual-init-workspace__duplicate-grid {
@@ -1283,19 +1309,24 @@
 }
 
 .annual-init-workspace__pending-label {
-  font-size: 13px;
-  font-weight: 600;
-  color: #9aa8bd;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4e5969;
 }
 
 .annual-init-workspace__pending-stat :deep(.ant-statistic-content) {
   font-variant-numeric: tabular-nums;
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 4px;
 }
 
 .annual-init-workspace__pending-unit {
-  margin-left: 4px;
-  font-size: 20px;
-  color: #3b66ea;
+  margin-left: 0;
+  margin-bottom: 3px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #86909c;
 }
 
 .annual-init-workspace__restart-overlay {

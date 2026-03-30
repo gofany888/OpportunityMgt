@@ -67,19 +67,19 @@ export const metricCards = [
 /** 对账明细表数据 */
 export const diffTableData = [
     {
-        org: '云业务交付服务部',
+        org: '交付服务部',
         managed: { count: '53', selfBuiltCount: '3', income: '3,708', procurement: '1,697', profit: '2,072' },
         forecast: { count: '50', income: '3,645', procurement: '1,697', profit: '1,988' },
         diff: { count: 3, income: 63, procurement: '0', profit: 84 },
     },
     {
-        org: '云业务生态业务部',
+        org: '生态业务部',
         managed: { count: '48', selfBuiltCount: '5', income: '6,247', procurement: '1,890', profit: '4,441' },
         forecast: { count: '45', income: '6,144', procurement: '1,866', profit: '4,343' },
         diff: { count: 3, income: 104, procurement: '24', profit: 99 },
     },
     {
-        org: '云业务智算应用产品部',
+        org: '智算应用产品部',
         managed: { count: '19', selfBuiltCount: '1', income: '1,313', procurement: '0', profit: '1,313' },
         forecast: { count: '18', income: '1,278', procurement: '0', profit: '1,278' },
         diff: { count: 1, income: 35, procurement: '0', profit: 35 },

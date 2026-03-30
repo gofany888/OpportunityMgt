@@ -2,15 +2,19 @@
   <div class="opportunity-list">
     <!-- List Header -->
     <div class="opportunity-list-header">
+      <div class="opportunity-list-header-inner">
       <div class="opportunity-list-header__lead">
         <a-checkbox />
       </div>
       <div class="opportunity-list-header__check"></div>
       <div class="opportunity-list-header__info">商机标识与生命周期路径</div>
       <div class="opportunity-list-header__responsible">责任主体与填报进度</div>
-      <div class="opportunity-list-header__amount text-center">金额(万)</div>
-      <div class="opportunity-list-header__status text-center">状态</div>
-      <div class="opportunity-list-header__actions">操作</div>
+      <div class="opportunity-list-header__revenue">收入(万)</div>
+      <div class="opportunity-list-header__procurement">采购(万)</div>
+      <div class="opportunity-list-header__gross-profit">毛利(万)</div>
+        <div class="opportunity-list-header__status text-center">状态</div>
+        <div class="opportunity-list-header__actions">操作</div>
+      </div>
     </div>
 
     <!-- List Rows -->
@@ -112,31 +116,27 @@
             </div>
           </div>
 
-          <!-- Amount Column -->
-          <div class="opportunity-row__amount tabular-nums text-center">
-            <template v-if="proj.achievement">
-              <div class="amount-group">
-                <a-statistic
-                  :value="proj.amount"
-                  prefix="¥"
-                  :value-style="{ fontSize: '16px', fontWeight: '600', color: '#1e293b' }"
-                />
-                <div class="amount-progress">
-                  <a-progress 
-                    :percent="parseFloat(proj.achievement)" 
-                    size="small" 
-                    :show-info="false"
-                    stroke-color="#3b82f6" 
-                  />
-                  <span class="progress-text">年度实绩达成: {{ proj.achievement }}</span>
-                </div>
-              </div>
-            </template>
+          <!-- Revenue Column -->
+          <div class="opportunity-row__revenue tabular-nums">
             <a-statistic
-              v-else
               :value="proj.amount"
-              prefix="¥"
-              :value-style="{ fontSize: '16px', fontWeight: '600', color: '#1e293b' }"
+              :value-style="{ fontSize: '16px', fontWeight: '400', color: '#111827' }"
+            />
+          </div>
+
+          <!-- Procurement Column -->
+          <div class="opportunity-row__procurement tabular-nums">
+            <a-statistic
+              :value="proj.procurement"
+              :value-style="{ fontSize: '16px', fontWeight: '400', color: '#111827' }"
+            />
+          </div>
+
+          <!-- Gross Profit Column -->
+          <div class="opportunity-row__gross-profit tabular-nums">
+            <a-statistic
+              :value="proj.grossProfit"
+              :value-style="{ fontSize: '16px', fontWeight: '400', color: '#111827' }"
             />
           </div>
 
@@ -240,31 +240,27 @@
             </div>
             </div>
 
-            <!-- Sub Amount -->
-            <div class="opportunity-row__amount text-center tabular-nums">
-              <template v-if="sub.achievement">
-                <div class="amount-group">
-                  <a-statistic
-                    :value="sub.amount"
-                    prefix="¥"
-                    :value-style="{ fontSize: '16px', fontWeight: '600', color: '#1e293b' }"
-                  />
-                  <div class="amount-progress">
-                    <a-progress 
-                      :percent="parseFloat(sub.achievement)" 
-                      size="small" 
-                      :show-info="false"
-                      stroke-color="#3b82f6" 
-                    />
-                    <span class="progress-text">年度实绩达成: {{ sub.achievement }}</span>
-                  </div>
-                </div>
-              </template>
+            <!-- Sub Revenue -->
+            <div class="opportunity-row__revenue tabular-nums">
               <a-statistic
-                v-else
                 :value="sub.amount"
-                prefix="¥"
-                :value-style="{ fontSize: '16px', fontWeight: '600', color: '#1e293b' }"
+                :value-style="{ fontSize: '16px', fontWeight: '400', color: '#111827' }"
+              />
+            </div>
+
+            <!-- Sub Procurement -->
+            <div class="opportunity-row__procurement tabular-nums">
+              <a-statistic
+                :value="sub.procurement"
+                :value-style="{ fontSize: '16px', fontWeight: '400', color: '#111827' }"
+              />
+            </div>
+
+            <!-- Sub Gross Profit -->
+            <div class="opportunity-row__gross-profit tabular-nums">
+              <a-statistic
+                :value="sub.grossProfit"
+                :value-style="{ fontSize: '16px', fontWeight: '400', color: '#111827' }"
               />
             </div>
 
@@ -342,7 +338,7 @@ const props = defineProps({
 })
 
 const router = useRouter()
-const expandedRows = ref(['P-100239'])
+const expandedRows = ref(['编码:FF2023083490'])
 const openDropdowns = ref(new Set())
 
 const filteredOpportunityList = computed(() => {

@@ -4,7 +4,11 @@
   align-items: center;
   padding: 12px 24px;
   background: #ffffff;
-  border-top: 1px solid #f5f5f5; /* Lightened for a thinner appearance */
+  border-left: 1px solid #e9eef5; /* Self-contained side borders */
+  border-right: 1px solid #e9eef5;
+  border-bottom: 1px solid #e9eef5; /* Bottom closure */
+  border-top: 1px solid #f2f3f5;
+  border-radius: 0 0 24px 24px; /* Matches the header's radius */
 }
 
 .ledger-footer__summary {
@@ -18,6 +22,12 @@
   display: flex;
   align-items: center;
   flex: 0 0 auto;
+}
+
+:deep(.ant-pagination) {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 :deep(.ant-pagination-options-quick-jumper) {
@@ -40,6 +50,15 @@
   border-radius: 12px;
   border-color: #dbe4ef;
   background: #ffffff;
+  overflow: hidden;
+}
+
+:deep(.ant-pagination .ant-pagination-prev .ant-pagination-item-link),
+:deep(.ant-pagination .ant-pagination-next .ant-pagination-item-link) {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
 }
 
 :deep(.ant-pagination .ant-pagination-prev),
@@ -70,7 +89,9 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  border-radius: 12px;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
   color: #64748b;
   background: transparent;
   transition: all 0.2s;

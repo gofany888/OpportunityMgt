@@ -1,0 +1,228 @@
+.performance-table-card {
+  --metric-count-slot-width: 28px;
+  --metric-amount-slot-width: 54px;
+  --metric-header-optical-shift: 0px;
+  --metric-slot-optical-shift: 13px;
+  margin-bottom: 24px;
+  border-radius: 28px;
+  border: 1px solid #edf1f5;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03), 0 1px 6px -1px rgba(0,0,0,0.02), 0 2px 4px rgba(0,0,0,0.02);
+  transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+}
+
+.performance-table-card:hover {
+  transform: translateY(-2px);
+  border-color: #dbe6f3;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08),
+              0 8px 18px rgba(15, 23, 42, 0.05);
+}
+
+.performance-table-card :deep(.ant-card-body) {
+  padding: 28px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.dashboard-section-title {
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1d2129;
+  display: flex;
+  align-items: center;
+}
+
+.icon-title {
+  color: #4f83ff;
+  margin-right: 12px;
+}
+
+.performance-unit-note {
+  font-size: 12px;
+  color: #86909c;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* 去外边框 */
+.custom-table :deep(.ant-table-container),
+.custom-table :deep(.ant-table-content) {
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.custom-table :deep(.ant-table-thead > tr > th) {
+  background-color: #fafcff;
+  color: #1d2129;
+  font-size: 13px;
+  font-weight: 400;
+  border-bottom: 1px solid #f2f3f5;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.custom-table :deep(.ant-table-thead > tr > th .ant-table-column-title) {
+  display: block;
+  width: 100%;
+}
+
+.custom-table :deep(.ant-table-tbody > tr > td) {
+  border-bottom: 1px solid #f2f3f5;
+  border-left: none !important;
+  border-right: none !important;
+  color: #1d2129;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* Row Hover Mask (Agent.md rule) */
+.custom-table :deep(.ant-table-tbody > tr:hover > td) {
+  background-color: #fcfdff;
+}
+
+/* Essential tabular num enforcement */
+.tabular-num {
+  font-variant-numeric: tabular-nums;
+}
+
+.custom-table :deep(.metric-slot-wrapper) {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.custom-table :deep(.metric-header-slot) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  text-align: center;
+  transform: translateX(calc(-1 * var(--metric-header-optical-shift)));
+}
+
+.custom-table :deep(.metric-header-slot--count) {
+  width: var(--metric-count-slot-width);
+}
+
+.custom-table :deep(.metric-header-slot--amount) {
+  width: var(--metric-amount-slot-width);
+}
+
+.custom-table :deep(.metric-slot) {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  white-space: nowrap;
+  transform: translateX(calc(-1 * var(--metric-slot-optical-shift)));
+}
+
+.custom-table :deep(.metric-slot--count) {
+  width: var(--metric-count-slot-width);
+}
+
+.custom-table :deep(.metric-slot--amount),
+.custom-table :deep(.metric-slot--placeholder) {
+  width: var(--metric-amount-slot-width);
+}
+
+.custom-table :deep(.metric-slot__value) {
+  display: block;
+  width: 100%;
+  text-align: right;
+}
+
+.custom-table :deep(.metric-neutral) {
+  color: #111827;
+  font-weight: 400;
+}
+
+.custom-table :deep(.metric-zero) {
+  color: #c9cdd4;
+  font-weight: 400;
+}
+
+.custom-table :deep(.metric-positive) {
+  color: #059669;
+  font-weight: 400;
+}
+
+.custom-table :deep(.metric-negative) {
+  color: #dc2626;
+  font-weight: 400;
+}
+
+.custom-table :deep(.drilldown-value) {
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.18s ease, opacity 0.18s ease;
+}
+
+.custom-table :deep(.drilldown-value:hover) {
+  opacity: 1;
+  color: #1677ff !important;
+}
+
+.custom-table :deep(.drilldown-value::after) {
+  content: '查看明细';
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%) translateY(4px);
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.88);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 2;
+}
+
+.custom-table :deep(.drilldown-value:hover::after) {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.text-muted-icon {
+  color: #d1d5db;
+  font-size: 10px;
+}
+
+/* Summary Row Styles with Double line strictness per B-End rules */
+.custom-table :deep(.ant-table-summary) {
+  background-color: transparent;
+}
+
+.custom-table :deep(.total-row > td) {
+  background-color: #fafcff;
+  font-size: 16px; /* Jump out text */
+  color: #111827;
+  border-top: 2px solid #dbe3ef !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.custom-table :deep(.total-row .first-cell) {
+  padding-left: 16px;
+  color: #111827;
+  font-weight: 600;
+}
+
+.custom-table :deep(.total-row .number-col) {
+  text-align: center;
+}
+
+.custom-table :deep(.total-row .number-col .tabular-num) {
+  font-weight: 600;
+}

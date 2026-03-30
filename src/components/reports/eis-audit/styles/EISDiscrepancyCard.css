@@ -1,3 +1,49 @@
+.eis-audit-list-item {
+  transition: background-color 0.24s ease;
+}
+
+.eis-audit-list-item:hover {
+  background: #fcfdff;
+}
+
+.eis-audit-list-item__title {
+  line-height: 1.4;
+}
+
+.eis-audit-list-item__meta {
+  color: #86909c !important;
+}
+
+.eis-audit-list-item__metric-row {
+  border-bottom-color: #f2f3f5 !important;
+}
+
+.eis-audit-list-item__metric-row.is-diff {
+  background: transparent;
+}
+
+.eis-audit-list-item__diff-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #4b5563;
+  letter-spacing: -0.01em;
+}
+
+.eis-audit-list-item__diff-sign {
+  display: inline-block;
+  min-width: 10px;
+  margin-right: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+}
+
+.eis-audit-list-item :deep(.ant-statistic-content) {
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
 /* Extracted styles */
 .proj-icon-box {
   width: 40px;

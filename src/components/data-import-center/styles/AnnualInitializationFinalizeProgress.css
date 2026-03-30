@@ -58,27 +58,76 @@
 .annual-init-finalize-progress__metric {
   display: flex;
   align-items: center;
-  gap: 18px;
-  min-height: 116px;
-  padding: 22px 26px;
-  border-radius: 24px;
+  gap: 16px;
+  min-height: 110px;
+  padding: 24px 24px;
+  border-radius: 22px;
   border: 1px solid #edf2f8;
   background: #ffffff;
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: default;
+}
+
+.annual-init-finalize-progress__metric:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
 }
 
 .annual-init-finalize-progress__metric-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 76px;
-  height: 76px;
-  border-radius: 22px;
+  width: 56px; /* Matched Step 2 */
+  height: 56px; /* Matched Step 2 */
+  border-radius: 16px;
   flex: 0 0 auto;
+  position: relative;
 }
 
-.annual-init-finalize-progress__metric-icon :deep(.anticon) {
-  font-size: 30px;
+.annual-init-finalize-progress__symbol {
+  position: relative;
+  display: inline-flex;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 2px solid currentColor;
+  box-sizing: border-box;
+}
+
+.annual-init-finalize-progress__symbol::before,
+.annual-init-finalize-progress__symbol::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 999px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+}
+
+.annual-init-finalize-progress__symbol--plus::before,
+.annual-init-finalize-progress__symbol--minus::before {
+  width: 16px;
+  height: 2.5px;
+}
+
+.annual-init-finalize-progress__symbol--plus::after {
+  width: 2.5px;
+  height: 16px;
+}
+
+.annual-init-finalize-progress__symbol--minus::after {
+  display: none;
+}
+
+.annual-init-finalize-progress__check-svg {
+  width: 26px;
+  height: 26px;
+  padding: 3px;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  box-sizing: border-box;
 }
 
 .annual-init-finalize-progress__metric-icon.is-info {
@@ -105,14 +154,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 4px;
+  gap: 8px;
 }
 
 .annual-init-finalize-progress__metric-value {
-  font-size: 31px;
+  font-size: 32px; /* Section 14: 28px - 36px */
   line-height: 1;
-  font-weight: 600;
-  color: #223046;
+  font-weight: 700; /* Section 14: 600 or 700 */
+  color: #1d2129; /* Section 14: standard deep neutral */
   font-variant-numeric: tabular-nums;
 }
 
@@ -125,10 +174,11 @@
 }
 
 .annual-init-finalize-progress__metric-title {
-  font-size: 13px;
+  font-size: 14px; /* Section 14: 14px */
   line-height: 1.5;
-  font-weight: 400;
-  color: #8897ad;
+  font-weight: 500; /* Section 14: 500 */
+  color: #4e5969; /* Section 14 color */
+  margin-bottom: -2px;
 }
 
 .annual-init-finalize-progress__card {
@@ -188,7 +238,7 @@
   text-align: center;
 }
 
-.annual-init-finalize-progress__status :deep(.anticon) {
+.annual-init-finalize-progress__status :deep(svg) {
   font-size: 22px;
 }
 
@@ -215,7 +265,15 @@
   position: relative;
   overflow: hidden;
   opacity: 0;
-  transition: opacity 620ms ease-out 160ms;
+  transition: 
+    opacity 620ms ease-out 160ms,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.annual-init-finalize-progress__success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.1);
 }
 
 .annual-init-finalize-progress__completion-shell.is-entered .annual-init-finalize-progress__success {
@@ -238,16 +296,21 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 88px;
-  height: 88px;
-  border-radius: 26px;
+  width: 92px; /* Matched Step 2 */
+  height: 92px; /* Matched Step 2 */
+  border-radius: 28px;
   background: linear-gradient(180deg, #effcf5 0%, #e5f9ee 100%);
   color: #50b07b;
   box-shadow: inset 0 0 0 1px rgba(80, 176, 123, 0.12);
 }
 
-.annual-init-finalize-progress__success-icon-shell :deep(.anticon) {
-  font-size: 38px;
+.annual-init-finalize-progress__success-check-svg {
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  box-sizing: border-box;
 }
 
 .annual-init-finalize-progress__success-title {
@@ -271,7 +334,7 @@
   font-weight: 500;
 }
 
-.annual-init-finalize-progress__success-badge :deep(.anticon) {
+.annual-init-finalize-progress__success-badge :deep(svg) {
   font-size: 16px;
 }
 
@@ -300,9 +363,10 @@
   color: #223046;
   font-size: 16px;
   font-weight: 600;
-  text-decoration: underline;
-  text-decoration-color: #b9efcc;
-  text-underline-offset: 4px;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
 }
 
 .annual-init-finalize-progress__success-split {

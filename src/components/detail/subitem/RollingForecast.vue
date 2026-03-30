@@ -11,12 +11,6 @@
         </div>
       </div>
     </template>
-    <template #extra>
-      <a-segmented
-        v-model:value="confidence"
-        :options="rollingForecastConfig.confidenceOptions"
-      />
-    </template>
 
     <a-table
       :columns="columns"
@@ -60,33 +54,11 @@
         </template>
       </template>
     </a-table>
-
-    <div class="detail-rolling-footer">
-      <a-space :size="24" wrap>
-        <a-space
-          v-for="item in rollingForecastConfig.statusItems"
-          :key="item.key"
-          :size="8"
-          align="center"
-        >
-          <span class="detail-rolling-status-dot" :style="{ background: item.color }"></span>
-          <a-typography-text type="secondary">
-            {{ item.label }}: <span class="detail-rolling-status-value">{{ item.value }}</span>
-          </a-typography-text>
-        </a-space>
-      </a-space>
-      <a-alert
-        :message="rollingForecastConfig.warning"
-        type="warning"
-        show-icon
-        class="detail-rolling-alert"
-      />
-    </div>
   </a-card>
 </template>
 
 <script setup>
-import { computed, h, ref } from 'vue'
+import { computed, h } from 'vue'
 import {
   DollarCircleOutlined,
   FileTextOutlined,
@@ -97,8 +69,6 @@ import {
   WalletOutlined,
 } from '@ant-design/icons-vue'
 import { rollingForecastConfig } from '@/data/detailPageData'
-
-const confidence = ref(rollingForecastConfig.confidence)
 
 const rowIconMap = {
   LineChartOutlined,

@@ -1,0 +1,74 @@
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px; /* Ensure 8px multiple */
+}
+
+.header-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0; /* Remove top/bottom spacing to use container spacing strictly */
+  line-height: 1.2;
+  letter-spacing: 0; /* Anti-pattern removed: no letter-spacing for Chinese per agent.md */
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.data-range-selector {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.6); 
+  backdrop-filter: blur(10px);
+  padding: 6px 8px 6px 18px; /* Slightly more spacious for larger text */
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  min-height: 40px;
+}
+
+.range-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #475569; /* Darker for better accessibility */
+  margin-right: 14px;
+  line-height: 1.2;
+  user-select: none;
+}
+
+.custom-segmented {
+  background: transparent !important;
+  border-radius: 10px !important;
+  padding: 2px !important;
+}
+
+.custom-segmented :deep(.ant-segmented-item) {
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 8px !important;
+  color: #64748b;
+  transition: all 0.3s ease;
+  min-width: 80px; /* Ensure buttons have enough click area */
+  text-align: center;
+}
+
+.custom-segmented :deep(.ant-segmented-item-selected) {
+  background: #ffffff !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+  color: #1677ff !important;
+}
+
+.custom-segmented :deep(.ant-segmented-thumb) {
+  background: #ffffff !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}

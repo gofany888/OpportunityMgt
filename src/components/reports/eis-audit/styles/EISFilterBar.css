@@ -9,7 +9,8 @@
 }
 
 .eis-filter-bar__top :deep(.ant-input) {
-  background-color: #f9fafb !important;
+  background-color: #f7f8fa !important;
+  font-size: 14px;
 }
 
 .eis-filter-bar__top :deep(.ant-input:hover) {
@@ -22,13 +23,14 @@
 
 .eis-filter-bar__bottom {
   padding-top: 16px;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid #edf1f5;
   margin-top: 16px;
 }
 
 .custom-radio-group {
-    background-color: #f5f7fa;
-    border-radius: 8px;
+    background-color: #f7f8fa;
+    border: 1px solid #edf1f5;
+    border-radius: 12px;
     padding: 3px;
     display: inline-flex;
     align-items: center;
@@ -37,13 +39,13 @@
 .custom-radio-group :deep(.ant-radio-button-wrapper) {
     border: none;
     background: transparent;
-    border-radius: 6px;
-    height: 26px;
-    line-height: 26px;
+    border-radius: 10px;
+    height: 30px;
+    line-height: 30px;
     padding: 0 16px;
-    font-size: 12px;
-    color: #6a7381;
-    font-weight: 500;
+    font-size: 13px;
+    color: #4e5969;
+    font-weight: 400;
     transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
@@ -53,10 +55,10 @@
 
 .custom-radio-group :deep(.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)) {
     background: #fff;
-    color: #1677ff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    color: #1d2129;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
 }
 
 .custom-radio-group :deep(.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover) {
-    color: #4096ff;
+    color: #1d2129;
 }

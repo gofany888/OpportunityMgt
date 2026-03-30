@@ -1,0 +1,45 @@
+<template>
+  <div class="dashboard-styles-root">
+    <!-- Component styles are scoped, but global Dashboard container styles might be here -->
+  </div>
+</template>
+
+<style>
+/* 
+ * Dashboard Global Overrides
+ * Applies to elements within the dashboard view specifically 
+ */
+.dashboard-page-container {
+    background-color: #f5f7fa; /* Light grey background for the whole page */
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.dashboard-card-wrapper {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-section-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* Base scrollbar styling for tables */
+.ant-table-wrapper ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+.ant-table-wrapper ::-webkit-scrollbar-thumb {
+    background: #d9d9d9;
+    border-radius: 3px;
+}
+</style>

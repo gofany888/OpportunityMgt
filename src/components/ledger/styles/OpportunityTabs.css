@@ -1,10 +1,11 @@
 .opportunity-tabs-wrapper {
   display: flex;
   flex-direction: column;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.94);
   margin: 0; /* Full width */
-  border-bottom: 1px solid #edf2f8; /* Only bottom border */
+  border-bottom: 1px solid #e6edf5; /* Only bottom border */
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  backdrop-filter: blur(12px);
   overflow: hidden;
   width: 100%;
 }
@@ -14,7 +15,11 @@
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  padding: 4px 48px; /* More generous for full-width header */
+  padding: 4px 32px 4px 18px;
+}
+
+.opportunity-tabs__back {
+  flex: 0 0 auto;
 }
 
 .opportunity-tabs__main {
@@ -31,8 +36,8 @@
 }
 
 .opportunity-tabs__main :deep(.ant-tabs-tab) {
-  padding: 18px 4px 19px;
-  font-size: 15px;
+  padding: 14px 6px 15px;
+  font-size: 14px;
   line-height: 1.5;
   font-weight: 500;
   color: #74839a;
@@ -48,7 +53,7 @@
 }
 
 .opportunity-tabs__main :deep(.ant-tabs-ink-bar) {
-  height: 2px;
+  height: 3px;
   border-radius: 999px;
 }
 
@@ -58,20 +63,6 @@
   flex: 0 0 auto;
 }
 
-.opportunity-sort {
-  height: 34px;
-  padding-inline: 10px;
-  border-radius: 10px;
-  color: #74839a;
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.opportunity-sort-icon {
-  font-size: 14px;
-  transform: rotate(90deg);
-}
-
 /* Alert Text Badge per USER request */
 .opportunity-tabs__alert {
   display: inline-flex;
@@ -79,7 +70,7 @@
   gap: 6px;
   background: #eef5ff;
   padding: 0 10px;
-  height: 26px; /* Slightly taller for 12px text */
+  height: 24px;
   border-radius: 999px;
   border: 1px solid #d9e6ff;
 }
@@ -98,20 +89,13 @@
   white-space: nowrap;
 }
 
-.opportunity-tabs__divider {
-  width: 1px;
-  height: 14px;
-  background: #e2e8f0;
-  margin: 0 12px;
-}
-
 .opportunity-sub-tabs {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 14px 48px;
-  background: transparent;
-  border-top: 1px solid #f8fafc; /* Subtle separator inside the white card */
+  padding: 10px 48px 12px;
+  background: linear-gradient(180deg, rgba(249, 251, 254, 0.9) 0%, rgba(255, 255, 255, 0.78) 100%);
+  border-top: 1px solid #f1f5f9; /* Subtle separator inside the white card */
 }
 
 
@@ -132,10 +116,10 @@
 .sub-tab-tag {
   cursor: pointer;
   border-radius: 999px;
-  padding: 0 16px;
-  height: 32px;
-  line-height: 30px;
-  font-size: 14px;
+  padding: 0 14px;
+  height: 30px;
+  line-height: 28px;
+  font-size: 13px;
   font-weight: 500;
   color: #64748b;
   background: #f1f5f9;
@@ -153,5 +137,5 @@
   background: #ffffff;
   color: #1677ff;
   border-color: #1677ff;
-  box-shadow: 0 2px 4px rgba(22, 119, 255, 0.1);
+  box-shadow: 0 6px 12px rgba(22, 119, 255, 0.1);
 }
