@@ -22,6 +22,11 @@
 ## 5. Ant Design Vue 组件优先原则
 
 *   **能用 antdv 就用 antdv**：所有 UI 元素优先使用 Ant Design Vue 4.x 组件，禁止手写原生 HTML 再加 Tailwind 类名来平替已有的 antdv 组件。
+*   **遇到 antdv 控件，先查官方机制，再决定怎么改**：当需要调整 DatePicker / RangePicker / Select / Input / Table / Pagination 等 Ant Design Vue 组件时，必须优先确认该组件是否已经提供官方 `prop`、`slot`、`token`、`size`、`variant`、`icon`、`separator`、`render` 等机制；禁止一上来就通过 CSS 或 DOM 猜测硬改内部结构。
+*   **禁止随意覆盖 antdv 控件内部 DOM 结构**：除非官方没有提供可用机制，且业务上确实无法绕开，否则不得优先采用 `:deep(.ant-xxx-内部类名)` 的方式去“修控件内部”。尤其禁止先对内部 icon、separator、suffix、wrapper 做试错式强改。
+*   **优先级顺序必须明确**：处理 antdv 控件时，统一按 `官方属性/插槽 > 官方样式 token / size / variant > 外层容器布局调整 > 必要的最小化 :deep 覆盖` 的顺序执行。
+*   **若必须覆写内部样式，必须最小化且基于源码/文档确认**：只有在确认官方没有直接能力后，才允许使用 `:deep()` 定点覆盖，而且必须先核对组件文档或本地源码，再做最小范围修改；禁止盲调多个内部节点赌效果。
+*   **典型案例作为固定规则**：例如 `RangePicker` 中间分隔符，应优先使用组件自带的 `separator` 属性，而不是围绕默认 `SwapRightOutlined` 图标长期堆叠 CSS hack。
 *   **常用组件映射表**：
 
     | 场景 | 使用 antdv 组件 | 禁止做法 |

@@ -180,50 +180,71 @@
 .detail-proof-cell {
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: nowrap;
   white-space: nowrap;
 }
 
-.detail-proof-action {
+.detail-proof-icon-button {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  height: 28px;
-  padding: 0 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 500;
+  justify-content: center;
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.detail-proof-action.is-attached {
+.detail-proof-file-input {
+  display: none;
+}
+
+.detail-proof-progress-shell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+}
+
+.detail-proof-icon-button.is-attached {
   color: #1677ff;
   background: rgba(22, 119, 255, 0.08);
 }
 
-.detail-proof-action.is-attached:hover {
+.detail-proof-icon-button.is-attached:hover {
   color: #0958d9;
   background: rgba(22, 119, 255, 0.14);
 }
 
-.detail-proof-action.is-upload {
-  color: #d48806;
-  background: rgba(250, 173, 20, 0.12);
+.detail-proof-icon-button.is-upload {
+  color: #94a3b8;
+  background: rgba(148, 163, 184, 0.12);
 }
 
-.detail-proof-action.is-upload:hover {
-  color: #ad6800;
-  background: rgba(250, 173, 20, 0.18);
+.detail-proof-icon-button.is-upload:hover {
+  color: #1677ff;
+  background: rgba(22, 119, 255, 0.1);
 }
 
-.detail-proof-action.is-download {
+.detail-proof-icon-button.is-download {
   color: #4e5969;
   background: rgba(148, 163, 184, 0.14);
 }
 
-.detail-proof-action.is-download:hover {
+.detail-proof-icon-button.is-download:hover {
   color: #1d2129;
   background: rgba(148, 163, 184, 0.22);
+}
+
+.detail-proof-icon-button.is-disabled,
+.detail-proof-icon-button.is-disabled:hover {
+  color: #c9cdd4;
+  background: rgba(201, 205, 212, 0.16);
+  cursor: not-allowed;
 }
 
 .detail-proof-icon.is-success {
@@ -333,8 +354,14 @@
 }
 
 .detail-range-picker :deep(.ant-picker-range-separator) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  min-width: 16px;
   padding-inline: 0;
   margin-inline: 0;
+  line-height: 1;
 }
 
 .detail-range-picker :deep(.ant-picker-suffix) {
@@ -355,6 +382,26 @@
 .detail-range-picker :deep(.ant-picker .ant-picker-suffix),
 .detail-range-picker :deep(.ant-picker .ant-picker-separator) {
   color: rgba(0, 0, 0, 0.45);
+}
+
+.detail-range-picker :deep(.ant-picker .ant-picker-separator) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  line-height: 1;
+  transform: translateY(0);
+}
+
+.detail-range-picker :deep(.detail-range-separator-text) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  min-width: 16px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.45);
+  transform: translateX(-8px);
 }
 
 .detail-actual-editors :deep(.detail-actual-picker.ant-picker:hover),

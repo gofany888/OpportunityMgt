@@ -18,6 +18,7 @@
             v-if="isEditingBidType"
             :value="selectedBidType"
             :options="bidTypeOptions"
+            allow-clear
             open
             autofocus
             class="detail-milestone-bid-type-select"
@@ -27,7 +28,7 @@
             v-else
             :class="['detail-milestone-bid-type-display', { 'is-modified': bidTypeModified }]"
           >
-            <span class="detail-milestone-bid-type-text">{{ selectedBidType }}</span>
+            <span class="detail-milestone-bid-type-text">{{ selectedBidType || '--' }}</span>
             <EditOutlined class="inline-edit-icon" />
             <span v-if="bidTypeModified" class="modified-dot"></span>
           </div>
@@ -105,43 +106,78 @@
 
         <template v-else-if="column.dataIndex === 'proof'">
           <div class="detail-proof-cell">
-            <a-button
-              v-if="record.level === 'item' && record.proof === 'done'"
-              type="text"
-              size="small"
-              class="detail-proof-action is-attached"
-            >
-              <template #icon>
-                <PaperClipOutlined class="detail-proof-icon is-attachment is-attached" />
-              </template>
-              修改附件
-            </a-button>
-            <a-button
-              v-if="record.level === 'item' && record.proof === 'done'"
-              type="text"
-              size="small"
-              class="detail-proof-action is-download"
-            >
-              <template #icon>
-                <DownloadOutlined class="detail-proof-icon is-download" />
-              </template>
-              下载
-            </a-button>
-            <a-button
+            <template v-if="record.level === 'item' && record.uploadState === 'uploading'">
+              <a-tooltip :title="record.fileName ? `上传中：${record.fileName}` : '上传中...'">
+                <div class="detail-proof-progress-shell">
+                  <a-progress
+                    type="circle"
+                    :percent="record.uploadProgress || 0"
+                    :size="20"
+                    :stroke-width="14"
+                    :show-info="false"
+                    status="active"
+                  />
+                </div>
+              </a-tooltip>
+              <a-tooltip title="下载附件">
+                <a-button
+                  type="text"
+                  size="small"
+                  class="detail-proof-icon-button is-download is-disabled"
+                  disabled
+                >
+                  <template #icon>
+                    <DownloadOutlined class="detail-proof-icon is-download" />
+                  </template>
+                </a-button>
+              </a-tooltip>
+            </template>
+            <template v-else-if="record.level === 'item' && record.proof === 'done'">
+              <a-tooltip title="修改附件">
+                <a-button
+                  type="text"
+                  size="small"
+                  class="detail-proof-icon-button is-attached"
+                  @click.stop="triggerAttachmentPicker(record)"
+                >
+                  <template #icon>
+                    <PaperClipOutlined class="detail-proof-icon is-attachment is-attached" />
+                  </template>
+                </a-button>
+              </a-tooltip>
+              <a-tooltip title="下载附件">
+                <a-button
+                  type="text"
+                  size="small"
+                  class="detail-proof-icon-button is-download"
+                  :disabled="record.uploadState === 'uploading'"
+                  @click.stop="handleAttachmentDownload(record)"
+                >
+                  <template #icon>
+                    <DownloadOutlined class="detail-proof-icon is-download" />
+                  </template>
+                </a-button>
+              </a-tooltip>
+            </template>
+            <a-tooltip
               v-else-if="
                 record.level === 'item' &&
                 record.proof === 'upload' &&
                 ['processing', 'success'].includes(record.statusType)
               "
-              type="text"
-              size="small"
-              class="detail-proof-action is-upload"
             >
-              <template #icon>
-                <PaperClipOutlined class="detail-proof-icon is-attachment is-upload" />
-              </template>
-              上传附件
-            </a-button>
+              <template #title>上传附件</template>
+              <a-button
+                type="text"
+                size="small"
+                class="detail-proof-icon-button is-upload"
+                @click.stop="triggerAttachmentPicker(record)"
+              >
+                <template #icon>
+                  <PaperClipOutlined class="detail-proof-icon is-attachment is-upload" />
+                </template>
+              </a-button>
+            </a-tooltip>
             <a-tooltip
               v-else-if="
                 record.level === 'stage' &&
@@ -182,6 +218,7 @@
               :value="record.plannedRange"
               :locale="zhCN"
               :placeholder="['开始日期', '结束日期']"
+              :separator="plannedRangeSeparator"
               value-format="YYYY-MM-DD"
               size="small"
               class="detail-range-picker"
@@ -192,7 +229,7 @@
             </div>
           </div>
           <a-typography-text v-else class="detail-milestone-date-text">
-            {{ record.plannedText }}
+            {{ getRecordPlannedText(record) }}
           </a-typography-text>
         </template>
 
@@ -203,11 +240,17 @@
         </template>
       </template>
     </a-table>
+    <input
+      ref="attachmentInputRef"
+      type="file"
+      class="detail-proof-file-input"
+      @change="handleAttachmentFileChange"
+    />
   </a-card>
 </template>
 
 <script setup>
-import { computed, h, onMounted, onUnmounted, reactive, ref } from 'vue'
+import { computed, h, onMounted, onUnmounted, reactive, ref, watch } from 'vue'
 import zhCN from 'ant-design-vue/es/date-picker/locale/zh_CN'
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
@@ -263,6 +306,9 @@ const cloneRows = (rows, parentKey) =>
     actualEnd: row.actualEnd || parseActualRange(row.actualText).end,
     actualStartAutoFilled: false,
     actualEndAutoFilled: false,
+    uploadState: row.uploadState || 'idle',
+    uploadProgress: row.uploadProgress || 0,
+    fileName: row.fileName || '',
     children: row.children ? cloneRows(row.children, row.key) : undefined,
   }))
 
@@ -282,7 +328,7 @@ const columns = [
 ]
 
 const getCurrentBidType = () =>
-  financeProfileConfig.fields.find((field) => field.key === 'bidType')?.value || '公开招标'
+  financeProfileConfig.fields.find((field) => field.key === 'bidType')?.value ?? ''
 
 const bidTypeOptions = financeProfileConfig.fields
   .find((field) => field.key === 'bidType')
@@ -291,8 +337,12 @@ const bidTypeOptions = financeProfileConfig.fields
 const selectedBidType = ref(getCurrentBidType())
 const initialBidType = ref(getCurrentBidType())
 const isEditingBidType = ref(false)
+const plannedRangeSeparator = h('span', { class: 'detail-range-separator-text' }, '~')
+const attachmentInputRef = ref(null)
+const activeAttachmentRecordKey = ref('')
 
 const procurementStageTemplates = {
+  '': ['采购需求', '采购方案', '采购结果'],
   '公开招标': ['采购需求', '采购方案', '公告发布', '文件投递截止及递交', '候选人公示', '采购结果'],
   '公开询比': ['采购需求', '采购方案', '公告发布', '文件投递截止及递交', '候选人公示', '采购结果'],
   '直接采购（单一来源）': ['采购需求', '采购方案', '公告发布', '候选人公示', '采购结果'],
@@ -327,8 +377,8 @@ const rebuildProcurementStage = (bidType) => {
     return
   }
 
-  const steps = procurementStageTemplates[bidType] || procurementStageTemplates['原子能力下单']
-  procurementStage.stage = `L4. 采购环节（${bidType}）`
+  const steps = procurementStageTemplates[bidType] || procurementStageTemplates['']
+  procurementStage.stage = bidType ? `L4. 采购环节（${bidType}）` : 'L4. 采购环节'
 
   procurementStage.children = steps.map((stageName, index) => ({
     key: `l4-${index + 1}`,
@@ -342,6 +392,9 @@ const rebuildProcurementStage = (bidType) => {
     actualEnd: '',
     actualText: '--',
     proof: 'none',
+    uploadState: 'idle',
+    uploadProgress: 0,
+    fileName: '',
     plannedText: '--',
     plannedRange: undefined,
     planEditable: true,
@@ -538,6 +591,29 @@ const getStageActualRange = (record) => {
   }
 }
 
+const getStagePlannedRange = (record) => {
+  if (!record.hasChildren || !record.children?.length) {
+    return {
+      start: record.plannedRange?.[0] || '',
+      end: record.plannedRange?.[1] || '',
+      text: record.plannedText || formatPlannedRangeText(record.plannedRange),
+    }
+  }
+
+  const firstChild = record.children[0]
+  const lastChild = record.children[record.children.length - 1]
+  const fallbackStart = record.plannedRange?.[0] || ''
+  const fallbackEnd = record.plannedRange?.[1] || ''
+  const start = firstChild?.plannedRange?.[0] || fallbackStart
+  const end = lastChild?.plannedRange?.[1] || fallbackEnd
+
+  return {
+    start,
+    end,
+    text: formatPlannedRangeText(start && end ? [start, end] : undefined),
+  }
+}
+
 const getRecordActualText = (record) => {
   if (record.level === 'stage') {
     return getStageActualRange(record).text
@@ -548,6 +624,18 @@ const getRecordActualText = (record) => {
   }
 
   return formatActualRangeText(record.actualStart, record.actualEnd)
+}
+
+const getRecordPlannedText = (record) => {
+  if (record.level === 'stage' && record.hasChildren && record.statusType === 'processing') {
+    return getStagePlannedRange(record).text
+  }
+
+  if (!record.plannedRange?.length && record.plannedText) {
+    return record.plannedText
+  }
+
+  return formatPlannedRangeText(record.plannedRange)
 }
 
 const applySequentialActualStart = (record, endValue) => {
@@ -678,7 +766,84 @@ const handlePlannedRangeChange = (record, value) => {
   targetRecord.plannedText = formatPlannedRangeText(targetRecord.plannedRange)
 }
 
+const triggerAttachmentPicker = (record) => {
+  const targetRecord = findRowByKey(tableData, record.key)
+
+  if (!targetRecord || targetRecord.level !== 'item' || targetRecord.uploadState === 'uploading') {
+    return
+  }
+
+  activeAttachmentRecordKey.value = targetRecord.key
+
+  if (attachmentInputRef.value) {
+    attachmentInputRef.value.value = ''
+    attachmentInputRef.value.click()
+  }
+}
+
+const handleAttachmentFileChange = (event) => {
+  const file = event.target?.files?.[0]
+
+  if (!file || !activeAttachmentRecordKey.value) {
+    return
+  }
+
+  const targetRecord = findRowByKey(tableData, activeAttachmentRecordKey.value)
+
+  if (!targetRecord) {
+    activeAttachmentRecordKey.value = ''
+    return
+  }
+
+  targetRecord.uploadState = 'uploading'
+  targetRecord.uploadProgress = 12
+  targetRecord.fileName = file.name
+
+  const targetKey = targetRecord.key
+
+  window.setTimeout(() => {
+    const latestRecord = findRowByKey(tableData, targetKey)
+
+    if (latestRecord?.uploadState === 'uploading') {
+      latestRecord.uploadProgress = 46
+    }
+  }, 500)
+
+  window.setTimeout(() => {
+    const latestRecord = findRowByKey(tableData, targetKey)
+
+    if (latestRecord?.uploadState === 'uploading') {
+      latestRecord.uploadProgress = 78
+    }
+  }, 1100)
+
+  window.setTimeout(() => {
+    const latestRecord = findRowByKey(tableData, targetKey)
+
+    if (!latestRecord) {
+      return
+    }
+
+    latestRecord.uploadProgress = 100
+    latestRecord.uploadState = 'idle'
+    latestRecord.proof = 'done'
+    latestRecord.fileName = file.name
+  }, 2000)
+
+  activeAttachmentRecordKey.value = ''
+}
+
+const handleAttachmentDownload = (record) => {
+  if (record.uploadState === 'uploading') {
+    return
+  }
+}
+
 const isActualEditorVisible = (record) => {
+  if (record.statusType === 'success') {
+    return false
+  }
+
   if (record.hasChildren) {
     return false
   }
@@ -709,7 +874,15 @@ const isActualEditorVisible = (record) => {
 }
 
 const isPlannedEditorVisible = (record) => {
+  if (record.statusType === 'success') {
+    return false
+  }
+
   if (record.level === 'stage') {
+    if (record.hasChildren && record.statusType === 'processing') {
+      return false
+    }
+
     return ['default', 'processing'].includes(record.statusType)
   }
 
@@ -769,6 +942,13 @@ const displayTableData = computed(() =>
   ])
 )
 
+const hasUploadingAttachments = computed(() => {
+  const walk = (rows) =>
+    rows.some((row) => row.uploadState === 'uploading' || (row.children?.length && walk(row.children)))
+
+  return walk(tableData)
+})
+
 const customRow = (record) => ({
   class: [
     record.level === 'stage' ? 'detail-stage-row' : '',
@@ -786,18 +966,19 @@ const startBidTypeEdit = () => {
 }
 
 const handleBidTypeChange = (event) => {
-  const nextValue = event.detail?.value || getCurrentBidType()
+  const nextValue = event.detail ? event.detail.value : getCurrentBidType()
   setBidTypeValue(nextValue)
   rebuildProcurementStage(nextValue)
 }
 
 const handleBidTypeSelectChange = (value) => {
-  setBidTypeValue(value)
-  rebuildProcurementStage(value)
+  const nextValue = value ?? ''
+  setBidTypeValue(nextValue)
+  rebuildProcurementStage(nextValue)
   isEditingBidType.value = false
   window.dispatchEvent(
     new CustomEvent('detail:bid-type-change', {
-      detail: { value },
+      detail: { value: nextValue },
     })
   )
 }
@@ -820,12 +1001,34 @@ onMounted(() => {
   rebuildProcurementStage(getCurrentBidType())
   window.addEventListener('mousedown', handleBidTypeOutsideClick, true)
   window.addEventListener('detail:bid-type-change', handleBidTypeChange)
+  window.dispatchEvent(
+    new CustomEvent('detail:attachment-uploading-change', {
+      detail: { uploading: hasUploadingAttachments.value },
+    })
+  )
 })
 
 onUnmounted(() => {
   window.removeEventListener('mousedown', handleBidTypeOutsideClick, true)
   window.removeEventListener('detail:bid-type-change', handleBidTypeChange)
+  window.dispatchEvent(
+    new CustomEvent('detail:attachment-uploading-change', {
+      detail: { uploading: false },
+    })
+  )
 })
+
+watch(
+  hasUploadingAttachments,
+  (uploading) => {
+    window.dispatchEvent(
+      new CustomEvent('detail:attachment-uploading-change', {
+        detail: { uploading },
+      })
+    )
+  },
+  { immediate: true }
+)
 </script>
 
 <style scoped src="./styles/MilestoneTimeline.css"></style>

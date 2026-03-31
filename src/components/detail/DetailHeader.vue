@@ -41,11 +41,22 @@
           <template #icon><SyncOutlined /></template>
           <span class="ml-[2px]">从 <span class="font-bold pr-[2px]">EIS</span> 更新</span>
         </a-button>
-        
-        <a-button type="primary" class="action-btn-submit">
-          <template #icon><SaveFilled /></template>
-          {{ detailHeaderConfig.saveText }}
-        </a-button>
+
+        <a-tooltip
+          :title="isAttachmentUploading ? '附件上传中，请等待完成后提交' : null"
+          placement="bottom"
+        >
+          <span class="action-btn-submit-tooltip-trigger">
+            <a-button
+              type="primary"
+              class="action-btn-submit"
+              :disabled="isAttachmentUploading"
+            >
+              <template #icon><SaveFilled /></template>
+              {{ detailHeaderConfig.saveText }}
+            </a-button>
+          </span>
+        </a-tooltip>
 
         <a-divider type="vertical" class="action-divider" />
 
@@ -100,6 +111,7 @@ const isEditingTitle = ref(false)
 const titleInputRef = ref(null)
 const initialTitle = detailHeaderConfig.title
 const isTitleModified = ref(false)
+const isAttachmentUploading = ref(false)
 
 const startTitleEdit = async () => {
   draftTitle.value = currentTitle.value
@@ -141,12 +153,18 @@ const handleGlobalClick = (event) => {
   }
 }
 
+const handleAttachmentUploadingChange = (event) => {
+  isAttachmentUploading.value = Boolean(event.detail?.uploading)
+}
+
 onMounted(() => {
   window.addEventListener('mousedown', handleGlobalClick, true)
+  window.addEventListener('detail:attachment-uploading-change', handleAttachmentUploadingChange)
 })
 
 onUnmounted(() => {
   window.removeEventListener('mousedown', handleGlobalClick, true)
+  window.removeEventListener('detail:attachment-uploading-change', handleAttachmentUploadingChange)
 })
 </script>
 

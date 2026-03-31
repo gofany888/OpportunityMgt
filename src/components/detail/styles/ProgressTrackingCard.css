@@ -177,6 +177,26 @@
   font-size: 13px;
   color: rgba(0, 0, 0, 0.72);
   line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.detail-timeline-inline-editor {
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid #dbe6f3;
+  padding: 10px 12px;
+}
+
+.detail-timeline-inline-editor :deep(.ant-input) {
+  padding: 0;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  resize: none;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.72);
 }
 
 .detail-timeline-content.is-ellipsis {

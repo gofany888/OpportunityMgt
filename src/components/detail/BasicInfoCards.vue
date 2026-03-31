@@ -27,13 +27,16 @@
             >
               <template v-if="editingFieldKey === field.key">
                 <a-select
-                  v-if="field.key === 'department'"
+                  v-if="field.type === 'select' || field.key === 'department'"
                   v-model:value="orgForm[field.key]"
-                  :options="deptOptions"
+                  :options="field.key === 'department'
+                    ? deptOptions
+                    : field.options.map((option) => ({ label: option, value: option }))"
+                  :allow-clear="field.key !== 'department'"
                   autofocus
                   open
                   class="detail-edit-input"
-                  @change="confirmEdit(field.key)"
+                  @change="(value) => confirmEdit(field.key, value)"
                 />
                 <a-input
                   v-else
@@ -45,7 +48,7 @@
               </template>
               <template v-else>
                 <div :class="['detail-field-value-container', { 'is-modified': modifiedFields[field.key] }]">
-                  <span class="detail-field-value">{{ field.value }}</span>
+                  <span class="detail-field-value">{{ field.value || '--' }}</span>
                   <EditOutlined class="inline-edit-icon" />
                   <span v-if="modifiedFields[field.key]" class="modified-dot"></span>
                 </div>
@@ -68,7 +71,7 @@
         <div class="detail-info-grid">
           <div
             v-for="field in financeProfileConfig.fields"
-            :key="field.key"
+            :key="`${field.key}-${financeSyncTick}`"
             :class="['detail-info-grid-item', { 'span-2': field.span === 2 }]"
           >
             <div class="detail-field-label">
@@ -92,11 +95,12 @@
                   v-if="field.type === 'select'"
                   v-model:value="orgForm[field.key]"
                   :options="field.options.map((option) => ({ label: option, value: option }))"
+                  allow-clear
                   open
                   autofocus
                   class="detail-edit-input"
                   :popupClassName="field.key === 'bidType' ? 'select-wide-dropdown' : ''"
-                  @change="confirmEdit(field.key)"
+                  @change="(value) => confirmEdit(field.key, value)"
                 />
                 <a-input
                   v-else
@@ -109,7 +113,7 @@
               <template v-else>
                 <div :class="['detail-field-value-container', { 'is-modified': modifiedFields[field.key] }]">
                   <span :class="['detail-field-value', { 'num-font': field.numeric }]">
-                    {{ field.value }}
+                    {{ field.value || '--' }}
                   </span>
                   <EditOutlined class="inline-edit-icon" />
                   <span v-if="modifiedFields[field.key]" class="modified-dot"></span>
@@ -177,7 +181,7 @@ const startEdit = (key, value) => {
   orgForm[key] = value
 }
 
-const confirmEdit = (key) => {
+const confirmEdit = (key, nextValue) => {
   if (!key) return
   
   // 按照 Key 在两个配置中查找对应的字段和初始值
@@ -190,6 +194,10 @@ const confirmEdit = (key) => {
   }
 
   if (field) {
+    if (typeof nextValue !== 'undefined') {
+      orgForm[key] = nextValue
+    }
+
     field.value = orgForm[key]
     // 只有与初始值不同时，才显示红点
     modifiedFields[key] = field.value !== initialValue
@@ -220,11 +228,11 @@ const handleGlobalClick = (e) => {
 }
 
 const handleBidTypeSync = (event) => {
-  const nextValue = event.detail?.value
-
-  if (!nextValue) {
+  if (!event.detail) {
     return
   }
+
+  const nextValue = event.detail.value ?? ''
 
   const bidTypeField = financeProfileConfig.fields.find((field) => field.key === 'bidType')
 

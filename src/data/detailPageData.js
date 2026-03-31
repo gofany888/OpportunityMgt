@@ -50,7 +50,13 @@ export const organizationOverviewConfig = {
   title: '组织归属与客户全景',
   fields: [
     { key: 'department', label: '二级部门', value: '云业务运营产品部' },
-    { key: 'salesUnit', label: '销售单元', value: '南部部分公司 / 张销售' },
+    {
+      key: 'salesUnit',
+      label: '销售单元',
+      type: 'select',
+      value: '南部分公司',
+      options: ['北部分公司', '北京分公司', '集成能力中心', '南部分公司', '事业部', '西部分公司'],
+    },
     { key: 'manager', label: '客户经理', value: '李经理' },
     { key: 'region', label: '地区', value: '华南大区 / 某省' },
     { key: 'customer', label: '客户归属', value: '某省电力公司' },
@@ -60,7 +66,7 @@ export const organizationOverviewConfig = {
   timelineSuffix: '经营必要',
   timelineAction: '查看完整轨迹记录',
   draftPlaceholder: '追加客观商务进展说明...',
-  draftActionText: '提交进展',
+  draftActionText: '加入草稿',
 }
 
 export const detailTimelineEntries = [
@@ -92,7 +98,13 @@ export const financeProfileConfig = {
   title: '合同财务与经营画像',
   fields: [
     { key: 'contractNo', label: '合同编号', value: 'CT-2026-X8992', numeric: true },
-    { key: 'contractStatus', label: '合同状态', value: '执行中' },
+    {
+      key: 'contractStatus',
+      label: '合同状态',
+      type: 'select',
+      value: '已签约',
+      options: ['已撤销', '已定稿', '已盖章', '已归档', '已签约'],
+    },
     { key: 'contractName', label: '合同名称', value: '某省电力数字化转型二期框架协议' },
     { key: 'taxRate', label: '税率', type: 'select', value: '6%', options: ['免税', '6%', '9%', '13%'] },
     {
@@ -102,9 +114,35 @@ export const financeProfileConfig = {
       value: '公开招标',
       options: ['公开招标', '公开询比', '直接采购（单一来源）', '框架下订单', '原子能力下单'],
     },
-    { key: 'tradeType', label: '关联交易类型', value: 'IT服务' },
-    { key: 'financeType', label: '财务分类', value: '国内软件技术服务收入' },
-    { key: 'projectType', label: '项目属性', value: '非资源池' },
+    {
+      key: 'tradeType',
+      label: '关联交易类型',
+      type: 'select',
+      value: 'IT服务',
+      options: ['IT服务', '物资采购', '与关联方的非关联交易事项'],
+    },
+    {
+      key: 'financeType',
+      label: '财务分类',
+      type: 'select',
+      value: '国内软件技术服务收入',
+      options: [
+        '国内工程技术服务收入',
+        '国内技术委托开发收入',
+        '国内软件技术服务收入',
+        '国内系统集成收入',
+        '国内自主开发软件收入',
+        '国外软件技术服务收入',
+        '国外自主开发软件收入',
+      ],
+    },
+    {
+      key: 'projectType',
+      label: '项目属性',
+      type: 'select',
+      value: '非资源池',
+      options: ['资源池', '非资源池'],
+    },
   ],
   summaryTitle: '子项总金额 (含税)',
   summaryValue: '2,400.00',
@@ -199,7 +237,7 @@ export const milestoneRows = [
         level: 'item',
         stage: '立项方案确认',
         actualText: '2026-02-01 ~ 2026-02-06',
-        proof: 'done',
+        proof: 'upload',
         plannedText: '2026-02-01 ~ 2026-02-05',
         status: '已完成',
         statusType: 'success',

@@ -206,6 +206,10 @@
   gap: 6px;
 }
 
+.action-btn-submit-tooltip-trigger {
+  display: inline-flex;
+}
+
 .action-divider {
   height: 20px;
   margin: 0 6px;
