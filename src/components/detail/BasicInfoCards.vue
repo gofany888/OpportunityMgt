@@ -115,7 +115,10 @@
                   <span :class="['detail-field-value', { 'num-font': field.numeric }]">
                     {{ field.value || '--' }}
                   </span>
-                  <EditOutlined class="inline-edit-icon" />
+                  <EditOutlined
+                    v-if="!(field.key === 'bidType' && isBidTypeReadOnly)"
+                    class="inline-edit-icon"
+                  />
                   <span v-if="modifiedFields[field.key]" class="modified-dot"></span>
                 </div>
               </template>
@@ -167,6 +170,7 @@ const orgForm = reactive({})
 const initialOrgValues = {} // 记录初始值，用于脏检查
 const initialFinanceValues = {}
 const financeSyncTick = ref(0)
+const isBidTypeReadOnly = ref(false)
 
 const deptOptions = [
   { label: '云业务运营产品部', value: '云业务运营产品部' },
@@ -176,6 +180,7 @@ const deptOptions = [
 ]
 
 const startEdit = (key, value) => {
+  if (key === 'bidType' && isBidTypeReadOnly.value) return
   if (editingFieldKey.value === key) return
   editingFieldKey.value = key
   orgForm[key] = value
@@ -194,21 +199,25 @@ const confirmEdit = (key, nextValue) => {
   }
 
   if (field) {
+    const previousValue = field.value
+
     if (typeof nextValue !== 'undefined') {
       orgForm[key] = nextValue
+    }
+
+    if (key === 'bidType') {
+      window.dispatchEvent(
+        new CustomEvent('detail:bid-type-change', {
+          detail: { value: orgForm[key], previousValue, source: 'basic' },
+        })
+      )
+      editingFieldKey.value = null
+      return
     }
 
     field.value = orgForm[key]
     // 只有与初始值不同时，才显示红点
     modifiedFields[key] = field.value !== initialValue
-
-    if (key === 'bidType') {
-      window.dispatchEvent(
-        new CustomEvent('detail:bid-type-change', {
-          detail: { value: field.value },
-        })
-      )
-    }
   }
   editingFieldKey.value = null
 }
@@ -232,6 +241,10 @@ const handleBidTypeSync = (event) => {
     return
   }
 
+  if (event.detail.source === 'basic') {
+    return
+  }
+
   const nextValue = event.detail.value ?? ''
 
   const bidTypeField = financeProfileConfig.fields.find((field) => field.key === 'bidType')
@@ -246,6 +259,50 @@ const handleBidTypeSync = (event) => {
   financeSyncTick.value += 1
 }
 
+const handleBidTypeRevert = (event) => {
+  if (!event.detail) {
+    return
+  }
+
+  const revertedValue = event.detail.value ?? ''
+  const bidTypeField = financeProfileConfig.fields.find((field) => field.key === 'bidType')
+
+  if (!bidTypeField) {
+    return
+  }
+
+  bidTypeField.value = revertedValue
+  orgForm.bidType = revertedValue
+  modifiedFields.bidType = revertedValue !== initialFinanceValues.bidType
+  financeSyncTick.value += 1
+}
+
+const handleBidTypeCommitted = (event) => {
+  if (!event.detail) {
+    return
+  }
+
+  const nextValue = event.detail.value ?? ''
+  const bidTypeField = financeProfileConfig.fields.find((field) => field.key === 'bidType')
+
+  if (!bidTypeField) {
+    return
+  }
+
+  bidTypeField.value = nextValue
+  orgForm.bidType = nextValue
+  modifiedFields.bidType = nextValue !== initialFinanceValues.bidType
+  financeSyncTick.value += 1
+}
+
+const handleBidTypeLockChange = (event) => {
+  isBidTypeReadOnly.value = Boolean(event.detail?.locked)
+
+  if (isBidTypeReadOnly.value && editingFieldKey.value === 'bidType') {
+    editingFieldKey.value = null
+  }
+}
+
 onMounted(() => {
   // 初始化初始值，用于脏检查
   organizationOverviewConfig.fields.forEach(field => {
@@ -256,11 +313,17 @@ onMounted(() => {
   })
   window.addEventListener('mousedown', handleGlobalClick, true)
   window.addEventListener('detail:bid-type-change', handleBidTypeSync)
+  window.addEventListener('detail:bid-type-committed', handleBidTypeCommitted)
+  window.addEventListener('detail:bid-type-revert', handleBidTypeRevert)
+  window.addEventListener('detail:bid-type-lock-change', handleBidTypeLockChange)
 })
 
 onUnmounted(() => {
   window.removeEventListener('mousedown', handleGlobalClick, true)
   window.removeEventListener('detail:bid-type-change', handleBidTypeSync)
+  window.removeEventListener('detail:bid-type-committed', handleBidTypeCommitted)
+  window.removeEventListener('detail:bid-type-revert', handleBidTypeRevert)
+  window.removeEventListener('detail:bid-type-lock-change', handleBidTypeLockChange)
 })
 
 const summaryValueStyle = computed(() => ({

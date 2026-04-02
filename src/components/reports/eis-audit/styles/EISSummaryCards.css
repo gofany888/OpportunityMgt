@@ -4,12 +4,14 @@
   padding: 36px 0 44px 0; /* Increased vertical padding for luxurious breathing room */
   background: transparent;
   display: flex;
-  justify-content: space-between; /* Stick first and last cards to edges */
+  justify-content: space-between;
+  gap: 12px;
   align-items: stretch;
 }
 
 .summary-card-wrapper {
-  flex: 0 0 220px; /* Reduced width to increase gaps between cards */
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .eis-summary-card {

@@ -51,6 +51,7 @@
               type="primary"
               class="action-btn-submit"
               :disabled="isAttachmentUploading"
+              @click="handleSubmit"
             >
               <template #icon><SaveFilled /></template>
               {{ detailHeaderConfig.saveText }}
@@ -95,6 +96,7 @@
 
 <script setup>
 import { nextTick, onMounted, onUnmounted, ref } from 'vue'
+import { message } from 'ant-design-vue'
 import { useRouter } from 'vue-router'
 import { 
   EditOutlined, UserOutlined, 
@@ -112,6 +114,7 @@ const titleInputRef = ref(null)
 const initialTitle = detailHeaderConfig.title
 const isTitleModified = ref(false)
 const isAttachmentUploading = ref(false)
+const timelineSubmitGuard = ref({ blocked: false, reason: '', focusKey: '' })
 
 const startTitleEdit = async () => {
   draftTitle.value = currentTitle.value
@@ -157,14 +160,56 @@ const handleAttachmentUploadingChange = (event) => {
   isAttachmentUploading.value = Boolean(event.detail?.uploading)
 }
 
+const handleTimelineSubmitGuardChange = (event) => {
+  timelineSubmitGuard.value = {
+    blocked: Boolean(event.detail?.blocked),
+    reason: event.detail?.reason || '',
+    focusKey: event.detail?.focusKey || '',
+  }
+}
+
+const handleSubmit = () => {
+  if (isAttachmentUploading.value) {
+    return
+  }
+
+  if (timelineSubmitGuard.value.blocked) {
+    message.warning(timelineSubmitGuard.value.reason || '请先处理里程碑中的时间问题')
+
+    if (timelineSubmitGuard.value.focusKey) {
+      window.dispatchEvent(
+        new CustomEvent('detail:focus-timeline-issue', {
+          detail: { key: timelineSubmitGuard.value.focusKey },
+        })
+      )
+    } else {
+      const milestoneElement = document.getElementById('milestone')
+      if (milestoneElement) {
+        const headerHeight = 80
+        const offsetPosition =
+          milestoneElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 24
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        })
+      }
+    }
+
+    return
+  }
+}
+
 onMounted(() => {
   window.addEventListener('mousedown', handleGlobalClick, true)
   window.addEventListener('detail:attachment-uploading-change', handleAttachmentUploadingChange)
+  window.addEventListener('detail:timeline-submit-guard-change', handleTimelineSubmitGuardChange)
 })
 
 onUnmounted(() => {
   window.removeEventListener('mousedown', handleGlobalClick, true)
   window.removeEventListener('detail:attachment-uploading-change', handleAttachmentUploadingChange)
+  window.removeEventListener('detail:timeline-submit-guard-change', handleTimelineSubmitGuardChange)
 })
 </script>
 
